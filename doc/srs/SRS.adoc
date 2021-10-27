@@ -393,7 +393,8 @@ _Короткий опис_:
 *TBD*
 
 ==== Діаграма прецедентів
-*TBD*
+// TODO: update this to master after merge
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/srs/doc/srs/usecase.puml[Діаграма прецедентів]
 
 === Спеціальні вимоги
 
