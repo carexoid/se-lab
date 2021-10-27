@@ -7,7 +7,7 @@ skinparam actorStyle awesome
 :Авторизований користувач: as auth_user
 :Адміністратор: as admin
 
-usecase (Пошук авіарейсів за параметрами) as u1
+usecase (Пошук та перегляд авіарейсів за параметрами) as u1
 usecase (Отримання інформації по авіарейсу) as u2
 usecase (Реєстрація) as nu1
 usecase (Авторизація) as nu2
