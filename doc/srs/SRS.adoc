@@ -391,7 +391,7 @@ _Короткий опис_:
 
 ==== Повний опис варіанту використання AU1. Придбання або бронювання квитка
 
-Аналіз фрормульованих варіантів використання показав, що критичний прецедент це <<AU1>>
+Аналіз cформульованих варіантів використання показав, що критичний прецедент - це <<AU1>>
 
 ===== Короткий опис
 
@@ -470,8 +470,8 @@ _Діючі актори_: Авторизований Користувач
 Відсутні
 
 ==== Діаграма прецедентів
-// TODO: update this to master after merge
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/srs/doc/srs/usecase.puml[Діаграма прецедентів]
+
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/master/doc/srs/usecase.puml[Діаграма прецедентів]
 
 === Спеціальні вимоги
 
