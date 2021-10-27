@@ -1,0 +1,60 @@
+@startuml
+
+skinparam actorStyle awesome
+
+' Declaring elements 
+:Неавторизований користувач: as non_auth_user 
+:Авторизований користувач: as auth_user
+:Адміністратор: as admin
+
+usecase (Пошук та перегляд авіарейсів за параметрами) as u1
+usecase (Отримання інформації по авіарейсу) as u2
+usecase (Реєстрація) as nu1
+usecase (Авторизація) as nu2
+usecase (Придбання або бронювання квитка) as au1
+usecase (Деавторизація) as au2
+usecase (Редагування профілю) as au3
+usecase (Видалення профілю) as au4
+usecase (Перегляд історії польотів та бонусів) as au5
+usecase (Адміністрування інформації про авіарейси) as a1
+usecase (Адміністрування інформації про користувачів) as a2
+usecase (Адміністрування інформації про замовлення) as a3
+
+' Resolving some elements` placing issues
+non_auth_user -[hidden]> admin
+
+nu2 -[hidden]down- nu1
+
+au1 -[hidden]down- au2
+au2 -[hidden]down- au3
+au3 -[hidden]down- au4
+au4 -[hidden]down- au5
+
+a1 -[hidden]down- a2
+a2 -[hidden]down- a3
+admin -[hidden]down- au1
+
+' Connecting elements
+non_auth_user -right-> nu1
+non_auth_user -right-> nu2
+non_auth_user -down-> u1
+non_auth_user -down-> u2
+auth_user -up-> u1
+auth_user -up-> u2
+auth_user -right-> au5
+auth_user -right-> au4
+auth_user -right-> au3
+auth_user -right-> au1
+auth_user -right-> au2
+admin -left-> a1
+admin -left-> a2
+admin -left-> a3
+
+au2 <|-- au4
+nu2 *-- nu1
+u2 *-left- u1
+
+note right of nu2: Призводить до зміни актора на \n"Авторизований користувач"
+note right of au2:  Призводить до зміни актора на \n"Неавторизований користувач"
+
+@enduml
