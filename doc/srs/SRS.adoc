@@ -2,7 +2,7 @@
 = [[entity_root.anchor]]Специфікація вимог до системи: Інформаційна система "Аеропорт"
 :title-page:
 Осока Данііл <osokadania@gmail.com>
-0.1, 
+0.2, 
 :short-title: SRS
 :toc:
 :toc-title: Зміст
