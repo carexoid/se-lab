@@ -269,23 +269,27 @@ a|?
 ==== Task Flow
 
 .Task Flow наміру "переглянути доступні рейси, що задовольняють певні критерії"
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU1.puml[NU1]
 
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU1.puml[]
 
 .Task Flow наміру "переглянути повну інформацію про авіарейс"
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU2.puml[]
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU2.puml[NU2]
+
 
 .Task Flow наміру "зареєструватися"
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU3.puml[]
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU3.puml[NU3]
+
 
 .Task Flow наміру "зайти в існуючий профіль"
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU4.puml[]
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU4.puml[NU4]
+
 
 .Task Flow наміру "переглянути інформацію про сайт"
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU5.puml[]
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU5.puml[NU5]
+
 
 .Task Flow наміру "зв'язатися зі службою підтримки аеропорту"
-image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU6.puml[]
+image::https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/NU6.puml[NU6]
 
 === Авторизований користувач
 
