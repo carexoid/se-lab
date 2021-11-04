@@ -7,9 +7,9 @@
 :toclevels: 3
 :sectnums:
 
-// :url: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/master/doc/ux/taskflow/
+:url: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/taskflow/
 
-// :wurl: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/master/doc/ux/wireflow/wireflow.png
+:wurl: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/wireflow/wireflow.png
 
 .Історія змін
 [width="100%", options="header"]
@@ -38,17 +38,17 @@ a|Цубін Софія
 ==== Task Flow
 
 .Task Flow наміру 1
-//image::{url}NU1.puml[NU1]
+image::{url}NU1.puml[NU1]
 
 {nbsp} +
 
 .Task Flow наміру 2
-//image::{url}NU2.puml[NU2]
+image::{url}NU2.puml[NU2]
 
 {nbsp} +
 
 .Task Flow наміру 3
-//image::{url}NU3.puml[NU3]
+image::{url}NU3.puml[NU3]
 
 
 === Авторизований користувач
@@ -69,12 +69,12 @@ Task Flow для намірів 1 та 4 збігаються з намірам�
 Для подальших Task Flow вважатимемо, що Авторизований користувач вже відкрив сайт та, звичайно ж, авторизований в системі.
 
 .Task Flow наміру 2
-//image::{url}AU2.puml[AU2]
+image::{url}AU2.puml[AU2]
 
 {nbsp} +
 
 .Task Flow наміру 3
-//image::{url}AU3.puml[AU3]
+image::{url}AU3.puml[AU3]
 
 
 === Адміністратор
@@ -92,17 +92,17 @@ Task Flow для намірів 1 та 4 збігаються з намірам�
 У наведених Task Flow вважається, що Адміністратор вже відкрив сайт та авторизувався в системі.
 
 .Task Flow наміру 1
-//image::{url}A1.puml[A1]
+image::{url}A1.puml[A1]
 
 {nbsp} +
 
 .Task Flow наміру 2
-//image::{url}A2.puml[A2]
+image::{url}A2.puml[A2]
 
 {nbsp} +
 
 .Task Flow наміру 3
-//image::{url}A3.puml[A3]
+image::{url}A3.puml[A3]
 
 
 == Опис передбачених сторінок
@@ -494,6 +494,6 @@ a|Перегляд даних
 Єдиним актором цього критичного варіанта використання є Авторизований користувач.
 
 .Wireflow для критичного варіанта використання: 1 - View Flight; 2 - View Flight Order; 3 - Choose Payment Method; 4 - Bonuses Checkout; 5 - Checkout; 6 - View Completed Order; 7 - Payment Error
-//image::{wurl}[wireflow]
+image::{wurl}[wireflow]
 
 Можливість зворотніх переходів для підтримки альтернативного потоку "Зміна рішення користувача щодо придбання" передбачена, однак не відображена на діаграмі аби не перенавантажувати її.
