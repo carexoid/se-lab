@@ -9,7 +9,7 @@
 
 :url: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/taskflow/
 
-:wurl: https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/wireflow/wireflow.png
+:wurl: https://raw.githubusercontent.com/carexoid/se-lab/ux/doc/ux/wireflow/wireflow.png
 
 .Історія змін
 [width="100%", options="header"]
