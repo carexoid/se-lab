@@ -4,7 +4,8 @@
 0.1, 
 :short-title: UX
 :toc:
-:toclevels: 2
+:toc-title: Зміст
+:toclevels: 1
 :sectnums:
 
 :url: //www.plantuml.com/plantuml/png/
