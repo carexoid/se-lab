@@ -1,0 +1,60 @@
+@startuml
+actor "Authorized User"as User
+boundary "View Flight"as ViewFlight
+boundary "View Flight Order" as ViewFlightOrder
+boundary "Choose Payment Method" as ChoosePayment
+boundary "Bonuses Chekout" as Bonuses
+boundary "Checkout" as Checkout
+boundary "View Completed Order" as ViewOrder
+boundary "Payment Error" as Error
+
+control "Push ORDER button" as CPushOrder
+control "Enter order details" as CEnterDetails
+control "Choose payment method" as CChooseMethod
+control "Pay" as CPay
+control "Store order" as CStoreOrder 
+control "Push OK button" as COk
+control "Enter amount of bonuses to use" as CEnterBonuses
+control "Choose action after error" as CErrorSolving
+
+entity "Order Details" as Details
+entity "Order" as Order
+entity "Bonuses" as EBonuses
+
+User -- ViewFlight
+ViewFlight --> CPushOrder
+CPushOrder --> ViewFlightOrder 
+ViewFlightOrder --> CEnterDetails
+CEnterDetails --> Details
+CEnterDetails --> ChoosePayment
+ChoosePayment --> CChooseMethod
+
+CChooseMethod --> Checkout : "Full payment"
+Checkout --> CPay
+
+
+CChooseMethod --> Bonuses : "Use bonuses"
+Bonuses --> CEnterBonuses
+CEnterBonuses --> EBonuses
+CEnterBonuses --> Checkout
+
+CPay --> CStoreOrder : "Payment successful"
+Details --> CStoreOrder
+EBonuses --> CStoreOrder
+CStoreOrder --> Order
+CStoreOrder --> ViewOrder
+Order --> ViewOrder
+
+CChooseMethod --> CStoreOrder : "Pay in cash"
+
+CPay --> Error : "Payment error"
+Error --> CErrorSolving
+CErrorSolving --> ChoosePayment : "Change payment method"
+CErrorSolving --> ViewFlight : "Cancel order"
+
+
+ViewOrder --> COk
+COk --> ViewFlight
+
+
+@enduml
