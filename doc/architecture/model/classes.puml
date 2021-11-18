@@ -1,0 +1,71 @@
+@startuml classes
+
+class AuthServer {
+    create(name, email, password) User
+    authorize(email, password) Token
+    validate(Token) bool
+}
+
+class AdminServer {
+    <CRUD operations>
+}
+
+class Airport {
+    id: int
+    name: str
+    info: str
+}
+
+class User {
+    id: int
+    email: str
+    created_at: datetime.time
+}
+
+class Order {
+    id: int
+    created_at: datetime.time
+    state: State
+}
+
+class Ticket {
+    id: int
+    added_at: datetime.time
+    seat: int
+    passenger: str
+}
+
+class Direction {
+    id: int
+    from: Airport
+    to: Airport
+}
+
+class Flight {
+    id INTEGER
+    departure_at: datetime.time
+    arrival_at: datetime.time
+    seats: int
+    price: int
+}
+
+class Payment {
+    amount: int
+}
+
+class SearchHistory {
+    id: int
+    created_at: datetime.time
+}
+
+User      --> SearchHistory
+Direction --o SearchHistory
+Airport   --o SearchHistory
+Order     --o Payment
+Direction --> Flight
+Order     --> User
+Ticket    --o Order
+Flight    --> Ticket
+Airport   --> Direction
+
+@enduml
