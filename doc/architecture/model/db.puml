@@ -1,0 +1,79 @@
+@startuml db
+
+!define Table(name, desc) class name as "desc" << (T, #FFAAAA) >>
+!define primary_key(field) <b>field</b>
+!define unique(field) <color:green>field</color>
+!define not_null(field) <u>field</u>
+
+hide methods
+hide stereotypes
+
+Table(User, "User") {
+    primary_key(not_null(id)) INTEGER
+    unique(not_null(email)) VARCHAR[256]
+    not_null(created_at) DATETIME
+    not_null(data) JSON
+}
+
+Table(Order, "Order") {
+    primary_key(not_null(id)) INTEGER
+    not_null(user_id) INTEGER
+    not_null(created_at) DATETIME
+    not_null(state) INTEGER
+}
+
+Table(Ticket, "Ticket") {
+    primary_key(not_null(id)) INTEGER
+    not_null(order_id) INTEGER
+    not_null(flight_id) INTEGER
+    not_null(added_at) DATETIME
+    not_null(seat) INTEGER
+    not_null(passenger) VARCHAR[128] 
+}
+
+Table(Direction, "Direction") {
+    primary_key(not_null(id)) INTEGER
+    not_null(from) INTEGER
+    not_null(to) INTEGER
+}
+
+Table(Flight, "Flight") {
+    primary_key(not_null(id)) INTEGER
+    not_null(direction_id) DATETIME
+    not_null(departure_at) DATETIME
+    not_null(arrival_at) DATETIME
+    not_null(seats) INTEGER
+    not_null(price) INTEGER
+}
+
+Table(Airport, "Airport") {
+    primary_key(not_null(id)) INTEGER
+    not_null(name) VARCHAR[128]
+    not_null(info) VARCHAR[2048]
+    data JSON
+}
+
+Table(Payment, "Payment") {
+    primary_key(not_null(order_id)) INTEGER
+    not_null(amount) INTEGER
+}
+
+Table(SearchHistory, "SearchHistory") {
+    primary_key(not_null(id)) INTEGER
+    not_null(user_id) INTEGER
+    not_null(created_at) INTEGER
+    airport_id INTEGER
+    direction_id INTEGER
+}
+
+User "1" --> "n" Order
+Flight "1" --> "n" Ticket
+Direction "1" --> "n" Flight
+Airport "1" --> "n" Direction
+User "1" --> "n" SearchHistory
+Airport "1" --> "n" SearchHistory
+Direction "1" --> "n" SearchHistory
+Order "1" --> "n" Ticket
+Order -- Payment
+
+@enduml

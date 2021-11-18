@@ -1,0 +1,42 @@
+= [[entity_root.anchor]]Архітектура Веб-застосунку "Аеропорт"
+:title-page:
+Микитюк Остап
+0.1, 
+:short-title: UX
+:toc:
+:toclevels: 2
+:sectnums:
+
+:url: //www.plantuml.com/plantuml/png/
+
+== Об'єктна модель
+
+Нижче наведена об'єктна модель веб-застосунку "Аеропорт".
+
+.Об'єктна модель
+image:{url}RL5BReKm3Dpd55o0ExpNHTLTAr4E4845KVD1ZbE9srV2jaAQnyep3CDu_CXaaKhmm-6jYyRO3I8DSmQKyHFNTlvmcHAUGZqT7Wb9qBjtswxWovu1eg9lj_o0WkSQN9m0Vm6LARGtn5kA9SiyaQKAmEAoDq0ZcIlW8CyufYPn_rOJSkp_dncEtD6TMXBDcTs57vNdz5KlBOc-iwzDi0qVuzOOisBIyI_LOdrrUliZYuNjQ-7ytQ9Qfvo-xdk_gdb0N4lmVm00[plain]
+
+== Технологічні рішення
+
+* Мікросервісна архітектура:
+** Auth Server — сервіс, який відповідає за реєстрацію, автентифікацію та ролі користувача.
+** Admin Server — сервіс адміністрації бази даних зі зручним користувацьким інтерфейсом, використовувати його мають право тільки користувачі з правами адміністратора.
+** Main Server — сервіс, який спілкується безпосередньо з головною частиною застосунку, реалізує програмний інтерфейс, який необхідний для взаємодії зі звичайним користувачем.
+* Зв'язка всіх необхідних сервісів відбуватиметься через веб-сервер зворотнього проксювання — NginX.
+* СУБД — MySQL, завдяки своїй простоті та надійності ідеально підходить для доменної області.
+
+== Діаграма придатності
+
+== Діаграма послідовності
+
+== Діаграма класів
+
+.Діаграма класів
+image:{url}[classes]
+
+== Схема бази даних
+
+Нижче описана схема бази даних, яка грунтується на об'єктній моделі, діаграмах класів та послідовності, мові формального опису таблиць в СУБД MySQL.
+
+.Схема бази даних
+image:{url}jLHHRnCn37xFhp37oqxg19i08LHLgrZBXiI6keCND5NfnMsZvPBYv90gn7ydTrdJ1df5gqHVph4_rz_dsBcmZfEhAmLYnjWpWNEf4Ge-KtYYUOKz46ZB74h5hON60zn2rZWpwFVXfEZ1y_5uw7yv30Rn7rOaAqxhwGEkJ-OIbSYXFnkqLl_5R8khjVnUOuIKHXbwjo14lG6thcs2DcwgQwLYIhq1rWF6bb8WLEYMHjXmi0u9ZLklq38MT7snI3t8ca-Mmqy600dVM4AAF8VhcsBqOJHfK1ks4O0LbyfZlWudxw-6as_dhz_Sjy28A0cvGp7bBeVBOJ4ghZ-DKeJWZkVmyUxsXltQCBmbqLBqtoTpZ97Q8asbYD6d4hFE0sBsbbmXomTqdbqmZgLdI1pYDrToiNJTSIx4OVR8NKVgYbkBUe6qlRYpyxVti9LuAGbB9utsAgDzhD0vcQeZvCoU_evRvRvoC8ujApQyVGyxPmzNpVOJ7cWa9v8_kFf7gsrNhqcM-uPeA6bbg54PhADbDazIUezfNEgvsLdGbwyU0StQ_R5rd_cwGjrm2bOtftI0koQqChLsUxJV8QToUIMjCxJsrPBpVz_s1C13ytrYujwTdLt-pPC9sLa6fwS3o7G6xGF5mg0cWV0siBWyIJ3WMRZvD2yc_5qhQLDCxaHqr4unBVyzn4F0E-5n51YxG2tgIh7V[db]
