@@ -1,0 +1,75 @@
+@startuml sequence
+
+actor "Authenticated User" as User
+
+participant "PaymentServer:paygate" as PayGate
+participant "MainServer:chief" as Chief
+
+boundary "View Flight" as ViewFlight
+boundary "View Flight Order" as ViewFlightOrder
+boundary "Choose Payment Method" as ChoosePayment
+boundary "Checkout" as Checkout
+boundary "Bonuses Chekout" as Bonuses
+boundary "View Completed Order" as ViewOrder
+boundary "Payment Error" as Error
+
+User -> ViewFlight : chief.get_flight()
+ViewFlight -> Chief : chief.get_flight()
+Chief -> ViewFlight : [Return selected flight]
+
+alt Enter order details
+
+    ViewFlightOrder -> ViewFlightOrder : [Add order details]
+
+else Choose payment method
+
+    ViewFlightOrder -> ViewOrder : [chief.store(order)]
+
+    ViewFlightOrder -> Chief : chief.order(flight, details...) [Order selected flight]
+    Chief -> ViewFlightOrder : [Return control to order page]
+    ViewFlightOrder -> ChoosePayment : [Select payment method]
+
+    alt Online payment
+
+        alt Use bonuses
+
+            ChoosePayment -> Bonuses : [Use some of bonuses]
+            Bonuses -> Checkout : [Proceed to payment page]
+
+        else Full payment
+
+            ChoosePayment -> Checkout : [Proceed to payment page]
+
+        end
+
+        alt Successful payment
+
+            Checkout -> PayGate : paygate.process(amount)
+            PayGate -> ViewOrder : [Redirect to page with complated order]
+
+        else Error during payment process
+
+            Checkout -> PayGate : paygate.process(amount)
+            PayGate -> Checkout : [Select available action for erroneous payment]
+
+            alt Select another payment method
+
+                Error -> ChoosePayment
+            
+            else  Go go flight search
+
+                Error -> ViewFlight
+
+            end
+
+        end
+
+    else Pay in cash
+
+        ChoosePayment -> Chief : [chief.store(order)]
+        Chief -> ViewOrder : [Redirect to page with complated order]
+
+    end
+end
+
+@enduml

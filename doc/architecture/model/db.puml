@@ -19,21 +19,20 @@ Table(Order, "Order") {
     primary_key(not_null(id)) INTEGER
     not_null(user_id) INTEGER
     not_null(created_at) DATETIME
-    not_null(state) INTEGER
+    not_null(type) INTEGER
 }
 
 Table(Ticket, "Ticket") {
-    primary_key(not_null(id)) INTEGER
-    not_null(order_id) INTEGER
-    not_null(flight_id) INTEGER
-    not_null(added_at) DATETIME
-    not_null(seat) INTEGER
-    not_null(passenger) VARCHAR[128] 
+    primary_key(not_null(flight_id)) INTEGER
+    primary_key(not_null(seat)) INTEGER
+    order_id INTEGER
+    not_null(passenger) VARCHAR[128]
+    not_null(type) INTEGER
+    not_null(price) INTEGER
 }
 
 Table(Direction, "Direction") {
     primary_key(not_null(id)) INTEGER
-    not_null(from) INTEGER
     not_null(to) INTEGER
 }
 
@@ -42,13 +41,13 @@ Table(Flight, "Flight") {
     not_null(direction_id) DATETIME
     not_null(departure_at) DATETIME
     not_null(arrival_at) DATETIME
-    not_null(seats) INTEGER
-    not_null(price) INTEGER
+    not_null(distance) INTEGER
 }
 
 Table(Airport, "Airport") {
     primary_key(not_null(id)) INTEGER
     not_null(name) VARCHAR[128]
+    not_null(city) VARCHAR[64]
     not_null(info) VARCHAR[2048]
     data JSON
 }
@@ -58,21 +57,10 @@ Table(Payment, "Payment") {
     not_null(amount) INTEGER
 }
 
-Table(SearchHistory, "SearchHistory") {
-    primary_key(not_null(id)) INTEGER
-    not_null(user_id) INTEGER
-    not_null(created_at) INTEGER
-    airport_id INTEGER
-    direction_id INTEGER
-}
-
 User "1" --> "n" Order
 Flight "1" --> "n" Ticket
 Direction "1" --> "n" Flight
 Airport "1" --> "n" Direction
-User "1" --> "n" SearchHistory
-Airport "1" --> "n" SearchHistory
-Direction "1" --> "n" SearchHistory
 Order "1" --> "n" Ticket
 Order -- Payment
 

@@ -9,10 +9,9 @@ agent Payment
 agent Ticket
 agent AdminServer
 agent AuthServer
+agent PaymentServer
 agent Bonus
-agent Status
 agent Search
-agent SearchHistory
 
 Order        --o OrderHistory
 Order        --o Payment
@@ -20,7 +19,6 @@ Flight       --o Order
 Ticket       --o Order
 Flight       --o Search
 User         --- Search
-Status       --o Flight
 User         --o Order
 AuthServer   --- User
 AdminServer  --- Flight
@@ -28,7 +26,7 @@ AdminServer  --- User
 AdminServer  --- Order
 Bonus        --o User
 Bonus        --o Payment
-Search       --o SearchHistory
 Airport      --- AdminServer
+Payment      --- PaymentServer
 
 @enduml
