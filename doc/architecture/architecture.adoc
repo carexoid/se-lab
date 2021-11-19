@@ -1,21 +1,32 @@
 = [[entity_root.anchor]]Архітектура Веб-застосунку "Аеропорт"
 :title-page:
 Микитюк Остап
-0.1, 
-:short-title: UX
+0.2, 
+:short-title: Architecture
 :toc:
 :toc-title: Зміст
 :toclevels: 1
 :sectnums:
 
-:url: //www.plantuml.com/plantuml/png/
+:url: http://www.plantuml.com/plantuml/png/
+
+.Історія змін
+[width="100%", options="header"]
+|=====================================
+|Дата|Версія|Опис|Автор
+
+a|15.11.2021
+a|0.1
+a|Додані діаграми об'єктної області, класів та бази даних
+a|Микитюк Остап
+
+|=====================================
 
 == Об'єктна модель
 
 Нижче наведена об'єктна модель веб-застосунку "Аеропорт".
 
-.Об'єктна модель
-image:{url}RL5BReKm3Dpd55o0ExpNHTLTAr4E4845KVD1ZbE9srV2jaAQnyep3CDu_CXaaKhmm-6jYyRO3I8DSmQKyHFNTlvmcHAUGZqT7Wb9qBjtswxWovu1eg9lj_o0WkSQN9m0Vm6LARGtn5kA9SiyaQKAmEAoDq0ZcIlW8CyufYPn_rOJSkp_dncEtD6TMXBDcTs57vNdz5KlBOc-iwzDi0qVuzOOisBIyI_LOdrrUliZYuNjQ-7ytQ9Qfvo-xdk_gdb0N4lmVm00[plain]
+image:{url}TP5V3eCW3CRVEOKNy0wwXsLlM-8y0D56oVXZ2Ypnzakw4kt8U6f_V9IlRHUJnfITRJQhZLTAB-1JCqP03kyuo_XcOWguC-eDRW4JPrThbhKa3xqxy2Lxcka59UbdP_m0-0Oi9AULWNWjs2Nu73aUGEEqAaMU6Zvj6wJ9whQO-ZhzVQR8POLhDVy-HgfUU5jpKUPeakKqvzCmYF8K9V-hvj8qclEF96PQjyzhEuoVDyAYurBkGdNWv-oi-W00[plain]
 
 == Технологічні рішення
 
@@ -23,6 +34,7 @@ image:{url}RL5BReKm3Dpd55o0ExpNHTLTAr4E4845KVD1ZbE9srV2jaAQnyep3CDu_CXaaKhmm-6jY
 ** Auth Server — сервіс, який відповідає за реєстрацію, автентифікацію та ролі користувача.
 ** Admin Server — сервіс адміністрації бази даних зі зручним користувацьким інтерфейсом, використовувати його мають право тільки користувачі з правами адміністратора.
 ** Main Server — сервіс, який спілкується безпосередньо з головною частиною застосунку, реалізує програмний інтерфейс, який необхідний для взаємодії зі звичайним користувачем.
+** PaymentServer — сервіс, який відповідає за зв'язок із платіжним шлюзом.
 * Зв'язка всіх необхідних сервісів відбуватиметься через веб-сервер зворотнього проксювання — NginX.
 * СУБД — MySQL, завдяки своїй простоті та надійності ідеально підходить для доменної області.
 
@@ -30,15 +42,16 @@ image:{url}RL5BReKm3Dpd55o0ExpNHTLTAr4E4845KVD1ZbE9srV2jaAQnyep3CDu_CXaaKhmm-6jY
 
 == Діаграма послідовності
 
+image:{url}jLHDRzim3BthLn0v9S2M7z33qAvOUofQjDWkHJ2eCcqBaqLF7otwxoV9T10PSGy5baCWYUyzFbAKBtsGBiJ1WCU_4Qr28QGAv61p5KEFDcWb0pRmqwFRWFHb8SGeNOheKTe0cmVvFYJa4xfNT1UZVEyIfO1Jv3QjQ_YTr9QngjVO5kHrNWdnGj4sqht3vfV6DxWnkkj30UJzj3qFWdlNe5j0oza9_hedyWXi6EumzDGKpXJXGCL0zOVYv84tf_7lPAF74Zh2-6pfyvg6qM30Pc5rQN9szyCvcb1b9KHkFNpzTb8VN41fuRx3yBijHzkTE8adTEdiUU0KMYe-FsA8pe97WohRdV078QH9hcn01vGzGuD1QkE5081brrcsEahQLqrJavCi6ezy0J1oyKEvcW-LZvfJPJwGmstHtXrMYNKt2dexrVTbThJVxtVmF36MFIYoHMEbFkwT8XiS6GZ4rOwomyEQgMhuiifJIRje1XULB-7U6crnZa_d7CiF55vu0ZbGVdMMd9RdD2VC94y30hKp-L2H6Pjf_0gAqGT72h61GBCPhlH8BfTx4usP0H-O-eIwRUhgdw9Iw7qRL_AnV4d5NwUKYRzP-z5HPc_bGD66NSMSqSlfUyH6ErHXSjaXlEdGWygFFS5vsfSDAIyQckYqxOwrSVR_O9X5JcTBlafjv8j1a2feij2I0tIEB5BqioVsNNMO-PP2Z-xCWwr-NEboo2jOjIdjWLk2ZlZHWKVfLByYNR_36iJJKMquG_81seAIdeLNXb5Zk_Q9OHA3FZqMRAtOkqp_SJ3Y7m00[sequence]
+
 == Діаграма класів
 
 Нижче наведена діаграма класів.
-.Діаграма класів
-image:{url}bPFRpX8n4CVl-nIz_4XO7s1ZDXZ1muqQ3jTct0xGqCDcEej1uxjBMzQok9ZO2s0wl_dFeSCYC13treZMG0ZoJS_73T8PIVuKydfQGc1ySM1nBj62DdFPNSdldjHCxW9Imk0Qvqd_m9U_cAq_eKlG6OnMKIrTpUGtxutu9ORKocetoltwxNgtbBv30jRUXUOErjHvuXkeLIsru_GxLbhBm9GzRk-JLK9ZpHDngUwCbhxLL-1QnffPMtmLFuhGPr9JIiz3apSmCDPo4x-ArbQt9vng1vHwBeN0XOmJHtT0UkXtgGdREBy9zJrvMm_3J3ViY_r7uftHXsEfJdxyj5szNwsJgR2B6qJuf4WWqcSm_sWXtFL0kiLabkHVu6BH3Td1-jxn0x91eFRuGGVsTFcV5uaIQH_IgQfcB2NAxAhAF_Y65PGJlhmQClk63aPgpMse8xJ9VwYy34Dq0aIc1omJenAQyj12BD2ftfhV[classes]
+
+image:{url}VPFFRjim3CRlUWeURI390nX3q6BTRiE6DJq7ciMcH2tHe9WEsR1tdoN54v8wyy7Mdny_Yf_ekwXMzEW7w0SR8qPZyW3kZ_hoYFA60hyDJ4ylQ1MRO3sk0BsbOGNZHFvaSIqyHPICsIcEXNvXyuxPyIk63BtPWLnIoqij_60Up9yvzJTxyXZq8liet6ECZVLy3Dh29n6M6lB5KhZW3wZxvu4EBzgqy3aFyZgBGsdApWeSggKXRZQRMJ4nKLcmoMHRKzmxVvNZmyVlJm_08ufLuX2tfi8a8ukUGN8TK2W7IFvr45MAgQIdEgFmp7bMXPAlxrMA_mMjT-FsLZj8lYfvtAHNtfs4T5yAR-5h-bRzD5rAy7_5g5QnWyVqgLexwbzngUQ8LkjCJ-CKkvlUvvkb7kjkQXSC1vGh8nv8i4ysB-WhTxFZDQ1S-WBjS4mjBtYZE2j2KuFUsAt7lMxOELTfqNz8SJWzwpNFgAdbhDVRyralq6tvfOgdStIvl4BFM27CkVwoMDqovWw3E_h1_0K0[classes]
 
 == Схема бази даних
 
 Нижче описана схема бази даних, яка грунтується на об'єктній моделі, діаграмах класів та послідовності, мові формального опису таблиць в СУБД MySQL.
 
-.Схема бази даних
-image:{url}jLHHRnCn37xFhp37oqxg19i08LHLgrZBXiI6keCND5NfnMsZvPBYv90gn7ydTrdJ1df5gqHVph4_rz_dsBcmZfEhAmLYnjWpWNEf4Ge-KtYYUOKz46ZB74h5hON60zn2rZWpwFVXfEZ1y_5uw7yv30Rn7rOaAqxhwGEkJ-OIbSYXFnkqLl_5R8khjVnUOuIKHXbwjo14lG6thcs2DcwgQwLYIhq1rWF6bb8WLEYMHjXmi0u9ZLklq38MT7snI3t8ca-Mmqy600dVM4AAF8VhcsBqOJHfK1ks4O0LbyfZlWudxw-6as_dhz_Sjy28A0cvGp7bBeVBOJ4ghZ-DKeJWZkVmyUxsXltQCBmbqLBqtoTpZ97Q8asbYD6d4hFE0sBsbbmXomTqdbqmZgLdI1pYDrToiNJTSIx4OVR8NKVgYbkBUe6qlRYpyxVti9LuAGbB9utsAgDzhD0vcQeZvCoU_evRvRvoC8ujApQyVGyxPmzNpVOJ7cWa9v8_kFf7gsrNhqcM-uPeA6bbg54PhADbDazIUezfNEgvsLdGbwyU0StQ_R5rd_cwGjrm2bOtftI0koQqChLsUxJV8QToUIMjCxJsrPBpVz_s1C13ytrYujwTdLt-pPC9sLa6fwS3o7G6xGF5mg0cWV0siBWyIJ3WMRZvD2yc_5qhQLDCxaHqr4unBVyzn4F0E-5n51YxG2tgIh7V[db]
+image:{url}dLHHQzim47xNhxXvBp6aR0rT6IEOcZNPEbWxCcylenZ5kYIYikH9yi2C_VVPiYFZu1gQlFYYxxlpzztfV6CirRRC1R0j8QyOxhX4IEXMu4pI7EV0q6GXP88Q0yq9K0D1SnZ0SWcpP0wlr-ku_eKGHRv2eNbETPK-OJNRSHGiXEKsSj7opRRdbPB_Bj5JCYMK_h3NYF98TaTzWbGsbQKGFgKy4ik8a0Dd23dQWsAc_MCiQbIsAj0GqlhwOL3F8MWUGGX_2G0CzFfNS1Q6S7UVh3wjDexLgVK4p2aNDUTdlFduETxyMhoxVdH4pyWqKeiifJQ4spXP9NTVLqC6evQ6yENxmptvTrJue9cJw9ulrEYHqg1EEVFeIuKrFUkJlRQ4PqzeQt5jCArk9_Z-ODDJaUDaWzIUy9HcpiIuXu8QWtAFkf_0vUBzuvIDORxcsPZ5Mwunirp9sgMFpns3LIDlMBk-rENRuDpQx2WkvUpP-uL5i-4Q9qPDjUP_g9XWC6uibQFTYhakb6xCjD7PRYJDSMgI6RTLZrzVdS1SxbGFBzvUTVdDWftirpTQvIWRoLqqBRczXSyBfxagfHsqflcuG70PmCL5184CmAqoQSSz0Der8lwU3S2MJxh63Y2VG5pfiPeEg0-XSqd83KfMveBy1m00[db]

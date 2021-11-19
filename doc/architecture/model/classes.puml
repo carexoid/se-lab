@@ -6,6 +6,16 @@ class AuthServer {
     validate(Token) bool
 }
 
+class PaymentServer {
+    process(amount) Error
+}
+
+class MainServer {
+    get_flight() Flight
+    order(flight, details...) Error
+    store(order)
+}
+
 class AdminServer {
     <CRUD operations>
 }
@@ -13,6 +23,7 @@ class AdminServer {
 class Airport {
     id: int
     name: str
+    city: str
     info: str
 }
 
@@ -20,6 +31,7 @@ class User {
     id: int
     email: str
     created_at: datetime.time
+    last_order() Order
 }
 
 class Order {
@@ -30,22 +42,21 @@ class Order {
 
 class Ticket {
     id: int
-    added_at: datetime.time
     seat: int
+    type: Type
+    price: int
     passenger: str
 }
 
 class Direction {
     id: int
-    from: Airport
     to: Airport
 }
 
 class Flight {
-    id INTEGER
+    id: int
     departure_at: datetime.time
     arrival_at: datetime.time
-    seats: int
     price: int
 }
 
@@ -53,14 +64,6 @@ class Payment {
     amount: int
 }
 
-class SearchHistory {
-    id: int
-    created_at: datetime.time
-}
-
-User      --> SearchHistory
-Direction --o SearchHistory
-Airport   --o SearchHistory
 Order     --o Payment
 Direction --> Flight
 Order     --> User
