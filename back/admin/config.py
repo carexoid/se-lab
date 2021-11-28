@@ -7,3 +7,5 @@ MYSQL = {
 }
 
 FLASK_ADMIN_SWATCH = 'cerulean'
+
+SECRET_KEY = '123456790'
