@@ -1,6 +1,7 @@
 from playhouse.pool import PooledMySQLDatabase
 from flask.cli import with_appcontext
 from flask import current_app
+import datetime
 import peewee as pw
 import click
 import enum
@@ -19,8 +20,8 @@ class UnsignedSmallIntegerField(pw.SmallIntegerField):
 
 class User(Model):
     id = pw.IntegerField(primary_key=True)
-    email = pw.CharField(max_length=128, unique=True)
-    created_at = pw.DateTimeField()
+    auth_id = pw.CharField(max_length=64, unique=True)
+    created_at = pw.DateTimeField(default=datetime.datetime.now)
     bonuses = UnsignedSmallIntegerField()
 
 
