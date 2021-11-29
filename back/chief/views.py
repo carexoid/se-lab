@@ -47,9 +47,9 @@ def get_flights():
     if "number" in request.args:
         flights = flights.where(db.Flight.id == int(request.args.get("number")))
     if "arrival_at" in request.args:
-        flights = flights.where(db.Flight.arrival_at == request.args.get("arrival_at"))  # TODO parse param as date
+        flights = flights.where(db.Flight.arrival_at == request.args.get("arrival_at"))
     if "departure_at" in request.args:
-        flights = flights.where(db.Flight.departure_at == request.args.get("departure"))  # TODO parse param as date
+        flights = flights.where(db.Flight.departure_at == request.args.get("departure"))
     if "duration" in request.args:
         flights = flights.where(
             db.Flight.arrival_at.to_timestamp() - db.Flight.departure_at.to_timestamp()
@@ -124,7 +124,7 @@ def get_tickets(flight_id):
     }
 
 
-@app.route("/my_account", methods=["GET", "DELETE"])
+@app.route("/account", methods=["GET", "DELETE"])
 @auth.login_required()
 @db.database.connection_context()
 def get_my_info():
@@ -140,7 +140,7 @@ def get_my_info():
         return "" if query.execute() == 1 else send_error("User not found")
 
 
-@app.route("/my_account/history")
+@app.route("/account/history")
 @auth.login_required
 @db.database.connection_context()
 def get_history():

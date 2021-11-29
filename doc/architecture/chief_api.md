@@ -5,7 +5,7 @@ ___
 
 `GET /flights`
 
-Filtering results implemented via~~~~ optional query parameters.
+Filtering results implemented via optional query parameters.
 Possible parameters:
 
 
@@ -111,13 +111,13 @@ Response:
 ```
 ___
 ### Get my info
-`GET /my_account`
+`GET /account`
 
 _**Authentication required!**_
 
 _**Example**_:
 
-URI: `/my_account`
+URI: `/account`
 Response:
 ```js
 {
@@ -127,17 +127,17 @@ Response:
 ```
 ___
 ### Delete my account
-`DELETE /my_account`
+`DELETE /account`
 
 ___
 
 ### Get orders and bonuses history
 
-`GET /my_account/history`
+`GET /account/history`
 
 _**Example**_: 
 
-URI: `/my_account/history`:
+URI: `/account/history`:
 
 ```js
 {
