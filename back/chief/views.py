@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import current_app, request
 from peewee import JOIN, fn
 from flask_httpauth import HTTPTokenAuth
@@ -47,19 +48,38 @@ def get_flights():
     if "number" in request.args:
         flights = flights.where(db.Flight.id == int(request.args.get("number")))
     if "arrival_at" in request.args:
-        flights = flights.where(db.Flight.arrival_at == request.args.get("arrival_at"))
+        date = datetime.strptime(request.args.get("arrival_at"), "%Y-%m-%d")
+        flights = flights.where(db.Flight.arrival_at.year == date.year and
+                                db.Flight.arrival_at.month == date.month and
+                                db.Flight.arrival_at.day == date.day)
     if "departure_at" in request.args:
-        flights = flights.where(db.Flight.departure_at == request.args.get("departure"))
-    if "duration" in request.args:
+        date = datetime.strptime(request.args.get("departure_at"), "%Y-%m-%d")
+        flights = flights.where(db.Flight.departure_at.year == date.year and
+                                db.Flight.departure_at.month == date.month and
+                                db.Flight.departure_at.day == date.day)
+    if "min_duration" in request.args:
         flights = flights.where(
             db.Flight.arrival_at.to_timestamp() - db.Flight.departure_at.to_timestamp()
-            == int(request.args.get("duration")))
+            >= int(request.args.get("min_duration")))
+    if "max_duration" in request.args:
+        flights = flights.where(
+            db.Flight.arrival_at.to_timestamp() - db.Flight.departure_at.to_timestamp()
+            <= int(request.args.get("max_duration")))
 
     flights = (flights.join(db.Direction, JOIN.LEFT_OUTER)
                .join(db.Airport, JOIN.LEFT_OUTER))
 
     if "airport" in request.args:
         flights = flights.where(db.Airport.name == request.args.get("airport"))
+    if "city" in request.args:
+        flights = flights.where(db.Airport.city == request.args.get("city"))
+
+    if "min_price" in request.args or "max_price" in request.args:
+        flights = flights.join(db.Ticket, join_type=JOIN.LEFT_OUTER, on=(db.Ticket.flight == db.Flight.id))
+        if "min_price" in request.args:
+            flights = flights.where(db.Ticket.price >= request.args.get("min_price"))
+        if "max_price" in request.args:
+            flights = flights.where(db.Ticket.price <= request.args.get("max_price"))
 
     flights = (flights.join(business, join_type=JOIN.LEFT_OUTER, on=(db.Flight.id == business.c.flight_id))
                .join(econom, join_type=JOIN.LEFT_OUTER, on=(db.Flight.id == econom.c.flight_id))
@@ -84,8 +104,11 @@ def get_flight_info(flight_id):
     business = make_available_tickets_query(db.Ticket.Type.business)
 
     flight = (db.Flight.select(db.Flight,
-                               (db.Flight.arrival_at - db.Flight.departure_at).alias("duration"),
+                               (db.Flight.arrival_at.to_timestamp() -
+                                db.Flight.departure_at.to_timestamp()).alias("duration"),
                                db.Airport.city,
+                               db.Airport.name.alias("airport_name"),
+                               db.Airport.id.alias("airport_id"),
                                fn.COUNT(business.c.flight_id).alias("business_remaining"),
                                fn.COUNT(econom.c.flight_id).alias("econom_remaining"))
               .where(db.Flight.id == flight_id)
