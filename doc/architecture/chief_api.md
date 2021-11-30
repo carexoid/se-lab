@@ -12,10 +12,14 @@ Possible parameters:
 | Name | Type | Description |
 |---|---|---|
 | number | int | Flight number |
-| arrival_at | string | Arrival time, format - "%Y-%m-%d %H:%M:%S" |
-| departure_at | string | Departure time, format - "%Y-%m-%d %H:%M:%S" |
-| duration | int | Flight duration |
+| arrival_at | string | Arrival date, format - "%Y-%m-%d" |
+| departure_at | string | Departure time, format - "%Y-%m-%d" |
+| min_duration | int | Min flight duration in seconds |
+| max_duration | int | Max flight duration in seconds |
+| min_price | int | Min ticket price for flight |
+| max_price | int | Max ticket price for flight |
 | airport | string | Target airport name |
+| city | string | Target city name |
 | business_remaining | int | Minimum amount of business tickets remaining on flight |
 | econom_remaining | int | Minimum amount of econom tickets remaining on flight |
 
@@ -68,13 +72,15 @@ URI: `/flights/5`
 Response:
 ```js
 {
+  "airport_id": 5, 
+  "airport_name": "Tokyo Haneda Airport", 
   "arrival_at": "Tue, 16 Nov 2021 22:06:00 GMT", 
   "business_remaining": 0, 
   "city": "Tokyo", 
   "departure_at": "Mon, 01 Nov 2021 22:06:00 GMT", 
   "direction": 5, 
   "distance": 1, 
-  "duration": 15000000, 
+  "duration": 1296000, 
   "econom_remaining": 0, 
   "id": 5
 }
