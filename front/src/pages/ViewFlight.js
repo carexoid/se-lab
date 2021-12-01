@@ -4,12 +4,12 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link, Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Slider, Typography, } from '@material-ui/core';
+import { Link as RLink } from 'react-router-dom';
 import $ from 'jquery';
+import DisplayFlight from '../components/DisplayFlight';
+import MyBreadcrumbs from '../components/MyBreadcrumbs';
 
 const useStyles = makeStyles((theme) => ({
-    faded: {
-        color: theme.palette.fadedtext.main,
-    },
     containerBox: {
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(4),
@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
         width: '29%',
         minWidth: 275,
     },
-    prText: {
-        color: theme.palette.primary.main,
-    }
 }));
 
 function handleClick(event) {
@@ -67,37 +64,18 @@ function ViewFlight() {
     };
 
     return (<div>
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded}/>} aria-label="breadcrumb">
-            <Typography>
-                <Link href="/" onClick={handleClick} className={classes.faded}>
-                    Browse Flights
-                </Link>
-            </Typography>
-            <Typography className={classes.prText}>View Flight</Typography>
-        </Breadcrumbs>
+        <MyBreadcrumbs
+            activeViewFlight={true}
+        />
         
         <Box
             className={classes.containerBox}
         >
+            <Typography variant='h2'>{flightCode}</Typography>
+            
+            <DisplayFlight flight={flight}/>
+
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={12}>
-                    <Typography variant='h2'>{flightCode}</Typography>
-                </Grid>
-
-                <Grid item xs={12} sm={2} lg={2}>
-                    <Typography >Destination:</Typography>
-                </Grid>
-                <Grid item xs={12} sm={10} lg={10}>
-                    <Typography >{flight.destination}</Typography>
-                </Grid>
-
-                <Grid item xs={12} sm={2} lg={2}>
-                    <Typography >Blah:</Typography>
-                </Grid>
-                <Grid item xs={12} sm={10} lg={10}>
-                    <Typography >blah</Typography>
-                </Grid>
-
                 {/* 
                     TODO gray out Paper if 0 seats avalaible 
                     eg:  
@@ -108,6 +86,7 @@ function ViewFlight() {
                         <Paper
                             elevation={0}
                             className={`${classes.paperEconom} ${classes.paper}`}
+                            square
                         >
                             <Typography className={classes.lightText}>Econom</Typography>
                             <Typography
@@ -118,7 +97,11 @@ function ViewFlight() {
                             </Typography>
                         </Paper>
 
-                        <Paper elevation={0} className={`${classes.paperBusiness} ${classes.paper}`}>
+                        <Paper
+                            elevation={0}
+                            className={`${classes.paperBusiness} ${classes.paper}`}
+                            square
+                        >
                             <Typography className={classes.lightText}>Business</Typography>
                             <Typography
                                 style={{ textAlign: 'center' }}
@@ -138,6 +121,7 @@ function ViewFlight() {
                             size='large'
                             variant="contained"
                             className={classes.button}
+                            component={RLink} to={`/buy/${flight.id}`}
                         >
                             Buy Tickets
                         </Button>

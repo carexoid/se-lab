@@ -1,15 +1,16 @@
 import './App.css';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
-import Banner from './Banner'
-import NavBar from './NavBar';
+import Banner from './components/Banner'
+import NavBar from './components/NavBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Box } from '@material-ui/core';
 import { Container } from "@material-ui/core";
 import background from "./assets/better_banner_bckg_2.png";
-import playAnimation from './animation'
-import BrowseFlights from './BrowseFlights';
-import ViewFlight from './ViewFlight';
+import playAnimation from './scripts/animation'
+import BrowseFlights from './pages/BrowseFlights';
+import ViewFlight from './pages/ViewFlight';
+import BuyTickets from './pages/BuyTickets';
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,9 @@ const theme = createTheme({
     bg: {
       main: '#c9e4ff',
     },
+    papers: {
+      main: '#f2f2f2',
+    }
   },
   overrides: {
     MuiTypography: {
@@ -88,7 +92,8 @@ function App() {
               <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<BrowseFlights/>}/>
-                    <Route path='/view/*' element={<ViewFlight/>}/>
+                  <Route path='/view/*' element={<ViewFlight />} />
+                  <Route path='/buy/*' element={<BuyTickets />} />
                 </Routes>
               </BrowserRouter>
             </Container>

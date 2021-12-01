@@ -9,8 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Slider, Typography, } from '@material-ui/core';
 import $ from 'jquery';
-import { useForm, Form } from './useForm';
-import DataGridTable from './DataGridTable';
+import { useForm, Form } from '../components/useForm';
+import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
 
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
             width: '100%',
             /* height: theme.spacing(16), */
         },
-        backgroundColor: '#f2f2f2',
+        backgroundColor: theme.palette.papers.main,
     },
     grid: {
         padding: theme.spacing(1),

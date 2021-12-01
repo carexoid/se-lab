@@ -1,9 +1,8 @@
 import { Box, Container } from "@material-ui/core";
 import React from "react";
-import "./App.css";
-import "./animation.css"
-import background from "./assets/better_banner_bckg_2.png";
-import banner from "./assets/better_banner_2.png";
+import "../App.css";
+import "../scripts/animation.css"
+import banner from "../assets/better_banner_2.png";
 
 function Banner() {
     return (
