@@ -18,7 +18,10 @@ def create_app(test_config=None) -> Flask:
         from . import views
         from ..chief import db
         admin.add_view(views.UserView(db.User))
+        admin.add_view(views.AirportView(db.Airport))
+        admin.add_view(views.DirectionView(db.Direction))
         admin.add_view(views.FlightView(db.Flight))
         admin.add_view(views.OrderView(db.Order))
+        admin.add_view(views.PaymentView(db.Payment))
 
     return app
