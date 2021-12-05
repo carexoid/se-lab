@@ -1,17 +1,16 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Slider, Typography, } from '@material-ui/core';
-import $ from 'jquery';
-import { useForm, Form } from '../components/useForm';
+import { Box, Paper, Typography, } from '@material-ui/core';
+import { useForm } from '../components/useForm';
 import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
+import Filters from '../components/Filters';
+import $ from 'jquery';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,71 +23,18 @@ const useStyles = makeStyles((theme) => ({
         },
         backgroundColor: theme.palette.papers.main,
     },
-    grid: {
-        padding: theme.spacing(1),
-    },
-    input: {
-        width: 300,
-    },
-    slider: {
-        width: '80%',
-    },
     buttonBox: {
         margin: theme.spacing(6),
     },
 }));
 
-const mockCodes = [
-    'KPNL145',
-    'KNUGOVNO',
-    '145LOVE145',
-];
 
-const mockCities = [
-    'Rubizhne',
-    'Paris',
-    'London',
-];
 
 //TODO change prices, possibly write custom Label Format
 const mockMaxPrice = 10000;
 
-const marks = [
-    {
-        value: 0,
-        label: '00:00',
-    },
-    {
-        value: 360,
-        label: '06:00',
-    },
-    {
-        value: 720,
-        label: '12:00',
-    },
-    {
-        value: 1080,
-        label: '18:00',
-    },
-    {
-        value: 1439,
-        label: '23:59',
-    },
-];
-
-function valueLabelFormat(value) {
-    let hours = Math.floor(value / 60);
-    let hourBegin = 60 * hours;
-    let minutes = value - hourBegin;
-
-    let str1 = hours.toString().padStart(2, "0");
-    let str2 = minutes.toString().padStart(2, "0");
-
-    return `${str1}:${str2}`;
-}
-
 const emptyParams = {
-    code: '',
+    id: '',
     destination: '',
     date: '',
     durationOption: 0,
@@ -97,8 +43,6 @@ const emptyParams = {
     priceBegin: 0,
     priceEnd: mockMaxPrice,
 };
-
-
 
 const flights = [
     {
@@ -139,6 +83,16 @@ const columns = [
 
 //`/view/${params.code}`
 
+function getOffset(el) {
+    var _x = 0;
+    var _y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
 
 function BrowseFlights() {
     const classes = useStyles();
@@ -154,25 +108,19 @@ function BrowseFlights() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        setShowList(true)
 
-        //TODO: fetch flights
+        const newY = getOffset(document.getElementById('search-button')).top
+        console.log(newY)
+
+        $("html, body").animate({
+            scrollTop: newY 
+        });
     }
 
     useEffect(() => {
         console.log(values)
     },[values])
-
-    const handleChangeSlider= (event, newValue, name) => {
-        if (!Array.isArray(newValue)) {
-            return;
-        }
-
-        setValues({
-            ...values,
-            [name+"Begin"]: newValue[0],
-            [name + "End"]: newValue[1],
-        })
-    };
 
     //TODO: fetch codes, cities
 
@@ -193,141 +141,14 @@ function BrowseFlights() {
 
         {!showFilters ? null :
             <Paper elevation={3} className={classes.paper}>
-                <Form onSubmit={handleSubmit}>
-                    <Grid container spacing={5} alignItems="center" className={classes.grid}>
-                        <Grid item xs={12} md={2}>
-                            <Typography>Flight Code:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <Autocomplete
-                                value={values.code}
-                                onInputChange={(event, newInputValue) => {
-                                    setValues({
-                                        ...values,
-                                        code: newInputValue
-                                    })
-                                }}
-                                className={classes.input}
-                                size="small"
-                                id="combo-box-code"
-                                options={mockCodes}
-                                renderInput={(params) => <TextField {...params} placeholder="KPNL145" variant="outlined" />}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={2}>
-                            <Typography>Destination:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <Autocomplete
-                                value={values.destination}
-                                onInputChange={(event, newInputValue) => {
-                                    setValues({
-                                        ...values,
-                                        destination: newInputValue
-                                    })
-                                }}
-                                className={classes.input}
-                                size="small"
-                                id="combo-box-destination"
-                                options={mockCities}
-                                renderInput={(params) => <TextField {...params} placeholder="Rubizhne" variant="outlined" />}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={2}>
-                            <Typography>Date:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <TextField
-                                value={values.date}
-                                onChange={(event) => {
-                                    setValues({
-                                        ...values,
-                                        date: event.target.value
-                                    })
-                                }}
-                                className={classes.input}
-                                id="date"
-                                type="date"
-                                variant='outlined'
-                                size="small"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={2}>
-                            <Typography>Flight Duration:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <FormControl
-                                className={classes.input}
-                                variant="outlined"
-                                size='small'
-                            >
-                                <Select
-                                    id="duration"
-                                    value={values.durationOption}
-                                    onChange={(event) => {
-                                        setValues({
-                                            ...values,
-                                            durationOption: event.target.value
-                                        })
-                                    }}
-                                >
-                                    {/*TODO CHANGE VALUES FOR OPTIONS*/}
-                                    <MenuItem value={0}>Any</MenuItem>
-                                    <MenuItem value={2}>Short — 0-2 hr</MenuItem>
-                                    <MenuItem value={6}>Medium — 2-6 hr</MenuItem>
-                                    <MenuItem value={10}>Long — 6+ hr</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={2}>
-                            <Typography>Departure Time:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <Slider
-                                value={[values.timeBegin,values.timeEnd]}
-                                onChange={(event, newValue, activeThumb) => {
-                                    handleChangeSlider(event, newValue, 'time')
-                                }}
-                                className={classes.slider}
-                                valueLabelFormat={valueLabelFormat}
-                                defaultValue={[values.timeBegin, values.timeEnd]}
-                                step={1}
-                                min={0}
-                                max={1439}
-                                marks={marks}
-                                valueLabelDisplay="auto"
-                                aria-labelledby="non-linear-slider"
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} md={2}>
-                            <Typography>Price:</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={10}>
-                            <Slider
-                                value={[values.priceBegin, values.priceEnd]}
-                                onChange={(event, newValue, activeThumb) => {
-                                    handleChangeSlider(event, newValue, 'price')
-                                }}
-                                className={classes.slider}
-                                defaultValue={[values.priceBegin, values.priceEnd]}
-                                step={1}
-                                min={1}
-                                max={mockMaxPrice}
-                                valueLabelDisplay="auto"
-                                aria-labelledby="non-linear-slider"
-                            />
-                        </Grid>
-
-                    </Grid>
-                </Form>
+                
+                {/* TODO pass also lists of codes and cities */}
+                <Filters
+                    values={values}
+                    setValues={setValues}
+                    maxPrice={mockMaxPrice}
+                    handleSubmit={handleSubmit}
+                />
             </Paper>           
         }
         
@@ -336,6 +157,7 @@ function BrowseFlights() {
             className={classes.buttonBox}
         >
             <Button
+                id='search-button'
                 color='primary'
                 size='large'
                 variant="contained"
@@ -345,7 +167,7 @@ function BrowseFlights() {
                     width: 300
                 }}
                 type="submit"
-                onClick={() => { setShowList(true) }}
+                onClick={handleSubmit}
             >
                 Search
             </Button>

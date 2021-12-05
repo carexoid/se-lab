@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(4),
     },
+    spacing: {
+        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(3),
+    },
     paper: {
         padding: theme.spacing(1),
         width: '10%',
@@ -66,12 +70,13 @@ function ViewFlight() {
     return (<div>
         <MyBreadcrumbs
             activeViewFlight={true}
+            flightId={flight.id}
         />
         
         <Box
             className={classes.containerBox}
         >
-            <Typography variant='h2'>{flightCode}</Typography>
+            <Typography variant='h2' className={classes.spacing}>{flightCode}</Typography>
             
             <DisplayFlight flight={flight}/>
 
@@ -86,7 +91,6 @@ function ViewFlight() {
                         <Paper
                             elevation={0}
                             className={`${classes.paperEconom} ${classes.paper}`}
-                            square
                         >
                             <Typography className={classes.lightText}>Econom</Typography>
                             <Typography
@@ -100,7 +104,6 @@ function ViewFlight() {
                         <Paper
                             elevation={0}
                             className={`${classes.paperBusiness} ${classes.paper}`}
-                            square
                         >
                             <Typography className={classes.lightText}>Business</Typography>
                             <Typography
@@ -121,7 +124,7 @@ function ViewFlight() {
                             size='large'
                             variant="contained"
                             className={classes.button}
-                            component={RLink} to={`/buy/${flight.id}`}
+                            component={RLink} to={`/place_order/${flight.id}`}
                         >
                             Buy Tickets
                         </Button>

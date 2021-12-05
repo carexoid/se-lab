@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
 // I'm sorry. it's trash, but null apparently is also considered as breadcrumb, I'm crying
 function MyBreadcrumbs(props) {
     const classes = useStyles();
-    const url = window.location.href;
-    const flightCode = url.substring(url.lastIndexOf('/') + 1);
+    /* const url = window.location.href;
+    const flightCode = url.substring(url.lastIndexOf('/') + 1); */
 
-    if (props.activeViewFlight)
+    if (typeof props.activeViewFlight !== 'undefined')
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
@@ -30,7 +30,7 @@ function MyBreadcrumbs(props) {
             </Breadcrumbs>
         )
 
-    if (props.activeDetails)
+    if (typeof props.activeDetails !== 'undefined')
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
@@ -39,48 +39,15 @@ function MyBreadcrumbs(props) {
                     </Link>
                 </Typography>
                 <Typography>
-                    <Link href={`/view/${flightCode}`} className={classes.faded}>
+                    <Link href={`/view/${props.flightId}`} className={classes.faded}>
                         View Flight
                     </Link>
                 </Typography>
                 <Typography className={classes.prText}>Order Details</Typography>
             </Breadcrumbs>
         )
-    
-    if (props.activeChoosePM)
-        return (
-            <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
-                <Typography>
-                    <Link href="/" className={classes.faded}>
-                        Browse Flights
-                    </Link>
-                </Typography>
-                <Typography>
-                    <Link href={`/view/${flightCode}`} className={classes.faded}>
-                        View Flight
-                    </Link>
-                </Typography>
-                <Typography>
-                    <Link
-                        href={`/buy/${flightCode}`}
-                        className={classes.faded}
-                        onClick={
-                            (e) => {
-                                e.preventDefault();
-                                props.setActiveDetails(true)
-                                props.setActiveChoosePM(false)
-                                props.setActiveCheckout(false)
-                            }
-                        }
-                    >
-                        Order Details
-                    </Link>
-                </Typography>
-                <Typography className={classes.prText}>Choose Payment Method</Typography>
-            </Breadcrumbs>
-        )
 
-    if (props.activeCheckout) {
+    if (typeof props.activeCheckout !== 'undefined') {
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
@@ -89,40 +56,15 @@ function MyBreadcrumbs(props) {
                     </Link>
                 </Typography>
                 <Typography>
-                    <Link href={`/view/${flightCode}`} className={classes.faded}>
+                    <Link href={`/view/${props.flightId}`} className={classes.faded}>
                         View Flight
                     </Link>
                 </Typography>
                 <Typography>
                     <Link
-                        href={`/buy/${flightCode}`}
-                        className={classes.faded}
-                        onClick={
-                            (e) => {
-                                e.preventDefault();
-                                props.setActiveDetails(true)
-                                props.setActiveChoosePM(false)
-                                props.setActiveCheckout(false)
-                            }
-                        }
+                        href={`/place_order/${props.flightId}`} className={classes.faded}
                     >
                         Order Details
-                    </Link>
-                </Typography>
-                <Typography>
-                    <Link
-                        href={`/buy/${flightCode}`}
-                        className={classes.faded}
-                        onClick={
-                            (e) => {
-                                e.preventDefault();
-                                props.setActiveDetails(false)
-                                props.setActiveChoosePM(true)
-                                props.setActiveCheckout(false)
-                            }
-                        }
-                    >
-                        Choose Payment Method
                     </Link>
                 </Typography>
                 <Typography className={classes.prText}>Checkout</Typography>

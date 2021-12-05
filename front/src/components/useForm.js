@@ -5,13 +5,12 @@ export function useForm(modelObject) {
 
     const [values, setValues] = useState(modelObject);
 
-    const handleInputChange = (e, name) => {
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
         setValues({
             ...values,
-            [name]: e.target.value
+            [name]: value
         })
-
-        console.log(values)
     }
 
     const resetForm = () => {

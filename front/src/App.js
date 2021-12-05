@@ -10,7 +10,10 @@ import background from "./assets/better_banner_bckg_2.png";
 import playAnimation from './scripts/animation'
 import BrowseFlights from './pages/BrowseFlights';
 import ViewFlight from './pages/ViewFlight';
-import BuyTickets from './pages/BuyTickets';
+import ComposeOrder from './pages/ComposeOrder';
+import Checkout from './pages/Checkout';
+import ProfileInfo from './pages/Profile';
+
 
 const theme = createTheme({
   palette: {
@@ -19,7 +22,8 @@ const theme = createTheme({
       contrastText: '#ececec',
     },
     secondary: {
-      main: '#ececec'
+      main: '#e91a0d',
+      contrastText: '#ececec',
     },
     text: {
       main: '#0c1a28'
@@ -32,6 +36,10 @@ const theme = createTheme({
     },
     papers: {
       main: '#f2f2f2',
+    },
+    darkBlue: {
+      main: '#0b367a',
+      contrastText: '#ececec',
     }
   },
   overrides: {
@@ -51,6 +59,11 @@ const theme = createTheme({
       root: {
         color: '#0c1a28',
       }
+    },
+    MuiButton: {
+      textPrimary: {
+        color: '#ececec',
+      }
     }
   },
 });
@@ -59,47 +72,50 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       
-      <div
-        style={{
-          backgroundColor: '#c9e4ff',
-        }}
+      <BrowserRouter>
+        <div
+          style={{
+            backgroundColor: '#c9e4ff',
+          }}
 
-        className='App'
-        onScroll={playAnimation}
-      >
-        <div className='background-image' />
+          className='App'
+          onScroll={playAnimation}
+        >
+          <div className='background-image' />
 
-        <div className='content' >
-          <Banner/>
-          
-          <Box
-            id='content'
-            bgcolor='bg.main'
-            sx={{
-              top: 0,
-              width: '100%',
-              height: 'auto'
-            }}
-          >
-            <NavBar />
-            <Container fixed
-              style={{
-                backgroundColor: 'white',
-                marginTop: 10,
-                padding: 20
+          <div className='content' >
+            <Banner />
+
+            <Box
+              id='content'
+              bgcolor='bg.main'
+              sx={{
+                top: 0,
+                width: '100%',
+                height: 'auto'
               }}
             >
-              <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<BrowseFlights/>}/>
-                  <Route path='/view/*' element={<ViewFlight />} />
-                  <Route path='/buy/*' element={<BuyTickets />} />
-                </Routes>
-              </BrowserRouter>
-            </Container>
-            
+              <NavBar />
+              <Container fixed
+                style={{
+                  backgroundColor: 'white',
+                  marginTop: 10,
+                  padding: 20
+                }}
+              >
 
-            {/* <div
+                <Routes>
+                  <Route path='/' element={<BrowseFlights />} />
+                  <Route path='/view/*' element={<ViewFlight />} />
+                  <Route path='/place_order/*' element={<ComposeOrder />} />
+                  <Route path='/checkout*' element={<Checkout />} />
+                  <Route path='/profile' element={<ProfileInfo/>} />
+                </Routes>
+
+              </Container>
+
+
+              {/* <div
               style={{
                 backgroundImage: `url(${background})`,
                 filter: 'blur(12px)',
@@ -108,9 +124,10 @@ function App() {
                 height: '100%'
               }}
             /> */}
-          </Box>
+            </Box>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
      
     </ThemeProvider>
   );
