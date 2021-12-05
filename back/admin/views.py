@@ -6,6 +6,8 @@ from peewee import fn
 
 # Well, this looks ugly, but I haven't found any
 # other way to make it work with connection pool nicely
+
+
 class BaseModelView(ModelView):
     column_display_pk = True
 
@@ -16,28 +18,29 @@ class BaseModelView(ModelView):
     @db.database.connection_context()
     def on_model_delete(self, model):
         return super().on_model_delete(model)
-    
+
     @contextfunction
-    @db.database.connection_context()    
+    @db.database.connection_context()
     def get_list_value(self, context, model, name):
         return super().get_list_value(context, model, name)
-    
+
     @contextfunction
-    @db.database.connection_context()    
+    @db.database.connection_context()
     def get_detail_value(self, context, model, name):
         return super().get_detail_value(context, model, name)
 
-    @db.database.connection_context()    
+    @db.database.connection_context()
     def get_pk_value(self, model):
         return super().get_pk_value(model)
 
     @db.database.connection_context()
     def get_one(self, id):
         return super().get_one(id)
-    
+
     @db.database.connection_context()
     def update_model(self, form, model):
         return super().update_model(form, model)
+
 
 class UserView(BaseModelView):
     can_create = False
@@ -88,7 +91,7 @@ class FlightView(BaseModelView):
     def after_model_change(self, form, model, is_created):
         if is_created:
             FlightView.create_tickets(form, model)
-            
+
     @db.database.connection_context()
     def on_model_delete(self, model):
         db.Ticket.delete().where(db.Ticket.flight == model.id)
@@ -101,6 +104,13 @@ class OrderView(BaseModelView):
         column=db.Order.user, name="User"))
     form_excluded_columns = ("user", "created_at")
 
+    form_choises = {
+        "state": [
+            (0, "active"),
+            (1, "completed")
+        ]
+    }
+
     def on_model_change(self, form, model, is_created):
         model.state = db.Order.State(form.data["state"])
         return super().on_model_change(form, model, is_created)
@@ -111,7 +121,7 @@ class PaymentView(BaseModelView):
     can_edit = False
     column_filters = (filters.FilterEqual(
         column=db.Payment.order, name="Order"),)
-    
+
     def on_model_change(self, form, model, is_created):
         model.state = db
         return super().on_model_change(form, model, is_created)
