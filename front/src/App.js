@@ -13,6 +13,7 @@ import ViewFlight from './pages/ViewFlight';
 import ComposeOrder from './pages/ComposeOrder';
 import Checkout from './pages/Checkout';
 import ProfileInfo from './pages/Profile';
+import History from './pages/History';
 
 
 const theme = createTheme({
@@ -53,7 +54,10 @@ const theme = createTheme({
       },
       h2: {
         color: '#0c1a28',
-      }
+      },
+      h4: {
+        color: '#0c1a28',
+      },
     },
     MuiLink: {
       root: {
@@ -79,7 +83,7 @@ function App() {
           }}
 
           className='App'
-          onScroll={playAnimation}
+          onScroll={() => {console.log('scrrrr')}}
         >
           <div className='background-image' />
 
@@ -109,7 +113,8 @@ function App() {
                   <Route path='/view/*' element={<ViewFlight />} />
                   <Route path='/place_order/*' element={<ComposeOrder />} />
                   <Route path='/checkout*' element={<Checkout />} />
-                  <Route path='/profile' element={<ProfileInfo/>} />
+                  <Route path='/profile' element={<ProfileInfo />} />
+                  <Route path='/history' element={<History/>} />
                 </Routes>
 
               </Container>

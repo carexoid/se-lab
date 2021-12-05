@@ -145,7 +145,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                                 aria-haspopup="true"                               
                                 onClick={handleClick}
                             >
-                                Profile
+                                My Profile
                             </Button>
                             <StyledMenu
                                 color='primary'
@@ -164,17 +164,17 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                                     horizontal: 'center',
                                 }}
                             >
-                                <StyledMenuItem onClick={handleClick} component={RLink} to='/profile'>
+                                <StyledMenuItem onClick={handleClose} component={RLink} to='/profile'>
                                     <ListItemIcon>
                                         <InfoIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText>Profile Info</ListItemText>
                                 </StyledMenuItem>
-                                <StyledMenuItem onClick={handleClose}>
+                                <StyledMenuItem onClick={handleClose} component={RLink} to='/history'>
                                     <ListItemIcon>
                                         <FlightIcon fontSize="small" />
                                     </ListItemIcon>
-                                    <ListItemText>Flight History</ListItemText>
+                                    <ListItemText>Order History</ListItemText>
                                 </StyledMenuItem>
                                 <StyledMenuItem
                                     onClick={() => {

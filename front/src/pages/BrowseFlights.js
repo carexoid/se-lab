@@ -60,12 +60,11 @@ const flights = [
 ];
 
 
-//TODO style href!!!!
 const columns = [
     {
         field: 'id',
         headerName: 'Code',
-        width: 200,
+        //width: '50%',
         renderCell: (params) => (
             <Link href={`/view/${params.id}`}>{params.id}</Link>
         ),
@@ -73,7 +72,7 @@ const columns = [
     {
         field: 'destination',
         headerName: 'Destination',
-        width: 200,
+        //width: '50%',
     },
 ];
 
