@@ -6,6 +6,6 @@ MYSQL = {
     'password': 'AdminDevP@$$',
 }
 
-FLASK_ADMIN_SWATCH = 'cerulean'
+FLASK_ADMIN_SWATCH = 'cyborg'
 
 SECRET_KEY = '123456790'
