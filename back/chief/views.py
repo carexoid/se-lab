@@ -130,7 +130,7 @@ def get_flight_info(flight_id):
 @app.route("/cities")
 def get_cities():
 
-    query = db.Airport.select(db.Airport.city).dicts()
+    query = db.Airport.select(db.Airport.city).distinct().dicts()
     return {
         "cities": list(query)
     }
