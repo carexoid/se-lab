@@ -10,7 +10,9 @@ import { useForm } from '../components/useForm';
 import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
 import Filters from '../components/Filters';
-import $ from 'jquery';
+import $, { get, ajax } from "jquery";
+/* import moment from 'moment';
+import 'moment-timezone'; */
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,57 +32,89 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-//TODO change prices, possibly write custom Label Format
-const mockMaxPrice = 10000;
+//change prices
+const maxPrice = 5000;
+const maxDuraion = 10;
 
 const emptyParams = {
     id: '',
     destination: '',
     date: '',
-    durationOption: 0,
+    durationBegin: 0,
+    durationEnd: maxDuraion,
     timeBegin: 0,
     timeEnd: 1439,
     priceBegin: 0,
-    priceEnd: mockMaxPrice,
+    priceEnd: maxPrice,
 };
 
 const flights = [
     {
         id: 'KPNL145',
-        destination: 'London',
+        city: 'London',
+        departure_at: "Thu, 02 Dec 2021 14:40:00 GMT",
+        econom_min_price: null,
+        econom_remaining: 0,
+        business_remaining: 0,
     },
     {
         id: 'KNUGOVNO',
-        destination: 'London',
+        city: 'London',
+        departure_at: "Sat, 04 Dec 2021 14:12:00 GMT",
+        econom_min_price: 100,
+        econom_remaining: 3,
+        business_remaining: 4,
     },
     {
         id: '145LOVE145',
-        destination: 'London',
+        city: 'London',
+        departure_at: "Wed, 08 Dec 2021 22:12:00 GMT",
+        econom_min_price: null,
+        econom_remaining: 0,
+        business_remaining: 5,
     },
 ];
 
+/* function convertTimeZone(time, zone) {
+    var format = 'ddd, DD MMM YYYY HH:mm:ss z';
+    let mt = moment(time, format).tz(zone)
+    return mt
+} */
 
 const columns = [
     {
         field: 'id',
         headerName: 'Code',
-        //width: '50%',
         renderCell: (params) => (
-            <Link href={`/view/${params.id}`}>{params.id}</Link>
+            <Link href={`/view/${params.id}`}>{params.id.toString().padStart(5,'0')}</Link>
         ),
     },
     {
-        field: 'destination',
+        field: 'city',
         headerName: 'Destination',
-        //width: '50%',
+        //valueGetter: (params) => params.city
     },
+    {
+        field: 'departure',
+        headerName: 'Departure',
+        width:200,
+        valueGetter: (params) => new Date(params.row.departure_at)
+    },
+    {
+        field: 'available',
+        headerName: 'Seats Available',
+        width: 130,
+        valueGetter: (params) => params.row.econom_remaining + params.row.business_remaining
+    },
+    {
+        field: 'price',
+        headerName: 'Price',
+        valueGetter: (params) => `${params.row.econom_min_price !== null
+            ? `${params.row.econom_min_price}+` :'—'}`
+    }
 ];
 
-/* renderCell: (params) => (
-            <Link href={'http://www.youtube.com'}>{params.code}</Link>
-        ) */
-
-//`/view/${params.code}`
+//toLocaleString('en-GB', { timeZone: 'Europe/ Kiev'})
 
 function getOffset(el) {
     var _x = 0;
@@ -97,6 +131,8 @@ function BrowseFlights() {
     const classes = useStyles();
     const [showFilters, setShowFilters] = useState(true);
     const [showList, setShowList] = useState(false);
+    const [flightIdAC, setFlightIdAC] = useState([])
+    const [cityAC, setCityAC] = useState([])
 
     const {
         values,
@@ -107,21 +143,44 @@ function BrowseFlights() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        
+        //send request
+        
         setShowList(true)
-
         const newY = getOffset(document.getElementById('search-button')).top
-        console.log(newY)
-
         $("html, body").animate({
             scrollTop: newY 
         });
     }
 
+    //componentDidMount
+    useEffect(() => {
+        $.ajax({
+            type: 'GET',
+            url: '/flight_ids',
+            headers:{'Accept': 'application/json'},
+            success: function (responseJSON) {
+                //console.log(responseJSON.ids) 
+                setFlightIdAC(responseJSON.ids.map(x => x.toString().padStart(5, "0")))
+            },
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '/cities',
+            headers: { 'Accept': 'application/json' },
+            success: function (responseJSON) {
+                const newView = responseJSON.cities.map(
+                    x => x.city)
+                //console.log(newView)
+                setCityAC(newView)
+            },
+        });
+    }, [])
+
     useEffect(() => {
         console.log(values)
     },[values])
-
-    //TODO: fetch codes, cities
 
     return (<div>
         <div style={{}}>
@@ -141,11 +200,13 @@ function BrowseFlights() {
         {!showFilters ? null :
             <Paper elevation={3} className={classes.paper}>
                 
-                {/* TODO pass also lists of codes and cities */}
                 <Filters
+                    flightIDs={flightIdAC}
+                    cities={cityAC}
                     values={values}
                     setValues={setValues}
-                    maxPrice={mockMaxPrice}
+                    maxPrice={maxPrice}
+                    maxDuraion={maxDuraion}
                     handleSubmit={handleSubmit}
                 />
             </Paper>           

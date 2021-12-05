@@ -93,13 +93,9 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
     const [clickLogout, setClickLogout] = useState(!auth);
 
     useEffect(() => {
-        console.log('authState is ' + authState)
-        console.log('clickLogout is ' + clickLogout)
     },[])
 
     useEffect(() => {
-        console.log('authState changing to ' + !clickLogout)
-        console.log('clickLogout changed to ' + clickLogout)
         setAuthState(!clickLogout)
     }, [clickLogout])
 

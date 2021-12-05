@@ -16,19 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const mockCodes = [
-    'KPNL145',
-    'KNUGOVNO',
-    '145LOVE145',
-];
-
-const mockCities = [
-    'Rubizhne',
-    'Paris',
-    'London',
-];
-
-const marks = [
+const marksTime = [
     {
         value: 0,
         label: '00:00',
@@ -51,6 +39,8 @@ const marks = [
     },
 ];
 
+
+
 function valueLabelFormat(value) {
     let hours = Math.floor(value / 60);
     let hourBegin = 60 * hours;
@@ -64,6 +54,8 @@ function valueLabelFormat(value) {
 
 function Filters(props) {
     const classes = useStyles();
+    const marksDuration = [...Array(props.maxDuraion)].map((x, i) => { return { value: i+1, label: `${i+1} h` } })
+    const marksPrice = [...Array(props.maxPrice/1000+1)].map((x, i) => { return { value: 1000*i, label: i === 0 ? '0 $' :`${i}k $` } })
 
     const handleChangeSlider = (event, newValue, name) => {
         if (!Array.isArray(newValue)) {
@@ -81,26 +73,6 @@ function Filters(props) {
         <Form onSubmit={props.handleSubmit}>
             <Grid container spacing={5} alignItems="center" className={classes.grid}>
                 <Grid item xs={12} md={2}>
-                    <Typography>Flight Code:</Typography>
-                </Grid>
-                <Grid item xs={12} md={10}>
-                    <Autocomplete
-                        value={props.values.id}
-                        onInputChange={(event, newInputValue) => {
-                            props.setValues({
-                                ...props.values,
-                                id: newInputValue
-                            })
-                        }}
-                        className={classes.input}
-                        size="small"
-                        id="combo-box-code"
-                        options={mockCodes}
-                        renderInput={(params) => <TextField {...params} placeholder="KPNL145" variant="outlined" />}
-                    />
-                </Grid>
-
-                <Grid item xs={12} md={2}>
                     <Typography>Destination:</Typography>
                 </Grid>
                 <Grid item xs={12} md={10}>
@@ -115,8 +87,9 @@ function Filters(props) {
                         className={classes.input}
                         size="small"
                         id="combo-box-destination"
-                        options={mockCities}
-                        renderInput={(params) => <TextField {...params} placeholder="Rubizhne" variant="outlined" />}
+                        options={props.cities}
+                        //getOptionLabel={(option) => option.city}
+                        renderInput={(params) => <TextField {...params} placeholder="Chernivtsi" variant="outlined" />}
                     />
                 </Grid>
 
@@ -144,31 +117,43 @@ function Filters(props) {
                 </Grid>
 
                 <Grid item xs={12} md={2}>
+                    <Typography>Flight Code:</Typography>
+                </Grid>
+                <Grid item xs={12} md={10}>
+                    <Autocomplete
+                        value={props.values.id}
+                        onInputChange={(event, newInputValue) => {
+                            props.setValues({
+                                ...props.values,
+                                id: newInputValue
+                            })
+                        }}
+                        className={classes.input}
+                        size="small"
+                        id="combo-box-code"
+                        options={props.flightIDs}
+                        renderInput={(params) => <TextField {...params} placeholder="00001" variant="outlined" />}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={2}>
                     <Typography>Flight Duration:</Typography>
                 </Grid>
                 <Grid item xs={12} md={10}>
-                    <FormControl
-                        className={classes.input}
-                        variant="outlined"
-                        size='small'
-                    >
-                        <Select
-                            id="duration"
-                            value={props.values.durationOption}
-                            onChange={(event) => {
-                                props.setValues({
-                                    ...props.values,
-                                    durationOption: event.target.value
-                                })
-                            }}
-                        >
-                            {/*TODO CHANGE VALUES FOR OPTIONS*/}
-                            <MenuItem value={0}>Any</MenuItem>
-                            <MenuItem value={2}>Short — 0-2 hr</MenuItem>
-                            <MenuItem value={6}>Medium — 2-6 hr</MenuItem>
-                            <MenuItem value={10}>Long — 6+ hr</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <Slider
+                        value={[props.values.durationBegin, props.values.durationEnd]}
+                        onChange={(event, newValue, activeThumb) => {
+                            handleChangeSlider(event, newValue, 'duration')
+                        }}
+                        className={classes.slider}
+                        defaultValue={[props.values.durationBegin, props.values.durationEnd]}
+                        step={1}
+                        min={1}
+                        max={props.maxDuraion}
+                        marks={marksDuration}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="non-linear-slider"
+                    />
                 </Grid>
 
                 <Grid item xs={12} md={2}>
@@ -186,7 +171,7 @@ function Filters(props) {
                         step={1}
                         min={0}
                         max={1439}
-                        marks={marks}
+                        marks={marksTime}
                         valueLabelDisplay="auto"
                         aria-labelledby="non-linear-slider"
                     />
@@ -206,6 +191,8 @@ function Filters(props) {
                         step={1}
                         min={1}
                         max={props.maxPrice}
+                        marks={marksPrice}
+                        color='secondary'
                         valueLabelDisplay="auto"
                         aria-labelledby="non-linear-slider"
                     />
