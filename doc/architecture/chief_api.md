@@ -33,44 +33,47 @@ Response:
 {
     "flights":
     [
+       {
+          "airport_name": "Boryspil", 
+          "arrival_at": "Sat, 04 Dec 2021 16:18:00 GMT", 
+          "business_min_price": null, 
+          "business_remaining": 0, 
+          "city": "Kyiv", 
+          "departure_at": "Sat, 04 Dec 2021 14:12:00 GMT", 
+          "direction": 1, 
+          "distance": 1000, 
+          "duration": 7560, 
+          "econom_min_price": null, 
+          "econom_remaining": 0, 
+          "id": 1
+        }, 
         {
-            "airport_name": "Boryspil",
-            "arrival_at": "Sat, 04 Dec 2021 16:18:00 GMT",
-            "business_remaining": 0,
-            "city": "Kyiv",
-            "departure_at": "Sat, 04 Dec 2021 14:12:00 GMT",
-            "direction": 1,
-            "distance": 1000,
-            "duration": 7560,
-            "econom_min_price": null,
-            "econom_remaining": 0,
-            "id": 1
-        },
+          "airport_name": "Zhuliany", 
+          "arrival_at": "Wed, 08 Dec 2021 22:12:00 GMT", 
+          "business_min_price": 200, 
+          "business_remaining": 3, 
+          "city": "Kyiv", 
+          "departure_at": "Wed, 08 Dec 2021 18:00:00 GMT", 
+          "direction": 2, 
+          "distance": 1400, 
+          "duration": 15120, 
+          "econom_min_price": null, 
+          "econom_remaining": 0, 
+          "id": 2
+        }, 
         {
-            "airport_name": "Zhuliany",
-            "arrival_at": "Wed, 08 Dec 2021 22:12:00 GMT",
-            "business_remaining": 3,
-            "city": "Kyiv",
-            "departure_at": "Wed, 08 Dec 2021 18:00:00 GMT",
-            "direction": 2,
-            "distance": 1400,
-            "duration": 15120,
-            "econom_min_price": null,
-            "econom_remaining": 0,
-            "id": 2
-        },
-        {
-            "airport_name": "Frankfurt Airport",
-            "arrival_at": "Thu, 02 Dec 2021 14:40:00 GMT",
-            "business_remaining": 1,
-            "city": "Frankfurt",
-            "departure_at": "Thu, 02 Dec 2021 12:55:00 GMT",
-            "direction": 3,
-            "distance": 700,
-            "duration": 6300,
-            "econom_min_price": null,
-            "econom_remaining": 0,
-            "id": 3
+          "airport_name": "Frankfurt Airport", 
+          "arrival_at": "Thu, 02 Dec 2021 14:40:00 GMT", 
+          "business_min_price": 200, 
+          "business_remaining": 1, 
+          "city": "Frankfurt", 
+          "departure_at": "Thu, 02 Dec 2021 12:55:00 GMT", 
+          "direction": 3, 
+          "distance": 700, 
+          "duration": 6300, 
+          "econom_min_price": null, 
+          "econom_remaining": 0, 
+          "id": 3
         }
     ]
 }

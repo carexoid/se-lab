@@ -45,7 +45,8 @@ def get_flights():
                                 db.Airport.name.alias("airport_name"),
                                 fn.COUNT(business.c.flight_id).alias("business_remaining"),
                                 fn.COUNT(econom.c.flight_id).alias("econom_remaining"),
-                                fn.MIN(econom.c.price).alias("econom_min_price")))
+                                fn.MIN(econom.c.price).alias("econom_min_price"),
+                                fn.MIN(business.c.price).alias("business_min_price")))
     if "number" in request.args:
         flights = flights.where(db.Flight.id == int(request.args.get("number")))
     if "arrival_at" in request.args:
