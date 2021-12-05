@@ -11,8 +11,8 @@ import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
 import Filters from '../components/Filters';
 import $, { get, ajax } from "jquery";
-/* import moment from 'moment';
-import 'moment-timezone'; */
+import moment from 'moment';
+//import 'moment-timezone';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,55 +31,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-//change prices
-const maxPrice = 5000;
-const maxDuraion = 10;
-
-const emptyParams = {
-    id: '',
-    destination: '',
-    date: '',
-    durationBegin: 0,
-    durationEnd: maxDuraion,
-    timeBegin: 0,
-    timeEnd: 1439,
-    priceBegin: 0,
-    priceEnd: maxPrice,
-};
-
-const flights = [
-    {
-        id: 'KPNL145',
-        city: 'London',
-        departure_at: "Thu, 02 Dec 2021 14:40:00 GMT",
-        econom_min_price: null,
-        econom_remaining: 0,
-        business_remaining: 0,
-    },
-    {
-        id: 'KNUGOVNO',
-        city: 'London',
-        departure_at: "Sat, 04 Dec 2021 14:12:00 GMT",
-        econom_min_price: 100,
-        econom_remaining: 3,
-        business_remaining: 4,
-    },
-    {
-        id: '145LOVE145',
-        city: 'London',
-        departure_at: "Wed, 08 Dec 2021 22:12:00 GMT",
-        econom_min_price: null,
-        econom_remaining: 0,
-        business_remaining: 5,
-    },
-];
-
 /* function convertTimeZone(time, zone) {
     var format = 'ddd, DD MMM YYYY HH:mm:ss z';
     let mt = moment(time, format).tz(zone)
     return mt
 } */
+
+function getHours(s) {
+    const h = Math.floor(s / 3600)
+    const m = Math.floor((s - h * 3600) / 60)
+    return h.toString().padStart(2, '0')+':'+m.toString().padStart(2,'0')
+}
 
 const columns = [
     {
@@ -92,13 +54,23 @@ const columns = [
     {
         field: 'city',
         headerName: 'Destination',
-        //valueGetter: (params) => params.city
     },
     {
         field: 'departure',
         headerName: 'Departure',
         width:200,
         valueGetter: (params) => new Date(params.row.departure_at)
+    },
+    {
+        field: 'arrival',
+        headerName: 'Arrival',
+        width: 200,
+        valueGetter: (params) => new Date(params.row.arrival_at)
+    },
+    {
+        field: 'duration',
+        headerName: 'Duration',
+        valueGetter: (params) => getHours(params.row.duration)
     },
     {
         field: 'available',
@@ -109,12 +81,58 @@ const columns = [
     {
         field: 'price',
         headerName: 'Price',
-        valueGetter: (params) => `${params.row.econom_min_price !== null
-            ? `${params.row.econom_min_price}+` :'—'}`
-    }
+        valueGetter: (params) => `${params.row.econom_remaining !== 0 ?
+            `${params.row.econom_min_price}$+`
+            :
+            params.row.business_remaining !== 0 ? `${params.row.business_min_price}$` : '—'}`
+    },
 ];
 
-//toLocaleString('en-GB', { timeZone: 'Europe/ Kiev'})
+//change prices
+const maxPrice = 5000;
+const maxDuraion = 10;
+
+const emptyParams = {
+    id: '',
+    destination: '',
+    date: '',
+    durationBegin: 0,
+    durationEnd: maxDuraion,
+/*     timeBegin: 0,
+    timeEnd: 1439, */
+    priceBegin: 1,
+    priceEnd: maxPrice,
+};
+
+function generateReqStr(values) {
+    const getFormatString = (date, time) => {
+        let mt = moment(date, 'YYYY-MM-DD')
+        let h = Math.floor(time / 60)
+        mt.hour(h)
+        mt.minute(Math.floor(time-h*60))
+        return moment(mt).format('YYYY-MM-DD kk:mm:ss', 'en-GB')
+    }
+    
+    const id = values.id !== emptyParams.id ? '?number=' + +values.id : ''
+    const c = values.destination !== emptyParams.destination ? '?city=' + values.destination : ''
+
+    let mdt = ''
+    if (values.date !== emptyParams.date)
+        mdt = '?min_departure_time=' + getFormatString(values.date, 0) +
+            '?max_departure_time=' + getFormatString(values.date, 1439)
+
+    let md = ''
+    if (values.durationBegin !== emptyParams.durationBegin || values.durationEnd !== emptyParams.durationEnd)
+        md = '?min_duration=' + (3600 * values.durationBegin) +
+            '?max_duration=' + (3600 * values.durationEnd)
+    
+    let mp = ''
+    if (values.priceBegin !== emptyParams.priceBegin || values.priceEnd !== emptyParams.priceEnd)
+        mp = '?min_price=' + values.priceBegin +
+            '?max_price=' + values.priceEnd    
+
+    return id+c+mdt+md+mp
+}
 
 function getOffset(el) {
     var _x = 0;
@@ -133,6 +151,7 @@ function BrowseFlights() {
     const [showList, setShowList] = useState(false);
     const [flightIdAC, setFlightIdAC] = useState([])
     const [cityAC, setCityAC] = useState([])
+    const [flights, setFlights] = useState([])
 
     const {
         values,
@@ -143,8 +162,17 @@ function BrowseFlights() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        console.log(generateReqStr(values))
         
-        //send request
+        $.ajax({
+            type: 'GET',
+            url: `/flights${generateReqStr(values)}`,
+            headers: { 'Accept': 'application/json' },
+            success: function (responseJSON) {
+                console.log(responseJSON)
+                setFlights(responseJSON.flights)
+            },
+        });
         
         setShowList(true)
         const newY = getOffset(document.getElementById('search-button')).top

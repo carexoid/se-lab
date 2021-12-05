@@ -156,7 +156,7 @@ function Filters(props) {
                     />
                 </Grid>
 
-                <Grid item xs={12} md={2}>
+                {/* <Grid item xs={12} md={2}>
                     <Typography>Departure Time:</Typography>
                 </Grid>
                 <Grid item xs={12} md={10}>
@@ -175,7 +175,7 @@ function Filters(props) {
                         valueLabelDisplay="auto"
                         aria-labelledby="non-linear-slider"
                     />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} md={2}>
                     <Typography>Price:</Typography>
