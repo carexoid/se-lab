@@ -1,9 +1,9 @@
 from datetime import datetime
-from flask import current_app, request
+from flask import current_app, request, redirect
 from peewee import JOIN, fn
 from flask_httpauth import HTTPTokenAuth
 from playhouse.shortcuts import model_to_dict
-
+import requests
 from . import db
 
 app = current_app
@@ -17,8 +17,8 @@ def verify_token(token):
 
 def send_error(text: str):
     return {
-        "error": text
-    }, 400
+               "error": text
+           }, 400
 
 
 @app.errorhandler(ValueError)
@@ -27,7 +27,7 @@ def handle_bad_request(e):
 
 
 def make_available_tickets_query(t: db.Ticket.Type):
-    return (db.Ticket.select(db.Ticket.flight)
+    return (db.Ticket.select(db.Ticket.flight, db.Ticket.price)
             .where(db.Ticket.order.is_null())
             .where(db.Ticket.type == t))
 
@@ -42,9 +42,10 @@ def get_flights():
                                 (db.Flight.arrival_at.to_timestamp() -
                                  db.Flight.departure_at.to_timestamp()).alias("duration"),
                                 db.Airport.city,
-                                db.Airport.name,
+                                db.Airport.name.alias("airport_name"),
                                 fn.COUNT(business.c.flight_id).alias("business_remaining"),
-                                fn.COUNT(econom.c.flight_id).alias("econom_remaining")))
+                                fn.COUNT(econom.c.flight_id).alias("econom_remaining"),
+                                fn.MIN(econom.c.price).alias("econom_min_price")))
     if "number" in request.args:
         flights = flights.where(db.Flight.id == int(request.args.get("number")))
     if "arrival_at" in request.args:
@@ -52,11 +53,12 @@ def get_flights():
         flights = flights.where(db.Flight.arrival_at.year == date.year and
                                 db.Flight.arrival_at.month == date.month and
                                 db.Flight.arrival_at.day == date.day)
-    if "departure_at" in request.args:
-        date = datetime.strptime(request.args.get("departure_at"), "%Y-%m-%d")
-        flights = flights.where(db.Flight.departure_at.year == date.year and
-                                db.Flight.departure_at.month == date.month and
-                                db.Flight.departure_at.day == date.day)
+    if "min_departure_time" in request.args:
+        date = datetime.strptime(request.args.get("min_departure_time"), "%Y-%m-%d %H:%M:%S")
+        flights = flights.where(db.Flight.departure_at >= date)
+    if "max_departure_time" in request.args:
+        date = datetime.strptime(request.args.get("max_departure_time"), "%Y-%m-%d %H:%M:%S")
+        flights = flights.where(db.Flight.departure_at <= date)
     if "min_duration" in request.args:
         flights = flights.where(
             db.Flight.arrival_at.to_timestamp() - db.Flight.departure_at.to_timestamp()
@@ -110,7 +112,9 @@ def get_flight_info(flight_id):
                                db.Airport.name.alias("airport_name"),
                                db.Airport.id.alias("airport_id"),
                                fn.COUNT(business.c.flight_id).alias("business_remaining"),
-                               fn.COUNT(econom.c.flight_id).alias("econom_remaining"))
+                               fn.COUNT(econom.c.flight_id).alias("econom_remaining"),
+                               fn.MIN(business.c.price).alias("business_min_price"),
+                               fn.MIN(econom.c.price).alias("econom_min_price"))
               .where(db.Flight.id == flight_id)
               .join(db.Direction, JOIN.LEFT_OUTER)
               .join(db.Airport, JOIN.LEFT_OUTER)
@@ -121,6 +125,23 @@ def get_flight_info(flight_id):
               )
 
     return flight.get()
+
+
+@app.route("/cities")
+def get_cities():
+
+    query = db.Airport.select(db.Airport.city).dicts()
+    return {
+        "cities": list(query)
+    }
+
+
+@app.route("/flight_ids")
+def get_flight_ids():
+    query = db.Flight.select(db.Flight.id).dicts()
+    return {
+        "ids": sorted(map(lambda obj: obj["id"], query))
+    }
 
 
 @app.route("/flights/<int:flight_id>/tickets")
@@ -187,6 +208,12 @@ def get_history():
                    .join(db.Flight, on=(db.Ticket.flight == db.Flight.id))
                    .join(db.Direction))
         res[-1]["tickets"] = [model_to_dict(t) for t in tickets]
+        for t in res[-1]["tickets"]:
+            flight = t["flight"]
+            flight["city"] = flight["direction"]["to"]["city"]
+            flight["airport_name"] = flight["direction"]["to"]["name"]
+            del flight["direction"]
+
         for ticket in res[-1]["tickets"]:
             ticket.pop("order")  # not needed in history
 
@@ -197,14 +224,91 @@ def get_history():
              .group_by(db.Order.id).dicts().get())
         res[-1]["bonuses_added"] = q["distance"]
         res[-1]["bonuses_used"] = q["price"] - order["payment_amount"]
+        res[-1]["full_price"] = q["price"]
 
     return {
         "orders": res
     }
 
 
-@app.route("/booking/<int:flight_id>/<string:ticket_type>/<int:seat>")
+@app.route("/booking", methods=['POST'])
 @auth.login_required
 @db.database.connection_context()
-def make_order(flight_id, ticket_type, seat):
-    pass
+def make_order():
+    user_id = auth.current_user()["id"]
+
+    tickets = request.get_json()["tickets"]
+
+    if len(tickets) == 0:
+        return send_error("Bad request: Empty tickets list")
+
+    bonuses_requested = int(request.get_json().get("use_bonuses", 0))
+
+    if bonuses_requested > db.User.get(db.User.id == user_id).bonuses:
+        return send_error("Bad request: invalid bonuses")
+
+    order = db.Order.create(user=db.User.get(db.User.id == user_id),
+                            created_at=datetime.now(),
+                            state=db.Order.State.active)
+
+    tickets_descs = []
+
+    for ticket in tickets:
+        flight = db.Flight.get_or_none(db.Flight.id == ticket["flight_id"])
+
+        if flight is None:
+            return send_error(f"Bad request: flight_id {ticket['flight_id']} is not exist")
+
+        ticket_record = db.Ticket.get_or_none(db.Ticket.flight == flight and db.Ticket.seat == ticket["seat"])
+
+        # if ticket_record is None or ticket_record.order is not None:
+        #     return send_error(f"Bad request: invalid ticket")
+
+        tickets_descs.append({
+            "airport_name": flight.direction.to.name,
+            "city": flight.direction.to.city,
+            "price": ticket_record.price,
+            "seat": ticket_record.seat
+        })
+        ticket_record.order = order
+        ticket_record.save()
+
+    response = requests.post(app.config.get("PAYMENT_SERVICE"), json={
+        "order_id": order.id,
+        "bonuses": bonuses_requested,
+        "tickets": tickets_descs
+    })
+
+    if response.status_code != 200:
+        return response.text, response.status_code
+
+    return redirect(response.json()["stripe_url"], 303)
+
+
+# Currently unused, should be called from payment service
+@app.route("/confirm_order", methods=['POST'])
+def confirm_order():
+    form = request.get_json()
+
+    order = db.Order.get_or_none(db.Order.id == form["order_id"])
+    if order is None:
+        return send_error("Order is already complete")
+
+    user = order.user
+
+    if "bonuses_used" in form:
+        user.bonuses -= int(form["bonuses_used"])
+
+    user.bonuses += (db.Ticket.select(fn.SUM(db.Flight.distance).alias("res"))
+                     .join(db.Order)
+                     .where(db.Order.id == order.id)
+                     .join(db.Flight, on=(db.Ticket.flight == db.Flight.id))
+                     .group_by(db.Flight.id)
+                     .dicts()
+                     .get())["res"]
+    user.save()
+
+    order.state = db.Order.State.completed
+    order.save()
+
+    return ""
