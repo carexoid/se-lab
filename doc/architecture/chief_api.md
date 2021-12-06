@@ -303,4 +303,11 @@ Body example:
 
 If success, response is redirect to checkout
 
+_____
+### Make test order
+
+`POST /booking_test`
+
+If success, response is redirect to checkout
+
 
