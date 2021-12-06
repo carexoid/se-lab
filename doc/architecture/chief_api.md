@@ -303,11 +303,46 @@ Body example:
 
 If success, response is redirect to checkout
 
+if success, checkout will redirect to `http://{front_url}/payment/success?order_id={order_id}`
+otherwise - `http://{front_url}/payment/cancel`
+
 _____
-### Make test order
+### Make order via crutch
 
-`POST /booking_test`
+`POST /crutched_booking`
 
-If success, response is redirect to checkout
+Same as `/booking`, but body should be transfered as query parameter `body`
 
+___
 
+### Get order
+
+`GET /order/{order_id}`
+
+**Example**_: 
+
+URI: `/order/37`:
+
+```js
+{
+  "created_at": "Mon, 06 Dec 2021 15:59:30 GMT", 
+  "full_price": "123", 
+  "order_id": 37, 
+  "state": 0, 
+  "tickets": [
+    {
+      "flight": {
+        "airport_name": "Zhuliany", 
+        "arrival_at": "Mon, 13 Dec 2021 21:20:00 GMT", 
+        "city": "Kyiv", 
+        "departure_at": "Wed, 08 Dec 2021 21:20:00 GMT", 
+        "distance": 123, 
+        "id": 13
+      }, 
+      "price": 123, 
+      "seat": 3, 
+      "type": 1
+    }
+  ]
+}
+```

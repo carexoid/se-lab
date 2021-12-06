@@ -233,6 +233,59 @@ def get_history():
     }
 
 
+@app.route("/order/<int:order_id>")
+@auth.login_required
+@db.database.connection_context()
+def get_order(order_id):
+
+    user_id = auth.current_user()["id"]
+
+    order = db.Order.get_or_none(db.Order.id == order_id)
+
+    if order is None:
+        return send_error("Order does not exist")
+    if order.user.id != user_id:
+        return "Access to this order is forbidden", 403
+
+    res = {
+        "order_id": order.id,
+        "created_at": order.created_at,
+        "state": order.state
+    }
+
+    tickets = (db.Ticket.select(db.Ticket)
+               .join(db.Order)
+               .where(db.Order.id == order.id)
+               .join(db.Flight, on=(db.Ticket.flight == db.Flight.id))
+               .join(db.Direction))
+    res["tickets"] = [model_to_dict(t) for t in tickets]
+    for t in res["tickets"]:
+        flight = t["flight"]
+        flight["city"] = flight["direction"]["to"]["city"]
+        flight["airport_name"] = flight["direction"]["to"]["name"]
+        del flight["direction"]
+
+    for ticket in res["tickets"]:
+        ticket.pop("order")  # not needed in order
+
+    q = (db.Ticket.select(fn.SUM(db.Ticket.price), fn.SUM(db.Flight.distance))
+         .join(db.Order)
+         .where(db.Order.id == order.id)
+         .join(db.Flight, on=(db.Flight.id == db.Ticket.flight))
+         .group_by(db.Order.id)
+         .having(fn.COUNT(db.Ticket.price) > 0)
+         .dicts())
+    t = list(q)
+    if len(t) > 0:
+        res["full_price"] = t[0]["price"]
+        payment = db.Payment.get_or_none(db.Payment.order == order_id)
+        if payment is not None:
+            res["bonuses_added"] = t[0]["distance"]
+            res["bonuses_used"] = t[0]["price"] - payment.amount
+
+    return res
+
+
 def make_order_with_params(user_id: int, params: dict):
 
     tickets = params["tickets"]
