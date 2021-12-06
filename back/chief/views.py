@@ -232,18 +232,14 @@ def get_history():
     }
 
 
-@app.route("/booking", methods=['POST'])
-@auth.login_required
-@db.database.connection_context()
-def make_order():
-    user_id = auth.current_user()["id"]
+def make_order_with_params(user_id: int, params: dict):
 
-    tickets = request.get_json()["tickets"]
+    tickets = params["tickets"]
 
     if len(tickets) == 0:
         return send_error("Bad request: Empty tickets list")
 
-    bonuses_requested = int(request.get_json().get("use_bonuses", 0))
+    bonuses_requested = int(params.get("use_bonuses", 0))
 
     if bonuses_requested > db.User.get(db.User.id == user_id).bonuses:
         return send_error("Bad request: invalid bonuses")
@@ -284,6 +280,32 @@ def make_order():
         return response.text, response.status_code
 
     return redirect(response.json()["stripe_url"], 303)
+
+
+@app.route("/booking", methods=['POST'])
+@auth.login_required
+@db.database.connection_context()
+def make_order():
+    return make_order_with_params(auth.current_user()["id"], request.get_json())
+
+
+@app.route("/booking_test", methods=['POST'])
+@auth.login_required
+@db.database.connection_context()
+def make_test_order():
+    return make_order_with_params(1, {
+        "tickets": [
+             {
+                "flight_id": 2,
+                "seat": 27
+             },
+             {
+                 "flight_id": 2,
+                 "seat": 28
+             }
+        ],
+        "use_bonuses": 300
+    })
 
 
 # Currently unused, should be called from payment service
