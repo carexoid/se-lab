@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link, Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Slider, Typography, } from '@material-ui/core';
 import { Link as RLink } from 'react-router-dom';
-import $ from 'jquery';
+import $, {ajax} from 'jquery';
 import DisplayFlight from '../components/DisplayFlight';
 import MyBreadcrumbs from '../components/MyBreadcrumbs';
+
 
 const useStyles = makeStyles((theme) => ({
     containerBox: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         width: '10%',
         minWidth: 80,
-        margin: theme.spacing(5),
+        margin: theme.spacing(2),
     },
     paperEconom: {
         backgroundColor: '#3e83c6',
@@ -34,38 +35,61 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.contrastText,
         fontWeight: '900',
         lineHeight: '200%',
+        textAlign: 'center'
     },
     box: {
+        width: 300,
         display: 'flex',
         flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
+        alignItems: 'left',
+        //justifyContent: 'center',
     },
     button: {
         width: '29%',
         minWidth: 275,
     },
+    faded: {
+        backgroundColor: theme.palette.bg.main,
+    },
+    bold: {
+        fontWeight: 700,
+    },
 }));
 
-function handleClick(event) {
-    /* event.preventDefault();
-    console.info('You clicked a breadcrumb.'); */
-}
+const emptyFlight = {
+    airport_id: 0,
+    airport_name: "",
+    arrival_at: "",
+    business_min_price: null,
+    business_remaining: 0,
+    city: "",
+    departure_at: "",
+    direction: 0,
+    distance: 0,
+    duration: 0,
+    econom_min_price: null,
+    econom_remaining: 0,
+    id: 0
+};
 
 function ViewFlight() {
-    const url = window.location.href;
-    const flightCode = url.substring(url.lastIndexOf('/') + 1);
-    //const theme = useTheme();
     const classes = useStyles();
+    const [flight, setFlight] = useState(emptyFlight);
 
-    //TODO fetch info about flight
-    const flight = {
-        id: 'KPNL145',
-        destination: 'London',
-        business_remaining: 1,
-        econom_remaining: 1,
-    };
+    useEffect(() => {
+        const url = window.location.href;
+        const flightCode = url.substring(url.lastIndexOf('/') + 1);
+
+        $.ajax({
+            type: 'GET',
+            url: `/flights/${flightCode}`,
+            headers: { 'Accept': 'application/json' },
+            success: (responseJSON) => {
+                console.log(responseJSON)
+                setFlight(responseJSON)
+            }
+        })
+    },[])
 
     return (<div>
         <MyBreadcrumbs
@@ -76,42 +100,33 @@ function ViewFlight() {
         <Box
             className={classes.containerBox}
         >
-            <Typography variant='h2' className={classes.spacing}>{flightCode}</Typography>
+            <Typography variant='h2' className={classes.spacing}>Kyiv — { flight.city }</Typography>
             
             <DisplayFlight flight={flight}/>
 
             <Grid container spacing={2} alignItems="center">
-                {/* 
-                    TODO gray out Paper if 0 seats avalaible 
-                    eg:  
-                        className={`banner large ${active ? "active" : ""} ${disabled ? "disabled" : ""}`}
-                */}
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={2} lg={2}>
+                    <Typography className={classes.bold}>Available Seats:</Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={10} lg={10}>
                     <Box className={classes.box}>
                         <Paper
                             elevation={0}
-                            className={`${classes.paperEconom} ${classes.paper}`}
+                            className={`${flight.econom_remaining !==0 ? classes.paperEconom : classes.faded} ${classes.paper}`}
                         >
                             <Typography className={classes.lightText}>Econom</Typography>
-                            <Typography
-                                style={{ textAlign: 'center' }}
-                                className={classes.lightText}
-                            >
-                                {flight.econom_remaining}
-                            </Typography>
+                            <Typography className={classes.lightText}>{flight.econom_remaining}</Typography>
+                            <Typography className={classes.lightText}>{flight.econom_remaining !== 0 ? `${flight.econom_min_price} $` : '—'}</Typography>
                         </Paper>
 
                         <Paper
                             elevation={0}
-                            className={`${classes.paperBusiness} ${classes.paper}`}
+                            className={`${flight.business_remaining !== 0 ? classes.paperBusiness : classes.faded} ${classes.paper}`}
                         >
                             <Typography className={classes.lightText}>Business</Typography>
-                            <Typography
-                                style={{ textAlign: 'center' }}
-                                className={classes.lightText}
-                            >
-                                {flight.business_remaining}
-                            </Typography>
+                            <Typography className={classes.lightText}>{flight.business_remaining}</Typography>
+                            <Typography className={classes.lightText}>{flight.business_remaining !== 0 ? `${flight.business_min_price} $` : '—'}</Typography>
                         </Paper>
 
                     </Box>

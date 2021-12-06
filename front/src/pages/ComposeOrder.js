@@ -11,6 +11,7 @@ import PMDialog from '../components/PMDialog';
 import BonusCheckout from '../components/BonusCheckout';
 import Checkout from './Checkout';
 import { Form } from '../components/useForm';
+import $, { ajax } from 'jquery';
 
 
 const styles = theme => ({
@@ -29,6 +30,9 @@ const styles = theme => ({
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(3),
     },
+    spacingTop: {
+        marginTop: theme.spacing(4),
+    },
     button: {
         width: 300
     },
@@ -37,15 +41,27 @@ const styles = theme => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    note: {
+        color: theme.palette.fadedtext.main,
+        fontSize: 10,
+    },
 });
 
 
-const flight = {
-    id: 'KPNL145',
-    destination: 'London',
-    business_remaining: 3,
-    econom_remaining: 4,
-    price: 100,
+const emptyFlight = {
+    airport_id: 0,
+    airport_name: "",
+    arrival_at: "",
+    business_min_price: null,
+    business_remaining: 0,
+    city: "",
+    departure_at: "",
+    direction: 0,
+    distance: 0,
+    duration: 0,
+    econom_min_price: null,
+    econom_remaining: 0,
+    id: 0
 };
 
 class ComposeOrder extends Component {
@@ -55,7 +71,12 @@ class ComposeOrder extends Component {
         this.state = {
             showInfo: true,
             activeChoosePM: false,
-            flight: flight,
+            flight: emptyFlight,
+            tickets: {
+                econom: [],
+                business: [],
+            },
+            body:{},
             order: {
                 class: 'econom',
                 quantity: 1,
@@ -66,6 +87,7 @@ class ComposeOrder extends Component {
         this.render = this.render.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.composeParameters = this.composeParameters.bind(this);
+        this.composeOrder = this.composeOrder.bind(this);
         this.setActiveChoosePM = this.setActiveChoosePM.bind(this);
         this.setOrder = this.setOrder.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,7 +97,29 @@ class ComposeOrder extends Component {
         const url = window.location.href;
         const flightId = url.substring(url.lastIndexOf('/') + 1);
 
-        //TODO fetch info about flight
+        $.ajax({
+            type: 'GET',
+            url: `/flights/${flightId}`,
+            headers: { 'Accept': 'application/json' },
+            success: ((responseJSON) => {
+                console.log(responseJSON)
+                if (responseJSON.econom_remaining === 0) {
+                    this.setOrder('class', 'business')
+                }
+                this.setState({ flight: responseJSON })
+                
+            }).bind(this)
+        })
+
+        $.ajax({
+            type: 'GET',
+            url: `/flights/${flightId}/tickets`,
+            headers: { 'Accept': 'application/json' },
+            success: ((responseJSON) => {
+                console.log('ticket list: ', responseJSON)
+                this.setState({tickets: responseJSON})            
+            }).bind(this)
+        })
     }
 
     composeParameters(useBonuses) {
@@ -87,6 +131,32 @@ class ComposeOrder extends Component {
             '?bonuses=' + useBonuses;
         
         return str;
+    }
+
+    composeOrder() {
+        const body = {
+            tickets: this.state.tickets[this.state.order.class].slice(
+                0, this.state.order.quantity
+            ).map((x => {
+                return {                   
+                    flight_id: this.state.flight.id,
+                    seat: x.seat,
+                }
+            }).bind(this))
+        }
+        console.log('body: ', body)
+
+        this.setState({body: body})
+        /* $.ajax({
+            type: 'POST',
+            url: '/booking',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(body),
+            success: (responseJSON) => {
+                console.log(responseJSON)
+            }
+        }) */
     }
 
     setActiveChoosePM(value) {
@@ -118,11 +188,12 @@ class ComposeOrder extends Component {
             <div>
                 <MyBreadcrumbs
                     activeDetails={true}
-                    flightId={flight.id}
+                    flightId={this.state.flight.id}
                 />
 
                 <div>
-                    <Typography variant="h2" className={classes.spacing}>Title about Flight</Typography>
+                    <Typography variant="h2" className={classes.spacingTop}>Order Tickets for Flight Kyiv — {this.state.flight.city}</Typography>
+                    <Typography className={classes.note}>All required fields are marked with *</Typography>
                     <Box className={classes.spacing}>
                         <Typography display='inline'>Flight Information</Typography>
                         <IconButton
@@ -141,14 +212,15 @@ class ComposeOrder extends Component {
                             <Paper
                                 className={classes.paper}
                             >
-                                <DisplayFlight flight={flight} />
+                                <DisplayFlight flight={this.state.flight} />
                             </Paper>
                         }
 
                         <OrderDetails
                             order={this.state.order}
                             setOrder={this.setOrder}
-                            flight={flight}
+                            flight={this.state.flight}
+                            composeOrder={this.composeOrder}
                         />
 
                         <Box textAlign='center' className={classes.spacing}>
@@ -165,6 +237,7 @@ class ComposeOrder extends Component {
 
                     {!this.state.activeChoosePM ? null :
                         <PMDialog
+                            requestBody={this.state.body}
                             setActiveChoosePM={this.setActiveChoosePM}
                             composeParameters={this.composeParameters}
                         />

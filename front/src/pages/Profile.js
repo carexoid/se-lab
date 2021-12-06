@@ -5,6 +5,7 @@ import { logIn, logOut, authTrue, authFalse } from '../actions/';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@mui/material';
 import $ from 'jquery';
+import { Form } from '../components/useForm';
 
 const useStyles = makeStyles((theme) => ({
     spacing: {
@@ -49,129 +50,189 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const emptyError = {
+    email: '',
+    phone: ''
+}
+
 function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
     const classes = useStyles();
     const [edit, setEdit] = useState(false)
+
+    const defaultInfo = {
+        email: email,
+        phone: '333',
+        comment: 'aaa'
+    }
+
+    const [info, setInfo] = useState(defaultInfo);
+    const [errors, setErrors] = useState(emptyError)
 
     useEffect(() => {
         //fetch info
     }, [])
 
+    const setInfoField = (name, value) => {
+        setInfo({
+            ...info,
+            [name]:value
+        })
+    }
+
+    const validators = {
+        email: () => {
+            setErrors({
+                ...errors,
+                email: info.email !== '' ? "" : "Email can't be empty",
+            })
+        },
+        phone: () => {
+            setErrors({
+                ...errors,
+                phone: (/^\+380 ?\d{2} ?\d{3} ?\d{2} ?\d{2}$/).test(info.phone) || info.phone=='' ? "" : "Number doesn't match Ukrainian format",
+            })
+        }
+    }
+
+    useEffect(() => {
+        validators.email()
+    }, [info.email])
+    
+    useEffect(() => {
+        validators.phone()
+    }, [info.phone])
+
+
+    const validate = () => {
+        validators.email()
+        validators.phone()
+
+        if (errors.email == '' && errors.phone == '')
+            return true
+        return false
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (validate())
+            setEdit(false)
+    }
+
     return (
         <div>
-            <Typography variant='h2'>Profile Information</Typography>
+            <Form onSubmit={handleSubmit}>
+                <Typography variant='h2'>Profile Information</Typography>
 
-            <Box className={classes.spacing}>
-                <Grid container container spacing={2} /* alignItems={edit? 'center' : 'flex-start'} */ >
-                    <Grid item xs={12} sm={1} lg={1}>
-                        <Typography className={classes.bold}>Email<span className={classes.redText}>*</span>:</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={11} lg={11}>
-                        {!edit ?
-                            <Typography className={classes.horizontalSpacing}>{email}</Typography>
-                            :
-                            <TextField
-                                //error={errors.cardNumber !== "" ? true : false}
-                                //helperText={errors.cardNumber}
-                                //value={}
-                                //onChange={(event) => { setParameter('cardNumber', event.target.value) }}
-                                variant='outlined'
-                                size="small"
-                                className={`${classes.horizontalSpacing} ${classes.inputLong}`}
-                            />
-                        }
-                    </Grid>
+                <Box className={classes.spacing}>
 
-                    <Grid item xs={12} sm={1} lg={1}>
-                        <Typography className={classes.bold}>Phone:</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={11} lg={11}>
-                        {!edit ?
-                            <Typography className={classes.horizontalSpacing}>+380969670651</Typography>
-                            :
-                            <TextField
-                                //error={errors.cardNumber !== "" ? true : false}
-                                //helperText={errors.cardNumber}
-                                //value={}
-                                //onChange={(event) => { setParameter('cardNumber', event.target.value) }}
-                                variant='outlined'
-                                size="small"
-                                className={`${classes.horizontalSpacing} ${classes.inputLong}`}
-                            />
-                        }
-                    </Grid>
+                    <Grid container container spacing={2} /* alignItems={edit? 'center' : 'flex-start'} */ >
+                        <Grid item xs={12} sm={1} lg={1}>
+                            <Typography className={classes.bold}>Email<span className={classes.redText}>*</span>:</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={11} lg={11}>
+                            {!edit ?
+                                <Typography className={classes.horizontalSpacing}>{info.email}</Typography>
+                                :
+                                <TextField
+                                    error={errors.email !== "" ? true : false}
+                                    helperText={errors.email}
+                                    value={info.email}
+                                    onChange={(e) => { setInfoField('email', e.target.value) }}
+                                    variant='outlined'
+                                    size="small"
+                                    type='email'
+                                    className={`${classes.horizontalSpacing} ${classes.inputLong}`}
+                                />
+                            }
+                        </Grid>
 
-                    <Grid item xs={12} lg={1}>
-                        <Typography className={classes.bold}>Comment:</Typography>
-                    </Grid>
-                    <Grid item xs={12} lg={11}>
-                        {!edit ?
-                            <Typography className={`${classes.horizontalSpacing} ${classes.inputHuge}`}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. D
-                                onec facilisis volutpat semper. Mauris nec enim nibh. Sed t
-                                empor odio mauris, vitae sodales ante sollicitudin id. Vivam
-                                us interdum pharetra metus et lacinia. Cras semper et tellus ac ia
-                                culis.
-                            </Typography>
-                            :
-                            <TextField
-                                //error={errors.cardNumber !== "" ? true : false}
-                                //helperText={errors.cardNumber}
-                                //value={}
-                                //onChange={(event) => { setParameter('cardNumber', event.target.value) }}
-                                variant='outlined'
-                                size="small"
-                                className={`${classes.horizontalSpacing} ${classes.inputHuge}`}
-                                multiline
-                                rows={4}
-                                placeholder="I'm allergic to peanut butter"
-                                InputProps={{
-                                    inputProps: {
-                                        maxlength: 1000,
-                                    }
-                                }}
-                            />
-                        }
-                    </Grid>
-                </Grid>
-            </Box>
+                        <Grid item xs={12} sm={1} lg={1}>
+                            <Typography className={classes.bold}>Phone:</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={11} lg={11}>
+                            {!edit ?
+                                <Typography className={classes.horizontalSpacing}>{info.phone}</Typography>
+                                :
+                                <TextField
+                                    error={errors.phone !== "" ? true : false}
+                                    helperText={errors.phone}
+                                    value={info.phone}
+                                    onChange={(e) => { setInfoField('phone', e.target.value) }}
+                                    variant='outlined'
+                                    size="small"
+                                    className={`${classes.horizontalSpacing} ${classes.inputLong}`}
+                                />
+                            }
+                        </Grid>
 
-            <Box className={classes.spacing}>
-                <Button
-                    className={classes.button}
-                    color="primary"
-                    size='large'
-                    variant="contained"
-                    //type='sumbit'
-                    onClick={() => setEdit(!edit)}
-                >
-                    {edit ? 'Cancel' : 'Edit'}
-                </Button>
+                        <Grid item xs={12} lg={1}>
+                            <Typography className={classes.bold}>Comment:</Typography>
+                        </Grid>
+                        <Grid item xs={12} lg={11}>
+                            {!edit ?
+                                <Typography className={`${classes.horizontalSpacing} ${classes.inputHuge}`}>
+                                    {info.comment}
+                                </Typography>
+                                :
+                                <TextField
+                                    //error={errors.cardNumber !== "" ? true : false}
+                                    //helperText={errors.cardNumber}
+                                    value={info.comment}
+                                    onChange={(e) => { setInfoField('comment', e.target.value)  }}
+                                    variant='outlined'
+                                    size="small"
+                                    className={`${classes.horizontalSpacing} ${classes.inputHuge}`}
+                                    multiline
+                                    rows={4}
+                                    placeholder="I'm allergic to peanut butter"
+                                    InputProps={{
+                                        inputProps: {
+                                            maxlength: 1000,
+                                        }
+                                    }}
+                                />
+                            }
+                        </Grid>
+                    </Grid>
+                </Box>
 
-                {edit &&
+                <Box className={classes.spacing}>
                     <Button
-                    className={classes.button}
+                        className={classes.button}
                         color="primary"
                         size='large'
                         variant="contained"
-                        type='sumbit'
+                        onClick={() => { setEdit(!edit); setInfo(defaultInfo) }}
+                    >
+                        {edit ? 'Cancel' : 'Edit'}
+                    </Button>
+
+                    {edit &&
+                        <Button
+                            className={classes.button}
+                            color="primary"
+                            size='large'
+                            variant="contained"
+                            type='sumbit'
+                            //onClick={() => setEdit(!edit)}
+                        >
+                            Save
+                        </Button>
+                    }
+
+                    <Button
+                        className={classes.button}
+                        color="secondary"
+                        size='large'
+                        variant="contained"
                         //onClick={() => setEdit(!edit)}
                     >
-                        Save
+                        Delete
                     </Button>
-                }
 
-                <Button
-                    className={classes.button}
-                    color="secondary"
-                    size='large'
-                    variant="contained"
-                    //onClick={() => setEdit(!edit)}
-                >
-                    Delete
-                </Button>
-
-            </Box>
+                </Box>
+            </Form>
         </div>
     );
 }

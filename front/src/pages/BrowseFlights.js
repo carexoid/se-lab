@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     buttonBox: {
         margin: theme.spacing(6),
     },
+    spacing: {
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3),
+    },
 }));
 
 
@@ -40,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 function getHours(s) {
     const h = Math.floor(s / 3600)
     const m = Math.floor((s - h * 3600) / 60)
-    return h.toString().padStart(2, '0')+':'+m.toString().padStart(2,'0')
+    return h.toString()+':'+m.toString().padStart(2,'0')
 }
 
 const columns = [
@@ -69,7 +73,7 @@ const columns = [
     },
     {
         field: 'duration',
-        headerName: 'Duration',
+        headerName: 'Duration, h',
         valueGetter: (params) => getHours(params.row.duration)
     },
     {
@@ -211,7 +215,9 @@ function BrowseFlights() {
     },[values])
 
     return (<div>
-        <div style={{}}>
+        <Typography variant='h2'>Browse flights</Typography>
+
+        <div className={classes.spacing}>
             <Typography display='inline'>Filters</Typography>
             <IconButton
                 color="primary"

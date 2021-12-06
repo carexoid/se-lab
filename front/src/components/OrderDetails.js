@@ -40,23 +40,25 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 24,
         fontWeight: 700,
     },
+    redText: {
+        color: theme.palette.secondary.main,
+    },
 }));
 
 function OrderDetails(props) {
     const classes = useStyles();
-    const [tickets, setTickets] = useState({business:0, econom: 0});
-    const [cost, setCost] = useState(0);
+    
+    const calculateCost = () => {
+        const price = props.order.class === 'econom' ? props.flight.econom_min_price : props.flight.business_min_price
+        return props.order.quantity * price
+    }
+    
+    const [cost, setCost] = useState(calculateCost());
 
     useEffect(() => {
-        //TODO fetch ticket prices on Mount
-        // POTENTIALLY PASS AS PROP
-        setTickets({
-            business: 200,
-            econom: 100,
-        })
-
-        setCost(tickets.econom)
-
+        props.setOrder('quantity', 1)
+        console.log(props.flight)
+        console.log(props.order)
     }, [])
 
     useEffect(() => {
@@ -68,18 +70,17 @@ function OrderDetails(props) {
             && props.order.quantity > props.flight.business_remaining
         )
             props.setOrder('quantity', props.flight.business_remaining)
-        console.log(props.order)
     }, [props.order.class])
 
     useEffect(() => {
-        const price = props.order.class === 'econom' ? tickets.econom : tickets.business
-        setCost(props.order.quantity * price)
+        setCost(calculateCost())
+        props.composeOrder()
     }, [props.order])
 
     return (
         <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} md={2}>
-                <Typography>Choose Class:</Typography>
+                <Typography>Choose Class<span className={classes.redText}>*</span>:</Typography>
             </Grid>
             <Grid item xs={12} md={10}>
                 <Box className={`${classes.box} ${classes.input}`}>
@@ -87,42 +88,42 @@ function OrderDetails(props) {
                         elevation={0}
                         className={`${classes.paper} ${props.order.class === 'econom' ? `${classes.paperEconom} ${classes.chosen}`: classes.faded}`}
                         onClick={() => {
-                            props.setOrder('class', 'econom')
+                            if (props.flight.econom_remaining !== 0)
+                                props.setOrder('class', 'econom')
                         }}
                     >
                         <Typography className={classes.lightText}>Econom</Typography>
-                        <Typography
-                            style={{ textAlign: 'center' }}
-                            className={classes.lightText}
-                        >
-                            {props.flight.econom_remaining}
-                        </Typography>
+                        <Typography className={classes.lightText}>{props.flight.econom_remaining}</Typography>
+                        <Typography className={classes.lightText}>{props.flight.econom_remaining !== 0 ? `${props.flight.econom_min_price} $` : '—'}</Typography>
                     </Paper>
 
                     <Paper
                         elevation={0}
                         className={`${classes.paper} ${props.order.class === 'business' ? `${classes.paperBusiness} ${classes.chosen}` : classes.faded}`}
                         onClick={() => {
-                            props.setOrder('class', 'business')
+                            if (props.flight.business_remaining !== 0)
+                                props.setOrder('class', 'business')
                         }}
                     >
                         <Typography className={classes.lightText}>Business</Typography>
-                        <Typography
-                            style={{ textAlign: 'center' }}
-                            className={classes.lightText}
-                        >
-                            {props.flight.business_remaining}
-                        </Typography>
+                        <Typography className={classes.lightText}>{props.flight.business_remaining}</Typography>
+                        <Typography className={classes.lightText}>{props.flight.business_remaining !== 0 ? `${props.flight.business_min_price} $` : '—'}</Typography>
                     </Paper>
                 </Box>
             </Grid>
 
             <Grid item xs={12} md={2}>
-                <Typography>Quantity:</Typography>
+                <Typography>Quantity<span className={classes.redText}>*</span>:</Typography>
             </Grid>
             <Grid item xs={12} md={10}>
                 <TextField
-                    required
+                    //required
+                    InputProps={{
+                        inputProps: {
+                            min: 1,
+                            max: props.order.class === 'econom' ? props.flight.econom_remaining : props.flight.business_remaining
+                        }
+                    }}
                     value={props.order.quantity}
                     onChange={(event) => {
                         props.setOrder('quantity', +event.target.value)
@@ -135,13 +136,6 @@ function OrderDetails(props) {
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    InputProps={{
-                        inputProps: {
-                            min: 1,
-                            max: props.order.class === 'econom' ? props.flight.econom_remaining : props.flight.business_remaining
-                        }
-                    }}
-
                 />
             </Grid>
 
@@ -160,11 +154,10 @@ function OrderDetails(props) {
                     size="small"
                     onChange={(event) => {
                         props.setOrder('comment', event.target.value)
-                        //console.log(props.order)
                     }}
                     InputProps={{
                         inputProps: {
-                            maxlength: 1000,
+                            maxLength: 1000,
                         }
                     }}
                 />

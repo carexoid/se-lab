@@ -20,10 +20,9 @@ const useStyles = makeStyles((theme) => ({
 function PMDialog(props) {
     const classes = useStyles();
     const theme = useTheme();
-    //const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Dialog
-            //fullScreen={fullScreen}
             open={true}
         >
 
@@ -38,15 +37,18 @@ function PMDialog(props) {
                 >
                     <Grid container spacing={2} alignItems="center">
                         <Grid item xs={12}>
-                            <Button
-                                color="primary"
-                                size='large'
-                                variant="contained"
-                                className={classes.button}
-                                component={RLink} to={`/checkout${props.composeParameters(false)}`}
-                            >
-                                Pay Online
-                            </Button>
+                            <form action={`/crutched_booking?body=${JSON.stringify(props.requestBody)}`} method="POST">
+                                <Button
+                                    color="primary"
+                                    size='large'
+                                    variant="contained"
+                                    className={classes.button}
+                                    //onClick={props.sendOrder}
+                                    type='submit'
+                                >
+                                    Pay Online
+                                </Button>
+                            </form>
                         </Grid>
 
                         <Grid item xs={12}>
@@ -85,6 +87,7 @@ function PMDialog(props) {
                                 Cancel
                             </Button>
                         </Grid>
+
                     </Grid>
                 </DialogActions>
             </Box>

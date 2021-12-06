@@ -136,7 +136,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                                 size="large"
                                 variant="text"
                                 color='primary'
-                                startIcon={<AccountCircleIcon style={{ fill: '#ececec', fontSize: 30 }} />}
+                                startIcon={<AccountCircleIcon style={{ fill: '#ececec', fontSize: 25 }} />}
                                 disableFocusRipple
                                 aria-haspopup="true"                               
                                 onClick={handleClick}

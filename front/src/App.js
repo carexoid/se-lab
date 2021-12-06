@@ -14,6 +14,11 @@ import ComposeOrder from './pages/ComposeOrder';
 import Checkout from './pages/Checkout';
 import ProfileInfo from './pages/Profile';
 import History from './pages/History';
+import AboutUs from './pages/AboutUs';
+import Help from './pages/Help';
+import Footer from './components/Footer';
+import Success from './pages/PaymentSuccess';
+import PaymentError from './pages/PaymentError';
 
 
 const theme = createTheme({
@@ -56,6 +61,9 @@ const theme = createTheme({
         color: '#0c1a28',
       },
       h4: {
+        color: '#0c1a28',
+      },
+      h5: {
         color: '#0c1a28',
       },
     },
@@ -114,21 +122,16 @@ function App() {
                   <Route path='/place_order/*' element={<ComposeOrder />} />
                   <Route path='/checkout*' element={<Checkout />} />
                   <Route path='/profile' element={<ProfileInfo />} />
-                  <Route path='/history' element={<History/>} />
+                  <Route path='/history' element={<History />} />
+                  <Route path='/about' element={<AboutUs/>} />
+                  <Route path='/help' element={<Help/>} />
+                  <Route path='/payment/success*' element={<Success/>} />
+                  <Route path='/payment/error*' element={<PaymentError/>} />
                 </Routes>
 
               </Container>
 
-
-              {/* <div
-              style={{
-                backgroundImage: `url(${background})`,
-                filter: 'blur(12px)',
-                backgroundSize: 'cover',
-                width: '100%',
-                height: '100%'
-              }}
-            /> */}
+              <Footer/>
             </Box>
           </div>
         </div>
