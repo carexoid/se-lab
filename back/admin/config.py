@@ -5,3 +5,7 @@ MYSQL = {
     'user': 'admin',
     'password': 'AdminDevP@$$',
 }
+
+FLASK_ADMIN_SWATCH = 'cyborg'
+
+SECRET_KEY = '123456790'

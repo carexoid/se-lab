@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_admin import Admin
 
 
 def create_app(test_config=None) -> Flask:
@@ -10,5 +11,13 @@ def create_app(test_config=None) -> Flask:
     else:
         # Load the test config if passed in
         app.config.from_mapping(test_config)
+
+    admin = Admin(app, name="Airport admin", template_mode='bootstrap3')
+
+    with app.app_context():
+        # Add views
+        from . import views
+        for view in views.get_views():
+            admin.add_view(view)
 
     return app

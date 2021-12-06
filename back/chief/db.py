@@ -19,27 +19,27 @@ class UnsignedSmallIntegerField(pw.SmallIntegerField):
 
 
 class User(Model):
-    id = pw.IntegerField(primary_key=True)
+    id = pw.PrimaryKeyField()
     auth_id = pw.CharField(max_length=64, unique=True)
     created_at = pw.DateTimeField(default=datetime.datetime.now)
     bonuses = UnsignedSmallIntegerField()
 
 
 class Airport(Model):
-    id = pw.IntegerField(primary_key=True)
+    id = pw.PrimaryKeyField()
     name = pw.CharField(max_length=128)
     city = pw.CharField(max_length=64)
     info = pw.CharField(max_length=2048)
 
 
 class Direction(Model):
-    id = pw.IntegerField(primary_key=True)
+    id = pw.PrimaryKeyField()
     to = pw.ForeignKeyField(
         Airport, backref='directions', on_delete='RESTRICT')
 
 
 class Flight(Model):
-    id = pw.IntegerField(primary_key=True)
+    id = pw.PrimaryKeyField()
     direction = pw.ForeignKeyField(
         Direction, backref='flights', on_delete='RESTRICT')
     departure_at = pw.DateTimeField()
@@ -60,7 +60,7 @@ class Order(Model):
         def python_value(self, value):
             return Order.State(value)
 
-    id = pw.IntegerField(primary_key=True)
+    id = pw.PrimaryKeyField()
     user = pw.ForeignKeyField(User, backref='orders', on_delete='CASCADE')
     created_at = pw.DateTimeField()
     state = StateField()
