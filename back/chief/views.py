@@ -4,6 +4,7 @@ from peewee import JOIN, fn
 from flask_httpauth import HTTPTokenAuth
 from playhouse.shortcuts import model_to_dict
 import requests
+import json
 from . import db
 
 app = current_app
@@ -289,23 +290,11 @@ def make_order():
     return make_order_with_params(auth.current_user()["id"], request.get_json())
 
 
-@app.route("/booking_test", methods=['POST'])
+@app.route("/crutched_booking", methods=['POST'])
 @auth.login_required
 @db.database.connection_context()
 def make_test_order():
-    return make_order_with_params(1, {
-        "tickets": [
-             {
-                "flight_id": 2,
-                "seat": 27
-             },
-             {
-                 "flight_id": 2,
-                 "seat": 28
-             }
-        ],
-        "use_bonuses": 300
-    })
+    return make_order_with_params(auth.current_user()["id"], json.loads(request.args.get("body")))
 
 
 # Currently unused, should be called from payment service
