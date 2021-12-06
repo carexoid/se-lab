@@ -5,3 +5,4 @@ MYSQL = {
     'user': 'chief',
     'password': 'ChiefDevP@$$',
 }
+PAYMENT_SERVICE = "http://localhost:5001/payment"

@@ -16,4 +16,5 @@ def create_app(test_config=None) -> Flask:
         from . import db
         app.cli.add_command(db.db)
 
+        from . import views
     return app
