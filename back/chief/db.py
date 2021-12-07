@@ -1,15 +1,18 @@
-from playhouse.pool import PooledMySQLDatabase
+from playhouse.flask_utils import FlaskDB
 from flask.cli import with_appcontext
+from playhouse.db_url import connect
 from flask import current_app
-import datetime
 import peewee as pw
+import datetime
 import click
 import enum
 
-database = PooledMySQLDatabase(**current_app.config['MYSQL'])
+
+database = connect(current_app.config['DATABASE'])
+flask_db = FlaskDB(current_app, database)
 
 
-class Model(pw.Model):
+class Model(flask_db.Model):
     class Meta:
         database = database
 
@@ -103,7 +106,6 @@ def db():
 
 @db.command('init')
 @with_appcontext
-@database.connection_context()
 def init():
     database.create_tables(
         [User, Airport, Direction, Flight, Order, Ticket, Payment])

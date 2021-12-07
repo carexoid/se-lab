@@ -1,7 +1,6 @@
 from flask import Flask
 import os
 
-
 def create_app(test_config=None) -> Flask:
     app = Flask(__name__)
 
@@ -13,14 +12,10 @@ def create_app(test_config=None) -> Flask:
         app.config.from_pyfile('config.py', silent=True)
     else:
         # Load config from environment variables
-        app.config['DATABASE'] = os.getenv('DATABASE')
-        app.config['PAYMENT_SERVICE'] = os.getenv('PAYMENT_SERVICE')
+        app.config['SITE_URL'] = os.getenv('SITE_URL')
+        app.config['STRIPE_API_KEY'] = os.getenv('STRIPE_API_KEY')
 
     with app.app_context():
-        # Initialize database
-        from . import db
-        app.cli.add_command(db.db)
-
         from . import views
 
     return app
