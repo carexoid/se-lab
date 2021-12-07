@@ -1,5 +1,6 @@
 from flask import current_app, request
 import stripe
+import config
 
 stripe.api_key = 'sk_test_51K1efbCVEPKwWrcQsRyzDz7rTuMRBdycalufzXKBTF2pg3CUvSxMbiz7cHmWbDCYHc0LPI11ybiF7tflNhTDoEqX00MUObz6Qk'
 
@@ -37,8 +38,9 @@ def init_payment():
         line_items=items,
         mode='payment',
         discounts=discounts,
-        success_url='https://example.com/success',
-        cancel_url='https://example.com/failure',
+        success_url=f'{config.FRONT_SCHEME}://{config.FRONT_URL}'
+                    f'{config.FRONT_SUCCESS_PATH}?order_id={args["order_id"]}',
+        cancel_url=f'{config.FRONT_SCHEME}://{config.FRONT_URL}{config.FRONT_CANCEL_PATH}',
         locale='en'
     )
 
