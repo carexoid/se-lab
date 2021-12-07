@@ -34,11 +34,9 @@ def make_available_tickets_query(t: db.Ticket.Type):
 
 
 @app.route("/flights")
-@db.database.connection_context()
 def get_flights():
     econom = make_available_tickets_query(db.Ticket.Type.econom)
     business = make_available_tickets_query(db.Ticket.Type.business)
-
     flights = (db.Flight.select(db.Flight,
                                 (db.Flight.arrival_at.to_timestamp() -
                                  db.Flight.departure_at.to_timestamp()).alias("duration"),
@@ -99,7 +97,6 @@ def get_flights():
 
 
 @app.route("/flights/<int:flight_id>")
-@db.database.connection_context()
 def get_flight_info(flight_id):
     if db.Flight.get_or_none(db.Flight.id == flight_id) is None:
         return send_error("Flight not found")
@@ -147,7 +144,6 @@ def get_flight_ids():
 
 
 @app.route("/flights/<int:flight_id>/tickets")
-@db.database.connection_context()
 def get_tickets(flight_id):
     def make_tickets_query(t: db.Ticket.Type):
         available = (db.Ticket.select(db.Ticket.flight, db.Ticket.seat, db.Ticket.price)
@@ -172,7 +168,6 @@ def get_tickets(flight_id):
 
 @app.route("/account", methods=["GET", "DELETE"])
 @auth.login_required()
-@db.database.connection_context()
 def get_my_info():
     user_id = auth.current_user()["id"]
 
@@ -188,7 +183,6 @@ def get_my_info():
 
 @app.route("/account/history")
 @auth.login_required
-@db.database.connection_context()
 def get_history():
     user_id = auth.current_user()["id"]
 
@@ -235,11 +229,8 @@ def get_history():
 
 @app.route("/order/<int:order_id>")
 @auth.login_required
-@db.database.connection_context()
 def get_order(order_id):
-
     user_id = auth.current_user()["id"]
-
     order = db.Order.get_or_none(db.Order.id == order_id)
 
     if order is None:
@@ -287,7 +278,6 @@ def get_order(order_id):
 
 
 def make_order_with_params(user_id: int, params: dict):
-
     tickets = params["tickets"]
 
     if len(tickets) == 0:
@@ -324,7 +314,7 @@ def make_order_with_params(user_id: int, params: dict):
         ticket_record.order = order
         ticket_record.save()
 
-    response = requests.post(app.config.get("PAYMENT_SERVICE"), json={
+    response = requests.post(f'{app.config.get("PAYMENT_SERVICE")}/payment', json={
         "order_id": order.id,
         "bonuses": bonuses_requested,
         "tickets": tickets_descs
@@ -338,16 +328,16 @@ def make_order_with_params(user_id: int, params: dict):
 
 @app.route("/booking", methods=['POST'])
 @auth.login_required
-@db.database.connection_context()
 def make_order():
     return make_order_with_params(auth.current_user()["id"], request.get_json())
 
 
 @app.route("/crutched_booking", methods=['POST'])
 @auth.login_required
-@db.database.connection_context()
 def make_test_order():
-    return make_order_with_params(auth.current_user()["id"], json.loads(request.args.get("body")))
+    import urllib
+    raw = urllib.parse.unquote(request.args.get('body'))
+    return make_order_with_params(auth.current_user()["id"], json.loads(raw))
 
 
 # Currently unused, should be called from payment service

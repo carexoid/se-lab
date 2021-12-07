@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chief
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
+  selector:
+    app: chief
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chief
+spec:
+  selector:
+    matchLabels:
+      app: chief
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: chief
+    spec:
+      containers:
+      - image: docker.shlyahdomrii.tech/back:latest
+        name: chief
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 100m
+          requests:
+            memory: 16Mi
+            cpu: 100m
+        env:
+        - name: FLASK_APP
+          value: back.chief
+        - name: DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: chief
+              key: DATABASE
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: gotrue
+              key: JWT_SECRET
+        - name: PAYMENT_SERVICE
+          value: http://payment
+        ports:
+        - name: http
+          containerPort: 5000
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: chief
+type: Opaque
+data:
+  DATABASE: bXlzcWwrcG9vbDovL2NoaWVmOkNoaWVmRGV2UEAkJEBteXNxbDozMzA2L2FpcnBvcnQ=

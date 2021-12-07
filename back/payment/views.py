@@ -1,13 +1,11 @@
 from flask import current_app, request
 import stripe
-import config
-
-stripe.api_key = 'sk_test_51K1efbCVEPKwWrcQsRyzDz7rTuMRBdycalufzXKBTF2pg3CUvSxMbiz7cHmWbDCYHc0LPI11ybiF7tflNhTDoEqX00MUObz6Qk'
 
 app = current_app
 
 sessions_map = {}
 
+stripe.api_key = app.config.get('STRIPE_API_KEY')
 
 @app.route("/payment", methods=['POST'])
 def init_payment():
@@ -38,9 +36,8 @@ def init_payment():
         line_items=items,
         mode='payment',
         discounts=discounts,
-        success_url=f'{config.FRONT_SCHEME}://{config.FRONT_URL}'
-                    f'{config.FRONT_SUCCESS_PATH}?order_id={args["order_id"]}',
-        cancel_url=f'{config.FRONT_SCHEME}://{config.FRONT_URL}{config.FRONT_CANCEL_PATH}',
+        success_url=f"{app.config.get('SITE_URL')}/payment/success?order_id={args['order_id']}",
+        cancel_url=f"{app.config.get('SITE_URL')}/payment/cancel",
         locale='en'
     )
 

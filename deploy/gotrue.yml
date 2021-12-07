@@ -6,6 +6,7 @@ spec:
   ports:
   - name: http
     port: 80
+    targetPort: 8080
   selector:
     app: gotrue
 ---
@@ -25,7 +26,7 @@ spec:
         app: gotrue
     spec:
       containers:
-      - image: docker.shlyahdomrii.tech/gotrue
+      - image: docker.shlyahdomrii.tech/gotrue:latest
         name: gotrue
         resources:
           limits:
@@ -68,10 +69,9 @@ spec:
           value: noreply@shlyahdomrii.tech
         - name: GOTRUE_LOG_LEVEL
           value: DEBUG
-
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8080
       imagePullSecrets:
         - name: regcred
 ---
