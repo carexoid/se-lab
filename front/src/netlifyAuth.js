@@ -8,9 +8,9 @@ const netlifyAuth = {
         netlifyIdentity.on('init', (user) => {
             callback(user)
         })
-        netlifyIdentity.init({
-            APIUrl: /* 'http://shlyahdomrii.tech/api/gotrue' */ '/api/gotrue'
-        })
+        netlifyIdentity.init(/* {
+            APIUrl: 'http://shlyahdomrii.tech/api/gotrue'
+        } */)
     },
     authenticate(callback) {
         this.isAuthenticated = true

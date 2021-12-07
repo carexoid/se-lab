@@ -1,11 +1,14 @@
 import { Typography, Button, Box, TextField } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { logIn, logOut, authTrue, authFalse } from '../actions/';
+import { logIn, logOut, setAuth } from '../actions/';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@mui/material';
 import $ from 'jquery';
 import { Form } from '../components/useForm';
+import netlifyAuth from '../netlifyAuth'
+import netlifyIdentity from 'netlify-identity-widget';
+import Unauthorized from '../components/Unauthorized';
 
 const useStyles = makeStyles((theme) => ({
     spacing: {
@@ -55,12 +58,14 @@ const emptyError = {
     phone: ''
 }
 
-function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
+function ProfileInfo() {
+    const user = netlifyIdentity.currentUser();
+
     const classes = useStyles();
     const [edit, setEdit] = useState(false)
 
     const defaultInfo = {
-        email: email,
+        email: `${user !== null ? user.email : ''}`,
         phone: '333',
         comment: 'aaa'
     }
@@ -75,7 +80,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
     const setInfoField = (name, value) => {
         setInfo({
             ...info,
-            [name]:value
+            [name]: value
         })
     }
 
@@ -89,7 +94,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
         phone: () => {
             setErrors({
                 ...errors,
-                phone: (/^\+380 ?\d{2} ?\d{3} ?\d{2} ?\d{2}$/).test(info.phone) || info.phone=='' ? "" : "Number doesn't match Ukrainian format",
+                phone: (/^\+380 ?\d{2} ?\d{3} ?\d{2} ?\d{2}$/).test(info.phone) || info.phone == '' ? "" : "Number doesn't match Ukrainian format",
             })
         }
     }
@@ -97,7 +102,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
     useEffect(() => {
         validators.email()
     }, [info.email])
-    
+
     useEffect(() => {
         validators.phone()
     }, [info.phone])
@@ -179,7 +184,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
                                     //error={errors.cardNumber !== "" ? true : false}
                                     //helperText={errors.cardNumber}
                                     value={info.comment}
-                                    onChange={(e) => { setInfoField('comment', e.target.value)  }}
+                                    onChange={(e) => { setInfoField('comment', e.target.value) }}
                                     variant='outlined'
                                     size="small"
                                     className={`${classes.horizontalSpacing} ${classes.inputHuge}`}
@@ -215,7 +220,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
                             size='large'
                             variant="contained"
                             type='sumbit'
-                            //onClick={() => setEdit(!edit)}
+                        //onClick={() => setEdit(!edit)}
                         >
                             Save
                         </Button>
@@ -226,7 +231,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
                         color="secondary"
                         size='large'
                         variant="contained"
-                        //onClick={() => setEdit(!edit)}
+                    //onClick={() => setEdit(!edit)}
                     >
                         Delete
                     </Button>
@@ -234,7 +239,7 @@ function ProfileInfo({ id, email, auth, logIn, logOut, authFalse }) {
                 </Box>
             </Form>
         </div>
-    );
+    )
 }
 
 
@@ -249,8 +254,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logIn: (id, email) => dispatch(logIn(id, email)),
         logOut: () => dispatch(logOut()),
-        authTrue: () => dispatch(authTrue()),
-        authFalse: () => dispatch(authFalse()),
+        setAuth: (value) => dispatch(setAuth(value)),
     }
 }
 

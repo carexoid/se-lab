@@ -11,10 +11,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import InfoIcon from '@material-ui/icons/Info';
 import FlightIcon from '@material-ui/icons/Flight';
 import { connect } from 'react-redux';
-import { logIn, logOut, authTrue, authFalse } from '../actions/';
+import { logIn, logOut, setAuth } from '../actions/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import netlifyIdentity from 'netlify-identity-widget';
 import netlifyAuth from '../netlifyAuth'
+import { event } from 'jquery';
 
 const useStyles = makeStyles((theme) => ({
     box: {
@@ -88,35 +89,42 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
+function NavBar({setAuth}) {
     const user = netlifyIdentity.currentUser();
     
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [authState, setAuthState] = useState(user !== null);
-    const [clickLogout, setClickLogout] = useState(!auth);
+    const [clickLogout, setClickLogout] = useState(user === null);
 
     useEffect(() => {
         console.log({ user });
         console.log('authState: ', authState)
-    },[])
+        setAuth(authState)
+    }, [])
 
-    /* useEffect(() => {
+    useEffect(() => {
         setAuthState(!clickLogout)
-    }, [clickLogout]) */
+    }, [clickLogout])
 
     useEffect(() => {
         console.log('new authState: ', authState)
+        setAuth(authState)
     }, [authState])
 
     const handleProfileClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleLogInClick = (event) => {
-        logIn(1, 'a@gmail.com');
-        authTrue();
-        setClickLogout(false);
-        netlifyAuth.authenticate((user)=>{console.log('user: ',user)})
+        netlifyAuth.authenticate((user) => {
+            console.log('user: ', user)
+            setClickLogout(false);
+        })
+    }
+    const handleLogoutClick = (event) => {
+        setClickLogout(true);
+        netlifyAuth.signout(() => { console.log('sign out') })
+        handleClose();
     }
     const handleClose = () => {
         setAnchorEl(null);
@@ -128,7 +136,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
             style={{
                 top: 0,
                 width: '100%',
-                position: '-webkit - sticky', /* Required for Safari */
+                position: '-webkit-sticky', /* Required for Safari */
                 position: 'sticky',
                 zIndex: 1,
             }}
@@ -189,12 +197,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                                     <ListItemText>Order History</ListItemText>
                                 </StyledMenuItem>
                                 <StyledMenuItem
-                                    onClick={() => {
-                                        authFalse();
-                                        logOut();
-                                        handleClose();
-                                        setClickLogout(true);
-                                    }}
+                                    onClick={handleLogoutClick}
                                 >
                                     <ListItemIcon>
                                         <ExitToAppIcon fontSize="small" />
@@ -231,8 +234,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logIn: (id, email) => dispatch(logIn(id, email)),
         logOut: () => dispatch(logOut()),
-        authTrue: () => dispatch(authTrue()),
-        authFalse: () => dispatch(authFalse()),
+        setAuth: (value) => dispatch(setAuth(value)),
     }
 }
 

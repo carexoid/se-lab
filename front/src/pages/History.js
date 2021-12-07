@@ -1,10 +1,12 @@
 import { Typography, Paper } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@mui/material';
 import InfoIcon from '@material-ui/icons/Info';
+import $ from "jquery";
 import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
+import netlifyIdentity from 'netlify-identity-widget';
 
 const useStyles = makeStyles((theme) => ({
     spacing: {
@@ -32,9 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-/* valueGetter: (params) =>
-    `${params.flight}`, */
-
 const columns = [
     {
         field: 'id',
@@ -47,14 +46,14 @@ const columns = [
         //width: '10%',
         renderCell: (param) => (
             <Typography>
-                {param.row.tickets[0].flight.id.toString().padStart(5,'0')}
+                {param.row.tickets[0].flight.id.toString().padStart(5, '0')}
                 <IconButton
                     color="primary"
                     size="small"
-                    onClick={() => {}}
+                    onClick={() => { }}
                     display='inline'
                 >
-                    <InfoIcon/>
+                    <InfoIcon />
                 </IconButton>
             </Typography>
         ),
@@ -89,81 +88,64 @@ const columns = [
     },
 ];
 
-const orders = [{
-    bonuses_added: "7024",
-    bonuses_used: "100",
-    created_at: "Sun, 28 Nov 2021 22:02:57 GMT",
-    id: 3,
-    state: 1,
-    tickets: [
-        {
-            flight: {
-                arrival_at: "Tue, 30 Nov 2021 17:12:00 GMT",
-                departure_at: "Tue, 30 Nov 2021 11:34:00 GMT",
-                direction: {
-                    id: 4,
-                    to: {
-                        city: "London",
-                        id: 4,
-                        info: "airport bigger than Novovolynsk",
-                        name: "Heathrow"
-                    }
-                },
-                distance: 3512,
-                id: 4
-            },
-            price: 150,
-            seat: 43,
-            type: 1
-        },
-        {
-            flight: {
-                arrival_at: "Tue, 30 Nov 2021 17:12:00 GMT",
-                departure_at: "Tue, 30 Nov 2021 11:34:00 GMT",
-                direction: {
-                    id: 4,
-                    to: {
-                        city: "London",
-                        id: 4,
-                        info: "airport bigger than Novovolynsk",
-                        name: "Heathrow"
-                    }
-                },
-                distance: 3512,
-                id: 4
-            },
-            price: 150,
-            seat: 44,
-            type: 1
-        }
-    ]
-}]
 
-function History() {
+function History({ auth, setAuth }) {
+    const user = netlifyIdentity.currentUser();
+    const [orders, setOrders] = useState([]);
+    const [bonus, setBonus] = useState(0);
+
     const classes = useStyles();
-    let bonuses = 111;
 
     useEffect(() => {
-        //fetch history
+        $.ajax({
+            type: 'GET',
+            url: 'api/chief/account/history',
+            //TODO add Authorization header
+            headers: { 'Accept': 'application/json' },
+            success: ((responseJSON) => {
+                setOrders(responseJSON.orders.map(x => {
+                    return {
+                        ...x,
+                        id: x.order_id
+                    }
+                }))
+            })
+        })
+
+        $.ajax({
+            type: 'GET',
+            url: 'api/chief/account',
+            //TODO add Authorization header
+            headers: { 'Accept': 'application/json' },
+            success: ((responseJSON) => {
+                setBonus(responseJSON.bonuses)
+            })
+        })
     }, [])
 
-    return (<div>
-        <Typography variant='h2'>Order History</Typography>
-               
-        <Paper className={classes.paper}>
-            <Typography variant='h4'>Bonuses: {bonuses}</Typography>
-            <Typography className={classes.spacing}>You have {bonuses} Bonuses available.</Typography>
-            <Typography className={classes.spacing}>
-                You can use Bonuses for discounts when ordering tickets. <Link href='/help#bonuses-help' className={classes.blueText}>Learn more about Bonuses.</Link>
-            </Typography>
-        </Paper>
-        
-        <DataGridTable
-            list={orders}
-            columns={columns}
-        />
-        <Typography className={classes.note}>* Note, that orders older than a year are not stored.</Typography>
-    </div> );
+    return (
+        <div>
+
+            <Typography variant='h2'>Order History</Typography>
+
+            <Paper className={classes.paper}>
+                <Typography variant='h4'>Bonuses: {bonus}</Typography>
+                <Typography className={classes.spacing}>You have {bonus} Bonuses available.</Typography>
+                <Typography className={classes.spacing}>
+                    You can use Bonuses for discounts when ordering tickets. <Link href='/help#bonuses-help' className={classes.blueText}>Learn more about Bonuses.</Link>
+                </Typography>
+            </Paper>
+
+            <DataGridTable
+                list={orders}
+                columns={columns}
+            />
+            <Typography className={classes.note}>* Note, that orders older than a year are not stored.</Typography>
+
+        </div>
+    );
 }
+
+
 
 export default History;

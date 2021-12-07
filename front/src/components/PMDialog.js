@@ -62,7 +62,7 @@ function PMDialog(props) {
                                 size='large'
                                 variant="contained"
                                 className={classes.button}
-                                component={RLink} to={`/checkout${props.composeParameters(true)}`}
+                                component={RLink} to={`/bonuses${props.composeParameters(true)}`}
                             >
                                 Pay Online with Bonuses
                             </Button>

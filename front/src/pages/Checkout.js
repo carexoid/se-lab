@@ -1,7 +1,7 @@
 import { Paper, TextField, Typography, Box, FormControl, Grid, MenuItem, Select, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect } from 'react';
-import BonusCheckout from '../components/BonusCheckout';
+import BonusCheckout from './BonusCheckout';
 import { Form, useForm } from '../components/useForm';
 import MyBreadcrumbs from '../components/MyBreadcrumbs';
 import PaymentIcon from '@material-ui/icons/Payment';

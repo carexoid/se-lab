@@ -67,7 +67,7 @@ function MyBreadcrumbs(props) {
                         Order Details
                     </Link>
                 </Typography>
-                <Typography className={classes.prText}>Checkout</Typography>
+                <Typography className={classes.prText}>Bonuses</Typography>
             </Breadcrumbs>
         )
     }

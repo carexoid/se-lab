@@ -8,6 +8,4 @@ export const logIn = (id, email) => ({
 
 export const logOut = () => ({ type: "LOG_OUT" })
 
-export const authTrue = () => ({ type: "MARK_TRUE" })
-
-export const authFalse = () => ({ type: "MARK_FALSE" })
+export const setAuth = (value) => ({ type: "SET", payload: value })

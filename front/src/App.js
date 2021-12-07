@@ -8,7 +8,7 @@ import { Container } from "@material-ui/core";
 import BrowseFlights from './pages/BrowseFlights';
 import ViewFlight from './pages/ViewFlight';
 import ComposeOrder from './pages/ComposeOrder';
-import Checkout from './pages/Checkout';
+import BonusCheckout from './pages/BonusCheckout';
 import ProfileInfo from './pages/Profile';
 import History from './pages/History';
 import AboutUs from './pages/AboutUs';
@@ -16,6 +16,7 @@ import Help from './pages/Help';
 import Footer from './components/Footer';
 import Success from './pages/PaymentSuccess';
 import PaymentError from './pages/PaymentError';
+import ProtectedWrapper from './pages/ProtectedWrapper';
 
 const theme = createTheme({
   palette: {
@@ -115,14 +116,14 @@ function App() {
                 <Routes>
                   <Route path='/' element={<BrowseFlights />} />
                   <Route path='/view/*' element={<ViewFlight />} />
-                  <Route path='/place_order/*' element={<ComposeOrder />} />
-                  <Route path='/checkout*' element={<Checkout />} />
-                  <Route path='/profile' element={<ProfileInfo />} />
-                  <Route path='/history' element={<History />} />
+                  <Route path='/place_order/*' element={<ProtectedWrapper><ComposeOrder/></ProtectedWrapper>} />
+                  <Route path='/bonuses*' element={<ProtectedWrapper><BonusCheckout /></ProtectedWrapper>} />
+                  <Route path='/profile' element={<ProtectedWrapper><ProfileInfo /></ProtectedWrapper>} />
+                  <Route path='/history' element={<ProtectedWrapper><History /></ProtectedWrapper>} />
                   <Route path='/about' element={<AboutUs/>} />
                   <Route path='/help' element={<Help/>} />
-                  <Route path='/payment/success/*' element={<Success/>} />
-                  <Route path='/payment/error' element={<PaymentError/>} />
+                  <Route path='/payment/success/*' element={<ProtectedWrapper><Success /></ProtectedWrapper>} />
+                  <Route path='/payment/error' element={<ProtectedWrapper><PaymentError /></ProtectedWrapper>} />
                 </Routes>
 
               </Container>

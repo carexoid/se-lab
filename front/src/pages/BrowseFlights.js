@@ -175,14 +175,15 @@ function BrowseFlights() {
             success: function (responseJSON) {
                 console.log(responseJSON)
                 setFlights(responseJSON.flights)
+                
+                setShowList(true)
+                const newY = getOffset(document.getElementById('search-button')).top
+                $("html, body").animate({
+                    scrollTop: newY
+                });
             },
         });
-        
-        setShowList(true)
-        const newY = getOffset(document.getElementById('search-button')).top
-        $("html, body").animate({
-            scrollTop: newY 
-        });
+       
     }
 
     //componentDidMount

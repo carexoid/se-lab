@@ -8,12 +8,8 @@ import MyBreadcrumbs from '../components/MyBreadcrumbs';
 import { Box } from '@mui/material';
 import OrderDetails from '../components/OrderDetails';
 import PMDialog from '../components/PMDialog';
-import BonusCheckout from '../components/BonusCheckout';
-import Checkout from './Checkout';
 import { Form } from '../components/useForm';
 import $, { ajax } from 'jquery';
-
-
 const styles = theme => ({
     paper: {
         verticalAlign: 'middle',
@@ -76,7 +72,7 @@ class ComposeOrder extends Component {
                 econom: [],
                 business: [],
             },
-            body:{},
+            body: {},
             order: {
                 class: 'econom',
                 quantity: 1,
@@ -107,7 +103,7 @@ class ComposeOrder extends Component {
                     this.setOrder('class', 'business')
                 }
                 this.setState({ flight: responseJSON })
-                
+
             }).bind(this)
         })
 
@@ -117,19 +113,20 @@ class ComposeOrder extends Component {
             headers: { 'Accept': 'application/json' },
             success: ((responseJSON) => {
                 console.log('ticket list: ', responseJSON)
-                this.setState({tickets: responseJSON})            
+                this.setState({ tickets: responseJSON })
             }).bind(this)
         })
     }
 
     composeParameters(useBonuses) {
-        const str = '?flightid='+ this.state.flight.id +
+        const price = this.state.order.class === 'econom' ? this.state.flight.econom_min_price : this.business_min_price
+        const str = '?flightId=' + this.state.flight.id +
             '?class=' + this.state.order.class +
-            '?price=' + this.state.flight.price +
+            '?price=' + price +
             '?quantity=' + this.state.order.quantity +
             '?comment=' + this.state.order.comment +
             '?bonuses=' + useBonuses;
-        
+
         return str;
     }
 
@@ -138,7 +135,7 @@ class ComposeOrder extends Component {
             tickets: this.state.tickets[this.state.order.class].slice(
                 0, this.state.order.quantity
             ).map((x => {
-                return {                   
+                return {
                     flight_id: this.state.flight.id,
                     seat: x.seat,
                 }
@@ -146,7 +143,7 @@ class ComposeOrder extends Component {
         }
         console.log('body: ', body)
 
-        this.setState({body: body})
+        this.setState({ body: body })
         /* $.ajax({
             type: 'POST',
             url: '/booking',
@@ -245,8 +242,10 @@ class ComposeOrder extends Component {
                 </div>
 
             </div>
+
         );
     }
 }
+
 
 export default withStyles(styles, { withTheme: true })(ComposeOrder);
