@@ -301,10 +301,10 @@ Body example:
 }
 ```
 
-If success, response is redirect to checkout
+If success, response is redirect to checkout page
 
 if success, checkout will redirect to `http://{front_url}/payment/success?order_id={order_id}`
-otherwise - `http://{front_url}/payment/cancel`
+otherwise - `http://{front_url}/payment/cancel?order_id={order_id}`
 
 _____
 ### Make order via crutch
@@ -314,7 +314,15 @@ _____
 Same as `/booking`, but body should be transfered as query parameter `body`
 
 ___
+### Make booking with existing order
 
+`POST /booking/{order_id}`
+
+If success, response is redirect to checkout page
+
+if success, checkout will redirect to `http://{front_url}/payment/success?order_id={order_id}`
+otherwise - `http://{front_url}/payment/cancel?order_id={order_id}`
+____
 ### Get order
 
 `GET /order/{order_id}`

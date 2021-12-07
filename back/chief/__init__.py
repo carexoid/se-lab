@@ -15,6 +15,7 @@ def create_app(test_config=None) -> Flask:
         # Load config from environment variables
         app.config['DATABASE'] = os.getenv('DATABASE')
         app.config['PAYMENT_SERVICE'] = os.getenv('PAYMENT_SERVICE')
+        app.config['GOTRUE_URL'] = os.getenv('GOTRUE_URL')
 
     with app.app_context():
         # Initialize database
