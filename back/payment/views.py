@@ -7,8 +7,9 @@ sessions_map = {}
 
 stripe.api_key = app.config.get('STRIPE_API_KEY')
 
-@app.route("/payment", methods=['POST'])
-def init_payment():
+
+@app.route("/checkout", methods=['POST'])
+def generate_checkout():
 
     args = request.get_json()
 
@@ -37,16 +38,22 @@ def init_payment():
         mode='payment',
         discounts=discounts,
         success_url=f"{app.config.get('SITE_URL')}/payment/success?order_id={args['order_id']}",
-        cancel_url=f"{app.config.get('SITE_URL')}/payment/cancel",
+        cancel_url=f"{app.config.get('SITE_URL')}/payment/cancel?order_id={args['order_id']}",
         locale='en'
     )
 
-    sessions_map[session.id] = int(args["order_id"])
+    sessions_map[int(args["order_id"])] = session
 
     return {
         "stripe_url": session.url
     }
 
+
+@app.route("/checkout/<int:order_id>")
+def resend_checkout(order_id):
+    return {
+        "stripe_url": sessions_map[order_id].url
+    }
 
 @app.route("/stripe_webhook")
 def accept_webhook():

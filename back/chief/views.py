@@ -13,7 +13,13 @@ auth = HTTPTokenAuth(scheme='Bearer')
 
 @auth.verify_token
 def verify_token(token):
-    return {"id": 1}  # TODO authorization
+    r = requests.get(f"{app.config.get('GOTRUE_URL')}/user", headers={"Authorization": f"Bearer {token}"})
+    user = db.User.get_or_none(db.User.auth_id == r.json()["id"])
+    if user is None:
+        user = db.User.create(auth_id=r.json()["id"],
+                              created_at=r.json()["created_at"],
+                              bonuses=0)
+    return user
 
 
 def send_error(text: str):
@@ -169,26 +175,24 @@ def get_tickets(flight_id):
 @app.route("/account", methods=["GET", "DELETE"])
 @auth.login_required()
 def get_my_info():
-    user_id = auth.current_user()["id"]
 
     if request.method == "GET":
-        query = db.User.select(db.User.id.alias("user_id"), db.User.bonuses).where(db.User.id == user_id)
+        query = db.User.select(db.User.id.alias("user_id"), db.User.bonuses).where(db.User.id == auth.current_user().id)
         res = query.dicts().get_or_none()
         return res if res else send_error("User not found")
 
     if request.method == "DELETE":
-        query = db.User.delete().where(db.User.id == user_id)
+        query = db.User.delete().where(db.User.id == auth.current_user().id)
         return "" if query.execute() == 1 else send_error("User not found")
 
 
 @app.route("/account/history")
 @auth.login_required
 def get_history():
-    user_id = auth.current_user()["id"]
 
     orders = (db.Order.select(db.Order, db.Payment.amount.alias("payment_amount"))
               .join(db.User)
-              .where(db.User.id == user_id)
+              .where(db.User.id == auth.current_user().id)
               .join(db.Payment, on=(db.Payment.order == db.Order.id)))
 
     res = []
@@ -230,12 +234,11 @@ def get_history():
 @app.route("/order/<int:order_id>")
 @auth.login_required
 def get_order(order_id):
-    user_id = auth.current_user()["id"]
     order = db.Order.get_or_none(db.Order.id == order_id)
 
     if order is None:
         return send_error("Order does not exist")
-    if order.user.id != user_id:
+    if order.user.id != auth.current_user().id:
         return "Access to this order is forbidden", 403
 
     res = {
@@ -291,7 +294,6 @@ def make_order_with_params(user_id: int, params: dict):
     order = db.Order.create(user=db.User.get(db.User.id == user_id),
                             created_at=datetime.now(),
                             state=db.Order.State.active)
-
     tickets_descs = []
 
     for ticket in tickets:
@@ -314,7 +316,7 @@ def make_order_with_params(user_id: int, params: dict):
         ticket_record.order = order
         ticket_record.save()
 
-    response = requests.post(f'{app.config.get("PAYMENT_SERVICE")}/payment', json={
+    response = requests.post(f'{app.config.get("PAYMENT_SERVICE")}/checkout', json={
         "order_id": order.id,
         "bonuses": bonuses_requested,
         "tickets": tickets_descs
@@ -329,15 +331,27 @@ def make_order_with_params(user_id: int, params: dict):
 @app.route("/booking", methods=['POST'])
 @auth.login_required
 def make_order():
-    return make_order_with_params(auth.current_user()["id"], request.get_json())
+    return make_order_with_params(auth.current_user().id, request.get_json())
 
 
 @app.route("/crutched_booking", methods=['POST'])
 @auth.login_required
-def make_test_order():
+def make_order_crutched():
     import urllib
     raw = urllib.parse.unquote(request.args.get('body'))
-    return make_order_with_params(auth.current_user()["id"], json.loads(raw))
+    return make_order_with_params(auth.current_user().id, json.loads(raw))
+
+
+@app.route("/booking/<int:order_id>", methods=['POST'])
+@auth.login_required
+def make_reorder(order_id):
+
+    response = requests.get(f'{app.config.get("PAYMENT_SERVICE")}/checkout/{order_id}')
+
+    if response.status_code != 200:
+        return response.text, response.status_code
+
+    return redirect(response.json()["stripe_url"], 303)
 
 
 # Currently unused, should be called from payment service
