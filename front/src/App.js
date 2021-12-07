@@ -1,13 +1,10 @@
 import './App.css';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
 import Banner from './components/Banner'
 import NavBar from './components/NavBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Box } from '@material-ui/core';
 import { Container } from "@material-ui/core";
-import background from "./assets/better_banner_bckg_2.png";
-import playAnimation from './scripts/animation'
 import BrowseFlights from './pages/BrowseFlights';
 import ViewFlight from './pages/ViewFlight';
 import ComposeOrder from './pages/ComposeOrder';
@@ -19,7 +16,6 @@ import Help from './pages/Help';
 import Footer from './components/Footer';
 import Success from './pages/PaymentSuccess';
 import PaymentError from './pages/PaymentError';
-
 
 const theme = createTheme({
   palette: {
@@ -125,8 +121,8 @@ function App() {
                   <Route path='/history' element={<History />} />
                   <Route path='/about' element={<AboutUs/>} />
                   <Route path='/help' element={<Help/>} />
-                  <Route path='/payment/success*' element={<Success/>} />
-                  <Route path='/payment/error*' element={<PaymentError/>} />
+                  <Route path='/payment/success/*' element={<Success/>} />
+                  <Route path='/payment/error' element={<PaymentError/>} />
                 </Routes>
 
               </Container>

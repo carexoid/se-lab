@@ -47,7 +47,7 @@ const columns = [
         //width: '10%',
         renderCell: (param) => (
             <Typography>
-                {param.row.tickets[0].flight.id}
+                {param.row.tickets[0].flight.id.toString().padStart(5,'0')}
                 <IconButton
                     color="primary"
                     size="small"
@@ -154,7 +154,7 @@ function History() {
             <Typography variant='h4'>Bonuses: {bonuses}</Typography>
             <Typography className={classes.spacing}>You have {bonuses} Bonuses available.</Typography>
             <Typography className={classes.spacing}>
-                You can use Bonuses for discounts when ordering tickets. <Link href='/help' className={classes.blueText}>Learn more about Bonuses.</Link>
+                You can use Bonuses for discounts when ordering tickets. <Link href='/help#bonuses-help' className={classes.blueText}>Learn more about Bonuses.</Link>
             </Typography>
         </Paper>
         

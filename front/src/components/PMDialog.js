@@ -37,7 +37,12 @@ function PMDialog(props) {
                 >
                     <Grid container spacing={2} alignItems="center">
                         <Grid item xs={12}>
-                            <form action={`/crutched_booking?body=${JSON.stringify(props.requestBody)}`} method="POST">
+                            <form
+                                action={`/api/chief/crutched_booking?body=${
+                                    encodeURIComponent(JSON.stringify(props.requestBody))/* .replace(/{/g, '\\{').replace(/}/g, '\\}').replace(/\[/g, '\\[').replace(/\]/g, '\\]') */}`
+                                }
+                                method="POST"
+                            >
                                 <Button
                                     color="primary"
                                     size='large'

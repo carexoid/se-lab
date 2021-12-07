@@ -117,7 +117,7 @@ function Help() {
                 </Typography>
             </Paper>
 
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} id='bonuses-help'>
                 <Typography variant='h4' className={classes.spacingSmall}>Bonuses</Typography>
 
                 <Typography variant='h5'>What are Bonuses?</Typography>

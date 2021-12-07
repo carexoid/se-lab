@@ -99,7 +99,7 @@ class ComposeOrder extends Component {
 
         $.ajax({
             type: 'GET',
-            url: `/flights/${flightId}`,
+            url: `/api/chief/flights/${flightId}`,
             headers: { 'Accept': 'application/json' },
             success: ((responseJSON) => {
                 console.log(responseJSON)
@@ -113,7 +113,7 @@ class ComposeOrder extends Component {
 
         $.ajax({
             type: 'GET',
-            url: `/flights/${flightId}/tickets`,
+            url: `/api/chief/flights/${flightId}/tickets`,
             headers: { 'Accept': 'application/json' },
             success: ((responseJSON) => {
                 console.log('ticket list: ', responseJSON)

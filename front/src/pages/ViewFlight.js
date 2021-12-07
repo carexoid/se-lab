@@ -82,7 +82,7 @@ function ViewFlight() {
 
         $.ajax({
             type: 'GET',
-            url: `/flights/${flightCode}`,
+            url: `/api/chief/flights/${flightCode}`,
             headers: { 'Accept': 'application/json' },
             success: (responseJSON) => {
                 console.log(responseJSON)

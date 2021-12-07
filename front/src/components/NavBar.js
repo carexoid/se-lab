@@ -13,6 +13,8 @@ import FlightIcon from '@material-ui/icons/Flight';
 import { connect } from 'react-redux';
 import { logIn, logOut, authTrue, authFalse } from '../actions/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import netlifyIdentity from 'netlify-identity-widget';
+import netlifyAuth from '../netlifyAuth'
 
 const useStyles = makeStyles((theme) => ({
     box: {
@@ -87,21 +89,35 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
+    const user = netlifyIdentity.currentUser();
+    
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [authState, setAuthState] = useState(auth);
+    const [authState, setAuthState] = useState(user !== null);
     const [clickLogout, setClickLogout] = useState(!auth);
 
     useEffect(() => {
+        console.log({ user });
+        console.log('authState: ', authState)
     },[])
 
-    useEffect(() => {
+    /* useEffect(() => {
         setAuthState(!clickLogout)
-    }, [clickLogout])
+    }, [clickLogout]) */
 
-    const handleClick = (event) => {
+    useEffect(() => {
+        console.log('new authState: ', authState)
+    }, [authState])
+
+    const handleProfileClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const handleLogInClick = (event) => {
+        logIn(1, 'a@gmail.com');
+        authTrue();
+        setClickLogout(false);
+        netlifyAuth.authenticate((user)=>{console.log('user: ',user)})
+    }
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -139,7 +155,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                                 startIcon={<AccountCircleIcon style={{ fill: '#ececec', fontSize: 25 }} />}
                                 disableFocusRipple
                                 aria-haspopup="true"                               
-                                onClick={handleClick}
+                                onClick={handleProfileClick}
                             >
                                 My Profile
                             </Button>
@@ -193,7 +209,7 @@ function NavBar({ auth, authFalse, authTrue, email, logIn, logOut }) {
                             size="large"
                             variant="text"
                             color='primary'
-                            onClick={() => { logIn(1, 'a@gmail.com'); authTrue(); setClickLogout(false); }}
+                            onClick={handleLogInClick}
                         >
                             Login or Sign Up
                         </Button>

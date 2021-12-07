@@ -1,5 +1,5 @@
 function Success() {
-    return ( {} );
+    return ( <p>Success</p> );
 }
 
 export default Success;

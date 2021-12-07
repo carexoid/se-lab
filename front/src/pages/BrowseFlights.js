@@ -170,7 +170,7 @@ function BrowseFlights() {
         
         $.ajax({
             type: 'GET',
-            url: `/flights${generateReqStr(values)}`,
+            url: `/api/chief/flights${generateReqStr(values)}`,
             headers: { 'Accept': 'application/json' },
             success: function (responseJSON) {
                 console.log(responseJSON)
@@ -189,7 +189,7 @@ function BrowseFlights() {
     useEffect(() => {
         $.ajax({
             type: 'GET',
-            url: '/flight_ids',
+            url: '/api/chief/flight_ids',
             headers:{'Accept': 'application/json'},
             success: function (responseJSON) {
                 //console.log(responseJSON.ids) 
@@ -199,7 +199,7 @@ function BrowseFlights() {
 
         $.ajax({
             type: 'GET',
-            url: '/cities',
+            url: '/api/chief/cities',
             headers: { 'Accept': 'application/json' },
             success: function (responseJSON) {
                 const newView = responseJSON.cities.map(
