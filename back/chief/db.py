@@ -26,6 +26,11 @@ class User(Model):
     auth_id = pw.CharField(max_length=64, unique=True)
     created_at = pw.DateTimeField(default=datetime.datetime.now)
     bonuses = UnsignedSmallIntegerField()
+    info = pw.CharField(max_length=128)
+
+
+class BannedUser(Model):
+    id = pw.ForeignKeyField(User, primary_key=True, on_delete='CASCADE')
 
 
 class Airport(Model):
@@ -67,6 +72,7 @@ class Order(Model):
     user = pw.ForeignKeyField(User, backref='orders', on_delete='CASCADE')
     created_at = pw.DateTimeField()
     state = StateField()
+    info = pw.CharField(max_length=128)
 
 
 class Ticket(Model):
@@ -108,5 +114,5 @@ def db():
 @with_appcontext
 def init():
     database.create_tables(
-        [User, Airport, Direction, Flight, Order, Ticket, Payment])
+        [User, BannedUser, Airport, Direction, Flight, Order, Ticket, Payment])
     click.echo('Initialized the database')
