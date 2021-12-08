@@ -294,6 +294,12 @@ def make_order_with_params(user_id: int, params: dict):
     order = db.Order.create(user=db.User.get(db.User.id == user_id),
                             created_at=datetime.now(),
                             state=db.Order.State.active)
+
+    comment = params.get("comment", None)
+    if comment is not None:
+        order.info = comment
+        order.save()
+
     tickets_descs = []
 
     for ticket in tickets:
@@ -315,6 +321,12 @@ def make_order_with_params(user_id: int, params: dict):
         })
         ticket_record.order = order
         ticket_record.save()
+
+    if params.get("type") == 'offline':
+        return {
+            "order_id": order.id,
+            "tickets": tickets_descs
+        } | ({} if params.get("comment", None) is None else {"comment": params.get("comment")})
 
     response = requests.post(f'{app.config.get("PAYMENT_SERVICE")}/checkout', json={
         "order_id": order.id,
