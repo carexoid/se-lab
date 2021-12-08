@@ -1,0 +1,9 @@
+werkzeug==0.16.1
+Flask==1.0.2
+Flask-Admin==1.5.3
+Flask-BasicAuth==0.2.0
+Peewee==3.14.8
+pymysql==1.0.2
+cryptography==36.0.0
+WTForms==2.3.1
+wtf-peewee==3.0.2

@@ -62,15 +62,15 @@ spec:
               name: gotrue
               key: JWT_SECRET
         - name: GOTRUE_SMTP_HOST
-          value: smtp
+          value: 100.83.87.81
         - name: GOTRUE_SMTP_PORT
-          value: '587'
+          value: '1587'
         - name: GOTRUE_SMTP_ADMIN_EMAIL
           value: noreply@shlyahdomrii.tech
         - name: GOTRUE_LOG_LEVEL
           value: DEBUG
         - name: GOTRUE_MAILER_AUTOCONFIRM
-          value: 'true'
+          value: 'false'
         ports:
         - name: http
           containerPort: 8080

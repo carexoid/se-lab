@@ -26,7 +26,7 @@ spec:
         app: admin
     spec:
       containers:
-      - image: docker.shlyahdomrii.tech/back:latest
+      - image: docker.shlyahdomrii.tech/admin:latest
         name: admin
         resources:
           limits:

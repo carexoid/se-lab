@@ -40,6 +40,8 @@ spec:
           value: back.payment
         - name: SITE_URL
           value: http://localhost:3000
+        - name: CHIEF_URL
+          value: http://chief
         - name: STRIPE_API_KEY
           valueFrom:
             secretKeyRef:
