@@ -22,7 +22,7 @@ class User(Model):
     auth_id = pw.CharField(max_length=64, unique=True)
     created_at = pw.DateTimeField(default=datetime.datetime.now)
     bonuses = UnsignedSmallIntegerField()
-    info = pw.CharField(max_length=128)
+    info = pw.CharField(max_length=128, null=True)
 
 
 class BannedUser(Model):
@@ -68,7 +68,7 @@ class Order(Model):
     user = pw.ForeignKeyField(User, backref='orders', on_delete='CASCADE')
     created_at = pw.DateTimeField()
     state = StateField()
-    info = pw.CharField(max_length=128)
+    info = pw.CharField(max_length=128, null=True)
 
 
 class Ticket(Model):
