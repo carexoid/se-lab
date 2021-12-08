@@ -14,6 +14,8 @@ auth = HTTPTokenAuth(scheme='Bearer')
 @auth.verify_token
 def verify_token(token):
     r = requests.get(f"{app.config.get('GOTRUE_URL')}/user", headers={"Authorization": f"Bearer {token}"})
+    if r.status_code != 200:
+        return
     user = db.User.get_or_none(db.User.auth_id == r.json()["id"])
     if user is None:
         user = db.User.create(auth_id=r.json()["id"],
