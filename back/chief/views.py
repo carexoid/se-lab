@@ -13,6 +13,8 @@ auth = HTTPTokenAuth(scheme='Bearer')
 
 @auth.verify_token
 def verify_token(token):
+    if app.testing:
+        return db.User.get(db.User.id == token)  # in test, id passed as token
     r = requests.get(f"{app.config.get('GOTRUE_URL')}/user", headers={"Authorization": f"Bearer {token}"})
     if r.status_code != 200:
         return
@@ -305,7 +307,7 @@ def make_order_with_params(user_id: int, params: dict):
     tickets_descs = []
 
     for ticket in tickets:
-        flight = db.Flight.get_or_none(db.Flight.id == ticket["flight_id"])
+        flight = db.Flight.get_or_none(db.Flight.id == int(ticket["flight_id"]))
 
         if flight is None:
             return send_error(f"Bad request: flight_id {ticket['flight_id']} is not exist")
