@@ -9,7 +9,8 @@ from back.chief import create_app
 
 @pytest.fixture
 def client():
-    app = create_app({'TESTING': True, 'DATABASE': f"sqlite:///:memory:"})
+    db_fd, db_path = tempfile.mkstemp()
+    app = create_app({'TESTING': True, 'DATABASE': f"sqlite:///{db_path}"})
 
     with app.test_client() as client:
         with app.app_context():
@@ -17,6 +18,9 @@ def client():
             init()
             assert flask_db.database.close()
         yield client
+
+    os.close(db_fd)
+    os.unlink(db_path)
 
 
 @pytest.fixture

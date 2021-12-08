@@ -6,15 +6,7 @@ import datetime
 import click
 import enum
 
-# if 'TESTING' in current_app.config and current_app.config['TESTING']:
-#     from playhouse.sqlite_ext import SqliteDatabase
-#     database = connect(current_app.config['DATABASE'])
-# else:
-# from playhouse.db_url import connect
-# database = connect(current_app.config['DATABASE'])
-# flask_db = FlaskDB(current_app, database)
 flask_db = FlaskDB()
-
 
 class Model(flask_db.Model):
     class Meta:
