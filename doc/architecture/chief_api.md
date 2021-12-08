@@ -297,21 +297,49 @@ Body example:
             "seat": 28
         }
     ],
-    "use_bonuses": 300   // optional    
+    "type": "offline/online",  
+    "use_bonuses": 300,   // optional, allowed only if "type" == "online"
+    "comment": ":D"  // optional
 }
 ```
+
+**Online**:
 
 If success, response is redirect to checkout page
 
 if success, checkout will redirect to `http://{front_url}/payment/success?order_id={order_id}`
 otherwise - `http://{front_url}/payment/cancel?order_id={order_id}`
 
+**Offline**:
+
+if success, response will be
+```js
+{
+  "comment": ":D", 
+  "order_id": 99, 
+  "tickets": [
+    {
+      "airport_name": "Zhuliany", 
+      "city": "Kyiv", 
+      "price": 200, 
+      "seat": 27
+    }, 
+    {
+      "airport_name": "Zhuliany", 
+      "city": "Kyiv", 
+      "price": 200, 
+      "seat": 28
+    }
+  ]
+}
+
+```
 _____
 ### Make order via crutch
 
 `POST /crutched_booking`
 
-Same as `/booking`, but body should be transfered as query parameter `body`
+Same as `/booking`, but body should be transfered as query parameter `body`, and auth token as query parameter `token`
 
 ___
 ### Make booking with existing order
