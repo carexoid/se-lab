@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 
+
 def create_app(test_config=None) -> Flask:
     app = Flask(__name__)
 
@@ -14,6 +15,8 @@ def create_app(test_config=None) -> Flask:
         # Load config from environment variables
         app.config['SITE_URL'] = os.getenv('SITE_URL')
         app.config['STRIPE_API_KEY'] = os.getenv('STRIPE_API_KEY')
+        app.config['STRIPE_WEBHOOK_SECRET'] = os.getenv('STRIPE_WEBHOOK_SECRET')
+        app.config['CHIEF_URL'] = os.getenv('CHIEF_URL')
 
     with app.app_context():
         from . import views

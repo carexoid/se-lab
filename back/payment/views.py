@@ -1,8 +1,8 @@
+import requests
 from flask import current_app, request
 import stripe
 
 app = current_app
-
 sessions_map = {}
 
 stripe.api_key = app.config.get('STRIPE_API_KEY')
@@ -51,10 +51,46 @@ def generate_checkout():
 
 @app.route("/checkout/<int:order_id>")
 def resend_checkout(order_id):
+    if order_id not in sessions_map:
+        return "No session for this order", 400
     return {
         "stripe_url": sessions_map[order_id].url
     }
 
-@app.route("/stripe_webhook")
+
+@app.route("/stripe_webhooks", methods=['POST'])
 def accept_webhook():
-    pass
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, app.config.get('STRIPE_WEBHOOK_SECRET')
+        )
+    except ValueError as e:
+        # Invalid payload
+        return "", 400
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return "", 400
+
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+
+        order_id = None
+        for k, v in sessions_map.items():
+            if v.id == session.id:
+                order_id = k
+                del sessions_map[k]
+                break
+
+        if order_id is None:
+            return "", 400
+
+        r = requests.put(f"{app.config.get('CHIEF_URL')}/order/{order_id}/success",
+                         json={'bonuses_used': (session['amount_subtotal'] - session['amount_total']) / 100})
+
+    return ""
+
+
