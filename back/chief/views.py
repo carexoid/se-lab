@@ -14,6 +14,8 @@ auth = HTTPTokenAuth(scheme='Bearer')
 @auth.verify_token
 def verify_token(token):
     r = requests.get(f"{app.config.get('GOTRUE_URL')}/user", headers={"Authorization": f"Bearer {token}"})
+    if r.status_code != 200:
+        return
     user = db.User.get_or_none(db.User.auth_id == r.json()["id"])
     if user is None:
         user = db.User.create(auth_id=r.json()["id"],
@@ -294,6 +296,12 @@ def make_order_with_params(user_id: int, params: dict):
     order = db.Order.create(user=db.User.get(db.User.id == user_id),
                             created_at=datetime.now(),
                             state=db.Order.State.active)
+
+    comment = params.get("comment", None)
+    if comment is not None:
+        order.info = comment
+        order.save()
+
     tickets_descs = []
 
     for ticket in tickets:
@@ -315,6 +323,12 @@ def make_order_with_params(user_id: int, params: dict):
         })
         ticket_record.order = order
         ticket_record.save()
+
+    if params.get("type") == 'offline':
+        return {
+            "order_id": order.id,
+            "tickets": tickets_descs
+        } | ({} if params.get("comment", None) is None else {"comment": params.get("comment")})
 
     response = requests.post(f'{app.config.get("PAYMENT_SERVICE")}/checkout', json={
         "order_id": order.id,
