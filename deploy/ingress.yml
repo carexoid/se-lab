@@ -22,3 +22,17 @@ spec:
             name: gotrue
             port:
               number: 8080
+      - path: /()(admin/?.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: admin
+            port:
+              number: 80
+      - path: /(|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: front
+            port:
+              number: 8080

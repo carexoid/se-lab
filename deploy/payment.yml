@@ -26,7 +26,7 @@ spec:
         app: payment
     spec:
       containers:
-      - image: docker.shlyahdomrii.tech/back:v1
+      - image: docker.shlyahdomrii.tech/back:latest
         name: payment
         resources:
           limits:
@@ -48,7 +48,6 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-        imagePullPolicy: Always
       imagePullSecrets:
         - name: regcred
 ---

@@ -1,0 +1,10 @@
+**/*.md
+.git
+venv
+**/node_modules
+**/__pycache__
+**/build
+.vscode
+*/npm-debug.log*
+*/yarn-debug.log*
+*/yarn-error.log*

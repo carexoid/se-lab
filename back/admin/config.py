@@ -1,11 +1,4 @@
-MYSQL = {
-    'host': '134.209.225.223',
-    'port': 3306,
-    'database': 'airport',
-    'user': 'admin',
-    'password': 'AdminDevP@$$',
-}
-
-FLASK_ADMIN_SWATCH = 'cyborg'
-
+DATABASE = 'mysql+pool://admin:AdminDevP@$$@134.209.225.223:3306/airport'
 SECRET_KEY = '123456790'
+BASIC_AUTH_USERNAME = 'admin'
+BASIC_AUTH_PASSWORD = 'AdminP@$$w0rd'

@@ -1,45 +1,10 @@
 from flask_admin.contrib.peewee import ModelView, filters
-from jinja2.utils import contextfunction
-from ..chief import db
 from wtforms import fields
-from peewee import fn
-
-# Well, this looks ugly, but I haven't found any
-# other way to make it work with connection pool nicely
+from back.chief import db
 
 
 class BaseModelView(ModelView):
     column_display_pk = True
-
-    @db.database.connection_context()
-    def on_model_change(self, form, model, is_created):
-        return super().on_model_change(form, model, is_created)
-
-    @db.database.connection_context()
-    def on_model_delete(self, model):
-        return super().on_model_delete(model)
-
-    @contextfunction
-    @db.database.connection_context()
-    def get_list_value(self, context, model, name):
-        return super().get_list_value(context, model, name)
-
-    @contextfunction
-    @db.database.connection_context()
-    def get_detail_value(self, context, model, name):
-        return super().get_detail_value(context, model, name)
-
-    @db.database.connection_context()
-    def get_pk_value(self, model):
-        return super().get_pk_value(model)
-
-    @db.database.connection_context()
-    def get_one(self, id):
-        return super().get_one(id)
-
-    @db.database.connection_context()
-    def update_model(self, form, model):
-        return super().update_model(form, model)
 
 
 class UserView(BaseModelView):
@@ -67,7 +32,6 @@ class FlightView(BaseModelView):
     }
 
     @staticmethod
-    @db.database.connection_context()
     def create_tickets(form, model):
         econom = form.data["econom_number"]
         flight_id = model.id
@@ -92,7 +56,6 @@ class FlightView(BaseModelView):
         if is_created:
             FlightView.create_tickets(form, model)
 
-    @db.database.connection_context()
     def on_model_delete(self, model):
         db.Ticket.delete().where(db.Ticket.flight == model.id)
         return super().on_model_delete(model)
