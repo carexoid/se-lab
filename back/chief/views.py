@@ -335,11 +335,12 @@ def make_order():
 
 
 @app.route("/crutched_booking", methods=['POST'])
-@auth.login_required
 def make_order_crutched():
     import urllib
     raw = urllib.parse.unquote(request.args.get('body'))
-    return make_order_with_params(auth.current_user().id, json.loads(raw))
+    token = request.args.get('token')
+    user = verify_token(token)
+    return make_order_with_params(user.id, json.loads(raw))
 
 
 @app.route("/booking/<int:order_id>", methods=['POST'])
@@ -354,19 +355,20 @@ def make_reorder(order_id):
     return redirect(response.json()["stripe_url"], 303)
 
 
-# Currently unused, should be called from payment service
-@app.route("/confirm_order", methods=['POST'])
-def confirm_order():
-    form = request.get_json()
+@app.route("/order/<int:order_id>/success", methods=['PUT'])
+def confirm_order(order_id):
 
-    order = db.Order.get_or_none(db.Order.id == form["order_id"])
+    order = db.Order.get_or_none(db.Order.id == order_id)
     if order is None:
+        return send_error("Order does not exist")
+
+    if order.state == db.Order.State.completed:
         return send_error("Order is already complete")
 
     user = order.user
 
-    if "bonuses_used" in form:
-        user.bonuses -= int(form["bonuses_used"])
+    if 'bonuses_used' in request.get_json():
+        user.bonuses -= int(request.get_json()['bonuses_used'])
 
     user.bonuses += (db.Ticket.select(fn.SUM(db.Flight.distance).alias("res"))
                      .join(db.Order)
