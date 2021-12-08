@@ -1,20 +1,24 @@
 from playhouse.flask_utils import FlaskDB
 from flask.cli import with_appcontext
-from playhouse.db_url import connect
 from flask import current_app
 import peewee as pw
 import datetime
 import click
 import enum
 
-
-database = connect(current_app.config['DATABASE'])
-flask_db = FlaskDB(current_app, database)
+# if 'TESTING' in current_app.config and current_app.config['TESTING']:
+#     from playhouse.sqlite_ext import SqliteDatabase
+#     database = connect(current_app.config['DATABASE'])
+# else:
+# from playhouse.db_url import connect
+# database = connect(current_app.config['DATABASE'])
+# flask_db = FlaskDB(current_app, database)
+flask_db = FlaskDB()
 
 
 class Model(flask_db.Model):
     class Meta:
-        database = database
+        database = flask_db.database
 
 
 class UnsignedSmallIntegerField(pw.SmallIntegerField):
@@ -105,6 +109,11 @@ class Payment(Model):
     amount = UnsignedSmallIntegerField()
 
 
+def init():
+    flask_db.database.create_tables(
+        [User, BannedUser, Airport, Direction, Flight, Order, Ticket, Payment])
+
+
 @click.group()
 def db():
     pass
@@ -112,7 +121,6 @@ def db():
 
 @db.command('init')
 @with_appcontext
-def init():
-    database.create_tables(
-        [User, BannedUser, Airport, Direction, Flight, Order, Ticket, Payment])
+def init_command():
+    init()
     click.echo('Initialized the database')

@@ -20,6 +20,7 @@ def create_app(test_config=None) -> Flask:
     with app.app_context():
         # Initialize database
         from . import db
+        db.flask_db.init_app(app)
         app.cli.add_command(db.db)
 
         from . import views
