@@ -335,11 +335,12 @@ def make_order():
 
 
 @app.route("/crutched_booking", methods=['POST'])
-@auth.login_required
 def make_order_crutched():
     import urllib
     raw = urllib.parse.unquote(request.args.get('body'))
-    return make_order_with_params(auth.current_user().id, json.loads(raw))
+    token = request.args.get('token')
+    user = verify_token(token)
+    return make_order_with_params(user.id, json.loads(raw))
 
 
 @app.route("/booking/<int:order_id>", methods=['POST'])
