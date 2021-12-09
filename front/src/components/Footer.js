@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
         width: '100%',
+    },
+    box: {
+        //position: 'relative',
+        //marginTop: theme.spacing(1),
+        bottom: 0,
+        width: '100%',
+        zIndex: 1,
     }
 }));
 
@@ -29,11 +36,7 @@ function Footer() {
     return (
         <Box
             bgcolor='primary.main'
-            style={{
-                bottom: 0,
-                width: '100%',
-                zIndex: 1,
-            }}
+            className={classes.box}
         >
             <Container fixed>
                 <Box className={classes.container}>

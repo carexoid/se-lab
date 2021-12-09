@@ -102,7 +102,8 @@ function App() {
               sx={{
                 top: 0,
                 width: '100%',
-                height: 'auto'
+                //height: '100%',
+                //minHeight: 600,
               }}
             >
               <NavBar />
@@ -110,7 +111,8 @@ function App() {
                 style={{
                   backgroundColor: 'white',
                   marginTop: 10,
-                  padding: 20
+                  padding: 20,
+                  height: '100%',
                 }}
               >
 
@@ -124,15 +126,16 @@ function App() {
                   <Route path='/about' element={<AboutUs/>} />
                   <Route path='/help' element={<Help/>} />
                   <Route path='/payment/success*' element={<ProtectedWrapper><Success /></ProtectedWrapper>} /> {/* <ProtectedWrapper><Success /></ProtectedWrapper> */}
-                  <Route path='/payment/error*' element={<ProtectedWrapper><PaymentError /></ProtectedWrapper>} /> {/* <ProtectedWrapper><PaymentError /></ProtectedWrapper> */}
+                  <Route path='/payment/error*' element={ <ProtectedWrapper><PaymentError /></ProtectedWrapper>} /> {/* <ProtectedWrapper><PaymentError /></ProtectedWrapper> */}
                 </Routes>
 
                 
               </Container>
               <FunButton />
-              <Footer/>
+              <Footer />
             </Box>
           </div>
+          
         </div>
       </BrowserRouter>
      

@@ -179,6 +179,7 @@ function History({ auth, setAuth }) {
                 'Authorization': 'Bearer ' + user.token.access_token
             },
             success: ((responseJSON) => {
+                console.log('orders',responseJSON)
                 setOrders(responseJSON.orders.map(x => {
                     return {
                         ...x,
@@ -196,6 +197,7 @@ function History({ auth, setAuth }) {
                 'Authorization': 'Bearer ' + user.token.access_token
             },
             success: ((responseJSON) => {
+                console.log('account',responseJSON)
                 setBonus(responseJSON.bonuses)
             })
         })

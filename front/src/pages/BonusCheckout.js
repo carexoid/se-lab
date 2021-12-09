@@ -99,6 +99,11 @@ function BonusCheckout() {
     }, [])
 
     useEffect(() => {
+        if (bonus < 0)
+            setBonus(0)
+        if (bonus > backUserInfo.bonuses)
+            setBonus(backUserInfo.bonuses)
+        
         const newCost = +(order.quantity) * +(order.price) - bonus
         if (newCost < 1) {
             const possibleBonuses = +(order.quantity) * +(order.price) - 1
@@ -117,7 +122,7 @@ function BonusCheckout() {
         let body = {
             tickets: ticketsField,
             type: 'online',
-            use_bonuses: bonus,
+            use_bonuses: bonus !== '' ? bonus : 0 ,
             comment: order.comment,
         }
         if (order.comment === '') { }
