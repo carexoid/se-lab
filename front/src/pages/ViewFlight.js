@@ -134,6 +134,7 @@ function ViewFlight() {
 
                 <Grid item xs={12}>
                     <Box textAlign="center"> 
+                        {flight.econom_min_price === 0 && flight.business_min_price === 0 &&
                         <Button
                             id='view-buy-button'
                             color='primary'
@@ -141,9 +142,10 @@ function ViewFlight() {
                             variant="contained"
                             className={classes.button}
                             component={RLink} to={`/place_order/${flight.id}`}
+                            
                         >
                             Buy Tickets
-                        </Button>
+                        </Button>}
                     </Box>
                 </Grid>
 
