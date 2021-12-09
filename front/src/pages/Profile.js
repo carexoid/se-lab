@@ -67,7 +67,7 @@ const auth = new GoTrue({
 });
 
 function ProfileInfo() {
-    const user = auth.currentUser();
+    const [user, setUser] = useState(netlifyIdentity.currentUser());
 
     const classes = useStyles();
     const [edit, setEdit] = useState(false)
@@ -77,15 +77,28 @@ function ProfileInfo() {
 
     const defaultInfo = {
         email: `${user !== null ? user.email : ''}`,
-        phone: user.user_metadata.phone,
-        comment: user.user_metadata.comment,
+        phone: typeof user.user_metadata!== 'undefined' ? user.user_metadata.phone : '',
+        comment: typeof user.user_metadata !== 'undefined' ? user.user_metadata.comment : '',
     }
 
     const [info, setInfo] = useState(defaultInfo);
     const [errors, setErrors] = useState(emptyError)
 
     useEffect(() => {
-        console.log(user)
+        console.log('user on mount',user)
+        /* $.ajax({
+            type: 'GET',
+            url: '/.netlify/identity/user',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + user.token.access_token
+            },
+            success: response => {
+                console.log('response',response)
+                setUser(response)
+            }
+        }) */
+        //console.log(user)
     }, [])
 
     const setInfoField = (name, value) => {
@@ -168,14 +181,21 @@ function ProfileInfo() {
                     }
                 }
 
-            user.update(newInfo).then(user => {
+            netlifyIdentity.currentUser().update(newInfo).then(user => {
                 console.log('new user', user)
                 setNewPassword('')
-                setEdit(false)               
+                setEdit(false)
+               
+                /* user.refresh(true).then(user =>
+                    console.log('refreshed ',user)
+                ) */
+                              
             }).catch((error) => {
                 console.log('Failed to update user: %o', error);
                 throw error;
             });
+
+            
         }
     }
 
@@ -293,7 +313,7 @@ function ProfileInfo() {
                                     className={`${classes.horizontalSpacing} ${classes.inputLong}`}
                                     InputProps={{
                                         inputProps: {
-                                            nimLength: 6,
+                                            minLength: 6,
                                             maxLength: 32,
                                         }
                                     }}
