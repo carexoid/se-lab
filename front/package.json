@@ -2,7 +2,7 @@
   "name": "se-front",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://shlyahdomrii.tech",
+  "proxy": "https://shlyahdomrii.tech",
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.7.0",
@@ -17,6 +17,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "gotrue-js": "^0.9.29",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",

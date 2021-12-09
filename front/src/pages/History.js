@@ -1,4 +1,4 @@
-import { Typography, Paper } from '@material-ui/core';
+import { Typography, Paper, DialogContent, Dialog, DialogTitle, DialogActions, Button } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@mui/material';
@@ -7,6 +7,11 @@ import $ from "jquery";
 import DataGridTable from '../components/DataGridTable';
 import { Link } from '@material-ui/core';
 import netlifyIdentity from 'netlify-identity-widget';
+import DisplayFlight from '../components/DisplayFlight';
+import PaymentIcon from '@material-ui/icons/Payment';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDFGenerator from '../components/PDFGenerator';
 
 const useStyles = makeStyles((theme) => ({
     spacing: {
@@ -30,78 +35,149 @@ const useStyles = makeStyles((theme) => ({
     },
     blueText: {
         color: theme.palette.primary.main,
+    },
+    text: {
+        fontSize: 14,
     }
 }));
 
 
-const columns = [
-    {
-        field: 'id',
-        headerName: 'Order ID',
-        //width: 100,
-    },
-    {
-        field: 'flightId',
-        headerName: 'Flight Code',
-        //width: '10%',
-        renderCell: (param) => (
-            <Typography>
-                {param.row.tickets[0].flight.id.toString().padStart(5, '0')}
-                <IconButton
-                    color="primary"
-                    size="small"
-                    onClick={() => { }}
-                    display='inline'
-                >
-                    <InfoIcon />
-                </IconButton>
-            </Typography>
-        ),
-    },
-    {
-        field: 'created_at',
-        headerName: 'Created At',
-        width: 250,
-    },
-    {
-        field: 'class',
-        headerName: 'Class',
-        //width: 100,
-        valueGetter: (param) =>
-            `${param.row.tickets[0].type === 0 ? 'Econom' : 'Business'}`,
-    },
-    {
-        field: 'quantity',
-        headerName: 'Tickets',
-        //width: 100,
-        valueGetter: (param) =>
-            `${param.row.tickets.length}`,
-    },
-    /* {
-        field: 'cost',
-        headerName: 'Cost',
-    }, */
-    {
-        field: 'bonuses_used',
-        headerName: 'Bonuses Used',
-        width: 150,
-    },
-];
+
 
 
 function History({ auth, setAuth }) {
     const user = netlifyIdentity.currentUser();
     const [orders, setOrders] = useState([]);
     const [bonus, setBonus] = useState(0);
-
+    const [showFlight, setShowFlight] = useState(false)
     const classes = useStyles();
+
+    const columns = [
+        {
+            field: 'id',
+            headerName: 'Order ID',
+        },
+        {
+            field: 'flightId',
+            headerName: 'Flight Code',
+            //width: '10%',
+            renderCell: (param) => (
+                <Typography className={classes.text}>
+                    {param.row.tickets[0].flight.id.toString().padStart(5, '0')}
+                    <IconButton
+                        id={`history-flight-info-${param.row.tickets[0].flight.id}`}
+                        color="primary"
+                        size="small"
+                        onClick={() => { setShowFlight(true) }}
+                        display='inline'
+                    >
+                        <InfoIcon />
+                    </IconButton>
+
+                    <Dialog
+                        open={showFlight}
+                    >
+                        <DialogContent>
+                            <DialogTitle>
+                                Kyiv — {param.row.tickets[0].flight.city}
+                            </DialogTitle>
+                            <DisplayFlight flight={param.row.tickets[0].flight} />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button
+                                id='order-dialog-cancel'
+                                size='large'
+                                variant="text"
+                                onClick={() => {
+                                    setShowFlight(false)
+                                }}
+                            >
+                                OK
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </Typography>
+            ),
+        },
+        {
+            field: 'state',
+            headerName: 'Status',
+            width: 150,
+            renderCell: (param) => {
+                return param.row.state === 1 ? "Completed" :
+                    <Typography className={classes.text}>
+                        Waiting for Payment
+                        <form action={`/api/chief/booking/${param.row.id}&token=${user.token.access_token}`} method="POST">
+                            <IconButton
+                                id={`history-pay-button-${param.row.id}`}
+                                color="primary"
+                                size="small"
+                                type='submit'
+                                display='inline'
+                            >
+                                <PaymentIcon />
+                            </IconButton>
+                        </form>
+                    </Typography>
+            }
+        },
+        {
+            field: 'created_at',
+            headerName: 'Created At',
+            width: 250,
+        },
+        {
+            field: 'class',
+            headerName: 'Class',
+            //width: 100,
+            valueGetter: (param) =>
+                `${param.row.tickets[0].type === 0 ? 'Econom' : 'Business'}`,
+        },
+        {
+            field: 'quantity',
+            headerName: 'Tickets',
+            //width: 100,
+            valueGetter: (param) =>
+                `${param.row.tickets.length}`,
+        },
+        {
+            field: 'full_price',
+            headerName: 'Cost, $',
+        },
+        {
+            field: 'bonuses_used',
+            headerName: 'Bonuses Used',
+            width: 150,
+        },
+        {
+            field: 'get_info',
+            headerName: 'Details',
+            renderCell: (param) =>
+                <Typography className={classes.text}>
+                    <PDFDownloadLink document={<PDFGenerator order={param.row} />} fileName={`order_information_${param.row.id}.pdf`}>
+                        <IconButton
+                            id={`history-pay-button-${param.row.id}`}
+                            color="primary"
+                            size="small"
+                            type='submit'
+                            display='inline'
+                        >
+                            <SaveAltIcon />
+                        </IconButton>
+                    </PDFDownloadLink>
+                </Typography>
+        }
+    ];
+
 
     useEffect(() => {
         $.ajax({
             type: 'GET',
             url: 'api/chief/account/history',
-            //TODO add Authorization header
-            headers: { 'Accept': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + user.token.access_token
+            },
             success: ((responseJSON) => {
                 setOrders(responseJSON.orders.map(x => {
                     return {
@@ -115,8 +191,10 @@ function History({ auth, setAuth }) {
         $.ajax({
             type: 'GET',
             url: 'api/chief/account',
-            //TODO add Authorization header
-            headers: { 'Accept': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + user.token.access_token
+            },
             success: ((responseJSON) => {
                 setBonus(responseJSON.bonuses)
             })

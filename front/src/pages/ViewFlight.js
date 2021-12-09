@@ -135,6 +135,7 @@ function ViewFlight() {
                 <Grid item xs={12}>
                     <Box textAlign="center"> 
                         <Button
+                            id='view-buy-button'
                             color='primary'
                             size='large'
                             variant="contained"

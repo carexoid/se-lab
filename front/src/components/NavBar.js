@@ -147,9 +147,9 @@ function NavBar({setAuth}) {
 
                 <Box className={classes.boxLeft}>
                     <ButtonGroup size="large" variant="text" color='primary'>
-                        <Button component={RLink} to='/'> Browse Flights </Button>
-                        <Button component={RLink} to='/help'> Help </Button>
-                        <Button component={RLink} to='/about'> About Us </Button>
+                        <Button id='nav-browse-flights' component={RLink} to='/'> Browse Flights </Button>
+                        <Button id='nav-help' component={RLink} to='/help'> Help </Button>
+                        <Button id='nav-about' component={RLink} to='/about'> About Us </Button>
                     </ButtonGroup>
                 </Box>
 
@@ -157,6 +157,7 @@ function NavBar({setAuth}) {
                     {authState ?
                         <div>
                             <Button
+                                id='nav-my-profile'
                                 size="large"
                                 variant="text"
                                 color='primary'
@@ -184,19 +185,20 @@ function NavBar({setAuth}) {
                                     horizontal: 'center',
                                 }}
                             >
-                                <StyledMenuItem onClick={handleClose} component={RLink} to='/profile'>
+                                <StyledMenuItem id='nav-profile-info' onClick={handleClose} component={RLink} to='/profile'>
                                     <ListItemIcon>
                                         <InfoIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText>Profile Info</ListItemText>
                                 </StyledMenuItem>
-                                <StyledMenuItem onClick={handleClose} component={RLink} to='/history'>
+                                <StyledMenuItem id='nav-history' onClick={handleClose} component={RLink} to='/history'>
                                     <ListItemIcon>
                                         <FlightIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText>Order History</ListItemText>
                                 </StyledMenuItem>
                                 <StyledMenuItem
+                                    id='nav-logout'
                                     onClick={handleLogoutClick}
                                 >
                                     <ListItemIcon>

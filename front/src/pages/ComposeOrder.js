@@ -84,6 +84,7 @@ class ComposeOrder extends Component {
         this.componentDidMount = this.componentDidMount.bind(this);
         this.composeParameters = this.composeParameters.bind(this);
         this.composeOrder = this.composeOrder.bind(this);
+        this.composeBody = this.composeBody.bind(this);
         this.setActiveChoosePM = this.setActiveChoosePM.bind(this);
         this.setOrder = this.setOrder.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -131,7 +132,7 @@ class ComposeOrder extends Component {
     }
 
     composeOrder() {
-        const body = {
+        let body = {
             tickets: this.state.tickets[this.state.order.class].slice(
                 0, this.state.order.quantity
             ).map((x => {
@@ -139,22 +140,46 @@ class ComposeOrder extends Component {
                     flight_id: this.state.flight.id,
                     seat: x.seat,
                 }
-            }).bind(this))
+            }).bind(this)),
+            type: 'online',           
+        }
+        if (this.state.order.comment === '') { }
+        else {
+            body = {
+                ...body,
+                comment: this.state.order.comment
+            }
         }
         console.log('body: ', body)
 
         this.setState({ body: body })
-        /* $.ajax({
-            type: 'POST',
-            url: '/booking',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(body),
-            success: (responseJSON) => {
-                console.log(responseJSON)
-            }
-        }) */
     }
+
+    composeBody() {
+        let body = {
+            tickets: this.state.tickets[this.state.order.class].slice(
+                0, this.state.order.quantity
+            ).map((x => {
+                return {
+                    flight_id: this.state.flight.id,
+                    seat: x.seat,
+                }
+            }).bind(this)),
+            type: 'offline',
+        }
+        if (this.state.order.comment === '') { }
+        else {
+            body = {
+                ...body,
+                comment: this.state.order.comment
+            }
+        }
+        console.log('body: ', body)
+
+        return body
+    }
+
+    
 
     setActiveChoosePM(value) {
         this.setState({
@@ -194,6 +219,7 @@ class ComposeOrder extends Component {
                     <Box className={classes.spacing}>
                         <Typography display='inline'>Flight Information</Typography>
                         <IconButton
+                            id='order-hide-info'
                             color="primary"
                             aria-label="show filters"
                             size="small"
@@ -222,6 +248,7 @@ class ComposeOrder extends Component {
 
                         <Box textAlign='center' className={classes.spacing}>
                             <Button
+                                id='order-choose-pm'
                                 color="primary"
                                 size='large'
                                 variant="contained"
@@ -235,6 +262,10 @@ class ComposeOrder extends Component {
                     {!this.state.activeChoosePM ? null :
                         <PMDialog
                             requestBody={this.state.body}
+                            composeBody={this.composeBody}
+                            order={this.state.order}
+                            tickets={this.state.tickets}
+                            flight={this.state.flight}
                             setActiveChoosePM={this.setActiveChoosePM}
                             composeParameters={this.composeParameters}
                         />

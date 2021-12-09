@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import MyBreadcrumbs from '../components/MyBreadcrumbs';
 import $ from "jquery";
+import netlifyIdentity from 'netlify-identity-widget';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,7 @@ function parseDetails(url) {
 }
 
 function BonusCheckout() {
+    const user = netlifyIdentity.currentUser();
     const classes = useStyles();
     const [bonus, setBonus] = useState(0);
     const [order, setOrder] = useState(parseDetails(window.location.href))
@@ -76,8 +78,10 @@ function BonusCheckout() {
         $.ajax({
             type: 'GET',
             url: 'api/chief/account',
-            //TODO add Authorization header
-            headers: { 'Accept': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + user.token.access_token
+            },
             success: ((responseJSON) => {
                 setBackUserInfo(responseJSON)
             })
@@ -110,9 +114,18 @@ function BonusCheckout() {
             }
         })
 
-        const body = {
+        let body = {
             tickets: ticketsField,
-            use_bonuses: bonus
+            type: 'online',
+            use_bonuses: bonus,
+            comment: order.comment,
+        }
+        if (order.comment === '') { }
+        else {
+            body = {
+                ...body,
+                comment: this.state.order.comment
+            }
         }
 
         console.log('body: ', body)
@@ -133,12 +146,13 @@ function BonusCheckout() {
                         <Typography variant='h2'>Use Bonuses</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography>You have {backUserInfo.bonuses} avalaible Bonuses</Typography>
+                        <Typography>You have {backUserInfo.bonuses} available Bonuses</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Box className={classes.box}>
                             <Typography className={classes.horizontalSpacing}>Specify the amount to use:</Typography>
                             <TextField
+                                id='bonuses-amount'
                                 value={bonus}
                                 onChange={(e) => setBonus(e.target.value)}
                                 type="number"
@@ -169,8 +183,9 @@ function BonusCheckout() {
             </Paper>
 
             <Box textAlign='center' className={classes.spacing}>
-                <form action={`/api/chief/crutched_booking?body=${composeOrder()}`} method='POST'>
+                <form action={`/api/chief/crutched_booking?body=${composeOrder()}&token=${user.token.access_token}`} method='POST'>
                     <Button
+                        id='bonuses-pay-button'
                         color="primary"
                         size='large'
                         variant="contained"

@@ -85,6 +85,7 @@ function OrderDetails(props) {
             <Grid item xs={12} md={10}>
                 <Box className={`${classes.box} ${classes.input}`}>
                     <Paper
+                        id='order-econom-class'
                         elevation={0}
                         className={`${classes.paper} ${props.order.class === 'econom' ? `${classes.paperEconom} ${classes.chosen}`: classes.faded}`}
                         onClick={() => {
@@ -98,6 +99,7 @@ function OrderDetails(props) {
                     </Paper>
 
                     <Paper
+                        id='order-business-class'
                         elevation={0}
                         className={`${classes.paper} ${props.order.class === 'business' ? `${classes.paperBusiness} ${classes.chosen}` : classes.faded}`}
                         onClick={() => {
@@ -129,7 +131,7 @@ function OrderDetails(props) {
                         props.setOrder('quantity', +event.target.value)
                     }}
                     className={classes.input}
-                    id="quantity"
+                    id="order-quantity"
                     type="number"
                     variant='outlined'
                     size="small"
@@ -146,7 +148,7 @@ function OrderDetails(props) {
                 <TextField
                     value={props.order.comment}
                     className={classes.input}
-                    id="comment"
+                    id="order-comment"
                     multiline
                     rows={4}
                     placeholder="I'm allergic to peanut butter"

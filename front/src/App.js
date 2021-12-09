@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import Success from './pages/PaymentSuccess';
 import PaymentError from './pages/PaymentError';
 import ProtectedWrapper from './pages/ProtectedWrapper';
+import FunButton from './components/FunButton';
 
 const theme = createTheme({
   palette: {
@@ -116,18 +117,19 @@ function App() {
                 <Routes>
                   <Route path='/' element={<BrowseFlights />} />
                   <Route path='/view/*' element={<ViewFlight />} />
-                  <Route path='/place_order/*' element={<ProtectedWrapper><ComposeOrder/></ProtectedWrapper>} />
-                  <Route path='/bonuses*' element={<ProtectedWrapper><BonusCheckout /></ProtectedWrapper>} />
+                  <Route path='/place_order/*' element={<ProtectedWrapper><ComposeOrder /></ProtectedWrapper>} /> {/* <ProtectedWrapper><ComposeOrder/></ProtectedWrapper> */}
+                  <Route path='/bonuses*' element={<ProtectedWrapper><BonusCheckout /></ProtectedWrapper>} /> {/* <ProtectedWrapper><BonusCheckout /></ProtectedWrapper> */}
                   <Route path='/profile' element={<ProtectedWrapper><ProfileInfo /></ProtectedWrapper>} />
                   <Route path='/history' element={<ProtectedWrapper><History /></ProtectedWrapper>} />
                   <Route path='/about' element={<AboutUs/>} />
                   <Route path='/help' element={<Help/>} />
-                  <Route path='/payment/success/*' element={<ProtectedWrapper><Success /></ProtectedWrapper>} />
-                  <Route path='/payment/error' element={<ProtectedWrapper><PaymentError /></ProtectedWrapper>} />
+                  <Route path='/payment/success*' element={<ProtectedWrapper><Success /></ProtectedWrapper>} /> {/* <ProtectedWrapper><Success /></ProtectedWrapper> */}
+                  <Route path='/payment/error*' element={<ProtectedWrapper><PaymentError /></ProtectedWrapper>} /> {/* <ProtectedWrapper><PaymentError /></ProtectedWrapper> */}
                 </Routes>
 
+                
               </Container>
-
+              <FunButton />
               <Footer/>
             </Box>
           </div>

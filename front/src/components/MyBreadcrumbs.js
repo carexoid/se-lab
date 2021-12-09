@@ -22,11 +22,11 @@ function MyBreadcrumbs(props) {
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
-                    <Link href="/" className={classes.faded}>
+                    <Link id='breadcrumb-browse' href="/" className={classes.faded}>
                         Browse Flights
                     </Link>
                 </Typography>
-                <Typography className={classes.prText}>View Flight</Typography>
+                <Typography id='breadcrumb-view' className={classes.prText}>View Flight</Typography>
             </Breadcrumbs>
         )
 
@@ -34,16 +34,16 @@ function MyBreadcrumbs(props) {
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
-                    <Link href="/" className={classes.faded}>
+                    <Link id='breadcrumb-browse' href="/" className={classes.faded}>
                         Browse Flights
                     </Link>
                 </Typography>
                 <Typography>
-                    <Link href={`/view/${props.flightId}`} className={classes.faded}>
+                    <Link id='breadcrumb-view' href={`/view/${props.flightId}`} className={classes.faded}>
                         View Flight
                     </Link>
                 </Typography>
-                <Typography className={classes.prText}>Order Details</Typography>
+                <Typography id='breadcrumb-order' className={classes.prText}>Order Details</Typography>
             </Breadcrumbs>
         )
 
@@ -51,23 +51,24 @@ function MyBreadcrumbs(props) {
         return (
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" className={classes.faded} />} aria-label="breadcrumb">
                 <Typography>
-                    <Link href="/" className={classes.faded}>
+                    <Link id='breadcrumb-browse' href="/" className={classes.faded}>
                         Browse Flights
                     </Link>
                 </Typography>
                 <Typography>
-                    <Link href={`/view/${props.flightId}`} className={classes.faded}>
+                    <Link id='breadcrumb-view' href={`/view/${props.flightId}`} className={classes.faded}>
                         View Flight
                     </Link>
                 </Typography>
                 <Typography>
                     <Link
                         href={`/place_order/${props.flightId}`} className={classes.faded}
+                        id='breadcrumb-order'
                     >
                         Order Details
                     </Link>
                 </Typography>
-                <Typography className={classes.prText}>Bonuses</Typography>
+                <Typography id='breadcrumb-bonuses' className={classes.prText}>Bonuses</Typography>
             </Breadcrumbs>
         )
     }

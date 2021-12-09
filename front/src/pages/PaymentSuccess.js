@@ -7,6 +7,7 @@ import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import PDFGenerator from '../components/PDFGenerator';
 import React, { useState, useEffect } from 'react';
 import $ from "jquery";
+import netlifyIdentity from 'netlify-identity-widget';
 
 const useStyles = makeStyles((theme) => ({
     box: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Success() {
+    const user = netlifyIdentity.currentUser();
     const classes = useStyles();
     const theme = useTheme()
     const [order, setOrder] = useState({})
@@ -35,10 +37,15 @@ function Success() {
     useEffect(() => {
         const orderId = window.location.href.split('=')[1];
 
+        console.log(user)
+
         $.ajax({
             type: 'GET',
             url: `/api/chief/order/${orderId}`,
-            headers: { 'Accept': 'application/json' }, //add JWT
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + user.token.access_token ,
+            }, //add JWT
             success: (responseJSON) => {
                 setOrder(responseJSON)
                 setShow(true)
@@ -62,6 +69,7 @@ function Success() {
                     View and download information about your order as pdf now or later from your history.
                     {show && <PDFDownloadLink document={<PDFGenerator order={order} />} fileName={`order_information_${order.order_id}.pdf`} >
                         <IconButton
+                            id='payment-success-download-button'
                             color={theme.palette.text.main}
                             size="large"
                             display='inline'

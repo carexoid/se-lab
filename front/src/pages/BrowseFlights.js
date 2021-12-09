@@ -19,14 +19,16 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         verticalAlign: 'middle',
         '& > *': {
-            margin: theme.spacing(6),
+            //margin: theme.spacing(6),
             width: '100%',
             /* height: theme.spacing(16), */
         },
+        padding: theme.spacing(2),
         backgroundColor: theme.palette.papers.main,
     },
     buttonBox: {
-        margin: theme.spacing(6),
+        marginTop: theme.spacing(6),
+        marginBottom: theme.spacing(6),
     },
     spacing: {
         marginTop: theme.spacing(3),
@@ -52,7 +54,7 @@ const columns = [
         field: 'id',
         headerName: 'Code',
         renderCell: (params) => (
-            <Link href={`/view/${params.id}`}>{params.id.toString().padStart(5,'0')}</Link>
+            <Link id={`browse-link-${params.id}`} href={`/view/${params.id}`}>{params.id.toString().padStart(5,'0')}</Link>
         ),
     },
     {
@@ -100,7 +102,7 @@ const emptyParams = {
     id: '',
     destination: '',
     date: '',
-    durationBegin: 0,
+    durationBegin: 1,
     durationEnd: maxDuraion,
 /*     timeBegin: 0,
     timeEnd: 1439, */
@@ -170,14 +172,14 @@ function BrowseFlights() {
         
         $.ajax({
             type: 'GET',
-            url: `/api/chief/flights${generateReqStr(values)}`,
+            url: `${generateReqStr(values) !== '' ? `/api/chief/flights${generateReqStr(values)}` : '/api/chief/flights'}`,
             headers: { 'Accept': 'application/json' },
             success: function (responseJSON) {
                 console.log(responseJSON)
                 setFlights(responseJSON.flights)
                 
                 setShowList(true)
-                const newY = getOffset(document.getElementById('search-button')).top
+                const newY = getOffset(document.getElementById('browse-search-button')).top
                 $("html, body").animate({
                     scrollTop: newY
                 });
@@ -221,6 +223,7 @@ function BrowseFlights() {
         <div className={classes.spacing}>
             <Typography display='inline'>Filters</Typography>
             <IconButton
+                id='browse-hide-filters'
                 color="primary"
                 aria-label="show filters"
                 size="small"
@@ -252,7 +255,7 @@ function BrowseFlights() {
             className={classes.buttonBox}
         >
             <Button
-                id='search-button'
+                id='browse-search-button'
                 color='primary'
                 size='large'
                 variant="contained"

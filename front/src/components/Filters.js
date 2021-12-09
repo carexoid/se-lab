@@ -86,7 +86,7 @@ function Filters(props) {
                         }}
                         className={classes.input}
                         size="small"
-                        id="combo-box-destination"
+                        id="browse-filter-destination"
                         options={props.cities}
                         //getOptionLabel={(option) => option.city}
                         renderInput={(params) => <TextField {...params} placeholder="Chernivtsi" variant="outlined" />}
@@ -98,6 +98,7 @@ function Filters(props) {
                 </Grid>
                 <Grid item xs={12} md={10}>
                     <TextField
+                        id="browse-filter-date"
                         value={props.values.date}
                         onChange={(event) => {
                             props.setValues({
@@ -130,7 +131,7 @@ function Filters(props) {
                         }}
                         className={classes.input}
                         size="small"
-                        id="combo-box-code"
+                        id="browse-filter-code"
                         options={props.flightIDs}
                         renderInput={(params) => <TextField {...params} placeholder="00001" variant="outlined" />}
                     />
@@ -141,6 +142,7 @@ function Filters(props) {
                 </Grid>
                 <Grid item xs={12} md={10}>
                     <Slider
+                        id="browse-filter-duration"
                         value={[props.values.durationBegin, props.values.durationEnd]}
                         onChange={(event, newValue, activeThumb) => {
                             handleChangeSlider(event, newValue, 'duration')
@@ -182,6 +184,7 @@ function Filters(props) {
                 </Grid>
                 <Grid item xs={12} md={10}>
                     <Slider
+                        id="browse-filter-price"
                         value={[props.values.priceBegin, props.values.priceEnd]}
                         onChange={(event, newValue, activeThumb) => {
                             handleChangeSlider(event, newValue, 'price')
