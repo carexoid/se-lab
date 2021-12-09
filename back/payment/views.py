@@ -88,7 +88,9 @@ def accept_webhook():
             return "Order_id is not in sessions_map", 400
 
         r = requests.put(f"{app.config.get('CHIEF_URL')}/order/{order_id}/success",
-                         json={'bonuses_used': (session['amount_subtotal'] - session['amount_total']) / 100})
+                         json={'bonuses_used': (session['amount_subtotal'] - session['amount_total']) / 100,
+                               'full_price': session['amount_subtotal'] / 100,
+                               'payment_amount': session['amount_total'] / 100})
 
     return "", 200
 
