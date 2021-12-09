@@ -39,7 +39,7 @@ spec:
         - name: FLASK_APP
           value: back.payment
         - name: SITE_URL
-          value: http://localhost:3000
+          value: https://shlyahdomrii.tech
         - name: CHIEF_URL
           value: http://chief
         - name: STRIPE_API_KEY
@@ -47,6 +47,11 @@ spec:
             secretKeyRef:
               name: payment
               key: STRIPE_API_KEY
+        - name: STRIPE_WEBHOOK_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: payment
+              key: STRIPE_WEBHOOK_SECRET
         ports:
         - name: http
           containerPort: 5000
@@ -60,3 +65,4 @@ metadata:
 type: Opaque
 data:
   STRIPE_API_KEY: c2tfdGVzdF81MUsxZWZiQ1ZFUEt3V3JjUXNSeXpEejdyVHVNUkJkeWNhbHVmelhLQlRGMnBnM0NVdlN4TWJpejdjSG1XYkRDWUhjMExQSTExeWJpRjd0ZmxOaFREb0VxWDAwTVVPYno2UWs=
+  STRIPE_WEBHOOK_SECRET: d2hzZWNfZjJqdmtaNTVZcWdiSWN0eXJOcElmZTJ4STY5aW1IT1g=
