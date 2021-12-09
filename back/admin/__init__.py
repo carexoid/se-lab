@@ -29,6 +29,10 @@ def create_app(test_config=None) -> Flask:
     admin = Admin(app, name="Airport admin", template_mode='bootstrap3')
 
     with app.app_context():
+        # Initialize database
+        from back.chief import db
+        db.flask_db.init_app(app)
+
         # Add views
         from . import views
         for view in views.get_views():

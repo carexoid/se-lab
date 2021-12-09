@@ -8,13 +8,12 @@ import click
 import enum
 
 
-database = connect(current_app.config['DATABASE'])
-flask_db = FlaskDB(current_app, database)
+flask_db = FlaskDB()
 
 
 class Model(flask_db.Model):
     class Meta:
-        database = database
+        database = flask_db.database
 
 
 class UnsignedSmallIntegerField(pw.SmallIntegerField):
@@ -113,6 +112,6 @@ def db():
 @db.command('init')
 @with_appcontext
 def init():
-    database.create_tables(
+    flask_db.database.create_tables(
         [User, BannedUser, Airport, Direction, Flight, Order, Ticket, Payment])
     click.echo('Initialized the database')
