@@ -8,7 +8,7 @@
 :toclevels: 5
 :sectnums:
 
-:url: https://raw.githubusercontent.com/carexoid/se-lab/doc/manual/doc/manual/img/
+:url: https://raw.githubusercontent.com/carexoid/se-lab/dev/doc/manual/img/
 
 == Анотація
 
