@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3),
     },
+    blueText: {
+        color: theme.palette.primary.main,
+        textDecoration: 'underline',
+    },
 }));
 
 
@@ -54,7 +58,14 @@ const columns = [
         field: 'id',
         headerName: 'Code',
         renderCell: (params) => (
-            <Link id={`browse-link-${params.id}`} href={`/view/${params.id}`}>{params.id.toString().padStart(5,'0')}</Link>
+            <Link id={`browse-link-${params.id}`} href={`/view/${params.id}`}
+                style={{
+                    color: '#2566a6',
+                    textDecoration: 'underline',
+                }}
+            >
+                {params.id.toString().padStart(5, '0')}
+            </Link>
         ),
     },
     {
@@ -88,7 +99,7 @@ const columns = [
         field: 'price',
         headerName: 'Price',
         valueGetter: (params) => `${params.row.econom_remaining !== 0 ?
-            `${params.row.econom_min_price}$+`
+            `${params.row.econom_min_price}${params.row.business_remaining ? ` — ${params.row.business_min_price}` : ''} $`
             :
             params.row.business_remaining !== 0 ? `${params.row.business_min_price}$` : '—'}`
     },

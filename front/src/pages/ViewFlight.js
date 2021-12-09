@@ -100,7 +100,7 @@ function ViewFlight() {
         <Box
             className={classes.containerBox}
         >
-            <Typography variant='h2' className={classes.spacing}>Kyiv — { flight.city }</Typography>
+            <Typography variant='h2' className={classes.spacing}>Cybernetics — { flight.city }</Typography>
             
             <DisplayFlight flight={flight}/>
 
@@ -134,7 +134,7 @@ function ViewFlight() {
 
                 <Grid item xs={12}>
                     <Box textAlign="center"> 
-                        {flight.econom_min_price === 0 && flight.business_min_price === 0 &&
+                        {flight.econom_remaining === 0 && flight.business_remaining === 0 ? null :
                         <Button
                             id='view-buy-button'
                             color='primary'

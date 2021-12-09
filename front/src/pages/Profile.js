@@ -347,7 +347,7 @@ function ProfileInfo() {
                         </Button>
                     }
 
-                    <Button
+                    {/* <Button
                         className={classes.button}
                         color="secondary"
                         size='large'
@@ -355,7 +355,7 @@ function ProfileInfo() {
                         onClick={handleDeleteClick}
                     >
                         Delete
-                    </Button>
+                    </Button> */}
 
                     <Dialog open={sure}>
                         <DialogContent>

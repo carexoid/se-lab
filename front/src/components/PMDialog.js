@@ -58,20 +58,21 @@ function PMDialog(props) {
                             </form>
                         </Grid>
 
-                        <Grid item xs={12}>
-                            <Button
-                                id='order-dialog-p-bonuses'
-                                color="primary"
-                                size='large'
-                                variant="contained"
-                                className={classes.button}
-                                component={RLink} to={`/bonuses${props.composeParameters(true)}`}
-                            >
-                                Pay Online with Bonuses
-                            </Button>
-                        </Grid>
+                        {props.bonuses &&
+                            <Grid item xs={12}>
+                                <Button
+                                    id='order-dialog-p-bonuses'
+                                    color="primary"
+                                    size='large'
+                                    variant="contained"
+                                    className={classes.button}
+                                    component={RLink} to={`/bonuses${props.composeParameters(true)}`}
+                                >
+                                    Pay Online with Bonuses
+                                </Button>
+                            </Grid>}
 
-                        <Grid item xs={12}>
+                       {/*  <Grid item xs={12}>
                             <Button
                                 id='order-dialog-p-offline'
                                 color="primary"
@@ -79,42 +80,10 @@ function PMDialog(props) {
                                 variant="contained"
                                 className={classes.button}
                                 onClick={() => {
-                                    /* composeBody() {
-                                        let body = {
-                                            tickets: this.state.tickets[this.state.order.class].slice(
-                                                0, this.state.order.quantity
-                                            ).map((x => {
-                                                return {
-                                                    flight_id: this.state.flight.id,
-                                                    seat: x.seat,
-                                                }
-                                            }).bind(this)),
-                                            type: 'offline',
-                                        }
-                                        if (this.state.order.comment === '') { }
-                                        else {
-                                            body = {
-                                                ...body,
-                                                comment: this.state.order.comment
-                                            }
-                                        }
-                                        console.log('body json: ', JSON.stringify(body))
-
-                                        return JSON.stringify(body)
-                                    } */
-
-                                    const temp = props.tickets[props.order.class].slice(0, props.order.quantity).map(x => {
-                                        return {
-                                            flight_id: props.flight.id,
-                                            seat: x.seat,
-                                        }
-                                    })
-
                                     $.ajax({
                                         type: 'POST',
-                                        url: `/api/chief/crutched_booking?body=${encodeURIComponent(JSON.stringify(props.composeBody()))}&token=${user.token.access_token}`,
+                                        url: `/api/chief/crutched_booking?body=${encodeURIComponent(JSON.stringify(props.composeOrder(false)))}&token=${user.token.access_token}`,
                                         headers: {
-                                            //'Accept': 'application/json',
                                             'Authorization': 'Bearer ' + user.token.access_token,
                                         },
                                         success: responseJSON => {
@@ -125,7 +94,7 @@ function PMDialog(props) {
                             >
                                 Pay Offline
                             </Button>
-                        </Grid>
+                        </Grid> */}
 
                         <Grid item xs={12}>
                             <Button
