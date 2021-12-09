@@ -386,6 +386,8 @@ def confirm_order(order_id):
     if 'bonuses_used' in request.get_json():
         user.bonuses -= int(request.get_json()['bonuses_used'])
 
+    db.Payment.create(order=order, amount=int(request.get_json()['payment_amount']))
+
     user.bonuses += (db.Ticket.select(fn.SUM(db.Flight.distance).alias("res"))
                      .join(db.Order)
                      .where(db.Order.id == order.id)
