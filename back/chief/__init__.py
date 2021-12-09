@@ -17,6 +17,7 @@ def create_app(test_config=None) -> Flask:
         app.config['DATABASE'] = os.getenv('DATABASE')
         app.config['PAYMENT_SERVICE'] = os.getenv('PAYMENT_SERVICE')
         app.config['GOTRUE_URL'] = os.getenv('GOTRUE_URL')
+        app.config['GOTRUE_ADMIN_KEY'] = os.getenv('GOTRUE_ADMIN_KEY')
 
     with app.app_context():
         # Initialize database

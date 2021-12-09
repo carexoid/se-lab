@@ -186,9 +186,15 @@ def get_my_info():
         return res if res else send_error("User not found")
 
     if request.method == "DELETE":
-        query = db.User.delete().where(db.User.id == auth.current_user().id)
-        return "" if query.execute() == 1 else send_error("User not found")
-
+        r = requests.delete(f"{app.config.get('GOTRUE_URL')}/admin/users/{auth.current_user().auth_id}",
+                            headers={"Authorization": f"Bearer {app.config.get('GOTRUE_ADMIN_KEY')}"})
+        if r.status_code == 200:
+            res = auth.current_user().delete_instance()
+            return "" if res == 1 else send_error("User not found")
+        return {
+            "gotrue_status_code": r.status_code,
+            "gotrue_response": r.text
+        }, 500
 
 @app.route("/account/history")
 @auth.login_required
