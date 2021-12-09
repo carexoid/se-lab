@@ -70,10 +70,10 @@ def accept_webhook():
         )
     except ValueError as e:
         # Invalid payload
-        return "", 400
+        return "Invalid payload", 400
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
-        return "", 400
+        return "SignatureVerificationError", 400
 
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
@@ -82,15 +82,14 @@ def accept_webhook():
         for k, v in sessions_map.items():
             if v.id == session.id:
                 order_id = k
-                del sessions_map[k]
                 break
 
         if order_id is None:
-            return "", 400
+            return "Order_id is not in sessions_map", 400
 
         r = requests.put(f"{app.config.get('CHIEF_URL')}/order/{order_id}/success",
                          json={'bonuses_used': (session['amount_subtotal'] - session['amount_total']) / 100})
 
-    return ""
+    return "", 200
 
 
