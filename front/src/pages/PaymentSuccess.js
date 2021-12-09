@@ -48,6 +48,7 @@ function Success() {
             }, //add JWT
             success: (responseJSON) => {
                 setOrder(responseJSON)
+                console.log(responseJSON)
                 setShow(true)
             }
         })

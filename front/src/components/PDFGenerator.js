@@ -38,6 +38,7 @@ function PDFGenerator({ order }) {
                 <View style={styles.section}>
                     <Text>Order ID: {order.order_id}</Text>
                     <Text>Created at: {order.created_at}</Text>
+                    <Text>Status: {order.state === 1 ? (order.state === 2 ? "Offline" : "Completed") :'Waiting for Payment'}</Text>
                 </View>
                 <View style={styles.section}>
                     <Text>Flight ID: {flight.id}</Text>
