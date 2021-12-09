@@ -1,3 +1,4 @@
+from playhouse.db_url import connect
 from flask import Flask
 import os
 
@@ -21,6 +22,11 @@ def create_app(test_config=None) -> Flask:
         # Initialize database
         from . import db
         app.cli.add_command(db.db)
+
+        if not app.testing:
+            db.flask_db.init_app(app)
+        else:
+            db.flask_db.database.initialize(connect(app.config['DATABASE']))
 
         from . import views
 
