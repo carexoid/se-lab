@@ -104,7 +104,7 @@ function History({ auth, setAuth }) {
             headerName: 'Status',
             width: 150,
             renderCell: (param) => {
-                return param.row.state === 1 ? "Completed" :
+                return param.row.state === 1 ? (param.row.state === 2 ? "Offline" : "Completed") :
                     <Typography className={classes.text}>
                         Waiting for Payment
                         <form action={`/api/chief/booking/${param.row.id}&token=${user.token.access_token}`} method="POST">
