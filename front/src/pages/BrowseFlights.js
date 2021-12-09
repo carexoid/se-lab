@@ -111,33 +111,40 @@ const emptyParams = {
 };
 
 function generateReqStr(values) {
-    const getFormatString = (date, time) => {
+    const getFormatString = (date, end) => {
         let mt = moment(date, 'YYYY-MM-DD')
-        let h = Math.floor(time / 60)
-        mt.hour(h)
-        mt.minute(Math.floor(time-h*60))
-        return moment(mt).format('YYYY-MM-DD kk:mm:ss', 'en-GB')
+        if (end) {
+            mt.hour(23)
+            mt.minute(59)
+        } else {
+            mt.hour(0)
+            mt.minute(0)
+            mt.second(1)
+        }
+        return moment(mt).format('YYYY-MM-DD HH:mm:ss', 'en-GB')
     }
     
-    const id = values.id !== emptyParams.id ? '?number=' + +values.id : ''
-    const c = values.destination !== emptyParams.destination ? '?city=' + values.destination : ''
+    const id = values.id !== emptyParams.id ? '&number=' + +values.id : ''
+    const c = values.destination !== emptyParams.destination ? '&city=' + values.destination : ''
 
     let mdt = ''
     if (values.date !== emptyParams.date)
-        mdt = '?min_departure_time=' + getFormatString(values.date, 0) +
-            '?max_departure_time=' + getFormatString(values.date, 1439)
+        mdt = '&min_departure_time=' + getFormatString(values.date, 0) +
+            '&max_departure_time=' + getFormatString(values.date, 1439)
 
     let md = ''
     if (values.durationBegin !== emptyParams.durationBegin || values.durationEnd !== emptyParams.durationEnd)
-        md = '?min_duration=' + (3600 * values.durationBegin) +
-            '?max_duration=' + (3600 * values.durationEnd)
+        md = '&min_duration=' + (3600 * values.durationBegin) +
+            '&max_duration=' + (3600 * values.durationEnd)
     
     let mp = ''
     if (values.priceBegin !== emptyParams.priceBegin || values.priceEnd !== emptyParams.priceEnd)
-        mp = '?min_price=' + values.priceBegin +
-            '?max_price=' + values.priceEnd    
+        mp = '&min_price=' + values.priceBegin +
+            '&max_price=' + values.priceEnd
 
-    return id+c+mdt+md+mp
+    let res = id + c + mdt + md + mp
+    
+    return res !== '' ? '?'+res.substr(1) : ''
 }
 
 function getOffset(el) {
