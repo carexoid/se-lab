@@ -10,6 +10,7 @@ import OrderDetails from '../components/OrderDetails';
 import PMDialog from '../components/PMDialog';
 import { Form } from '../components/useForm';
 import $, { ajax } from 'jquery';
+import netlifyIdentity from 'netlify-identity-widget';
 const styles = theme => ({
     paper: {
         verticalAlign: 'middle',
@@ -78,13 +79,14 @@ class ComposeOrder extends Component {
                 quantity: 1,
                 comment: "",
             },
+            bonuses: false,
         }
 
         this.render = this.render.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.composeParameters = this.composeParameters.bind(this);
         this.composeOrder = this.composeOrder.bind(this);
-        this.composeBody = this.composeBody.bind(this);
+        //this.composeBody = this.composeBody.bind(this);
         this.setActiveChoosePM = this.setActiveChoosePM.bind(this);
         this.setOrder = this.setOrder.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -99,7 +101,7 @@ class ComposeOrder extends Component {
             url: `/api/chief/flights/${flightId}`,
             headers: { 'Accept': 'application/json' },
             success: ((responseJSON) => {
-                console.log(responseJSON)
+                console.log('fethed flight',responseJSON)
                 if (responseJSON.econom_remaining === 0) {
                     this.setOrder('class', 'business')
                 }
@@ -117,6 +119,18 @@ class ComposeOrder extends Component {
                 this.setState({ tickets: responseJSON })
             }).bind(this)
         })
+
+        $.ajax({
+            type: 'GET',
+            url: `/api/chief/account`,
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer '+ netlifyIdentity.currentUser().token.access_token,
+            },
+            success: ((responseJSON) => {
+                this.setState({ bonuses: responseJSON.bonuses !== 0 })
+            }).bind(this)
+        })
     }
 
     composeParameters(useBonuses) {
@@ -131,7 +145,7 @@ class ComposeOrder extends Component {
         return str;
     }
 
-    composeOrder() {
+    composeOrder(online) {
         let body = {
             tickets: this.state.tickets[this.state.order.class].slice(
                 0, this.state.order.quantity
@@ -141,7 +155,7 @@ class ComposeOrder extends Component {
                     seat: x.seat,
                 }
             }).bind(this)),
-            type: 'online',           
+            type: online === false? 'offline' : 'online',
         }
         if (this.state.order.comment === '') { }
         else {
@@ -153,9 +167,11 @@ class ComposeOrder extends Component {
         console.log('body: ', body)
 
         this.setState({ body: body })
+
+        return body
     }
 
-    composeBody() {
+    /* composeBody() {
         let body = {
             tickets: this.state.tickets[this.state.order.class].slice(
                 0, this.state.order.quantity
@@ -177,9 +193,9 @@ class ComposeOrder extends Component {
         console.log('body: ', body)
 
         return body
-    }
+    } */
 
-    
+
 
     setActiveChoosePM(value) {
         this.setState({
@@ -214,7 +230,7 @@ class ComposeOrder extends Component {
                 />
 
                 <div>
-                    <Typography variant="h2" className={classes.spacingTop}>Order Tickets for Flight Kyiv — {this.state.flight.city}</Typography>
+                    <Typography variant="h2" className={classes.spacingTop}>Order Tickets for Flight Cybernetics — {this.state.flight.city}</Typography>
                     <Typography className={classes.note}>All required fields are marked with *</Typography>
                     <Box className={classes.spacing}>
                         <Typography display='inline'>Flight Information</Typography>
@@ -230,41 +246,56 @@ class ComposeOrder extends Component {
                         </IconButton>
                     </Box>
 
-                    <Form onSubmit={this.handleSubmit}>
-                        {!this.state.showInfo ? null :
-                            <Paper
-                                className={classes.paper}
-                            >
-                                <DisplayFlight flight={this.state.flight} />
-                            </Paper>
-                        }
+                    {!this.state.showInfo ? null :
+                        <Paper
+                            className={classes.paper}
+                        >
+                            <DisplayFlight flight={this.state.flight} />
+                        </Paper>
+                    }
 
-                        <OrderDetails
-                            order={this.state.order}
-                            setOrder={this.setOrder}
-                            flight={this.state.flight}
-                            composeOrder={this.composeOrder}
-                        />
+                    {this.state.flight.business_remaining === 0 && this.state.flight.econom_remaining === 0 ?
+                         <Box textAlign='center' className={classes.spacing}>
+                            <Typography variant='h4'>
+                                No available tickets.
+                            </Typography>
+                        </Box>                       
+                        :
+                        <Form onSubmit={this.handleSubmit}>
 
-                        <Box textAlign='center' className={classes.spacing}>
-                            <Button
-                                id='order-choose-pm'
-                                color="primary"
-                                size='large'
-                                variant="contained"
-                                type='sumbit'
-                            >
-                                Choose Payment Method
-                            </Button>
-                        </Box>
-                    </Form>
+
+                            <OrderDetails
+                                order={this.state.order}
+                                setOrder={this.setOrder}
+                                flight={this.state.flight}
+                                composeOrder={this.composeOrder}
+                            />
+
+
+                            <Box textAlign='center' className={classes.spacing}>
+                                <Button
+                                    id='order-choose-pm'
+                                    color="primary"
+                                    size='large'
+                                    variant="contained"
+                                    type='sumbit'
+                                >
+                                    Choose Payment Method
+                                </Button>
+                            </Box>
+
+
+                        </Form>
+                       
+                    }
 
                     {!this.state.activeChoosePM ? null :
                         <PMDialog
                             requestBody={this.state.body}
-                            composeBody={this.composeBody}
-                            order={this.state.order}
-                            tickets={this.state.tickets}
+                            composeOrder={this.composeOrder}
+                            bonuses={this.state.bonuses}
+                            //order={this.state.order}
+                            //tickets={this.state.tickets}
                             flight={this.state.flight}
                             setActiveChoosePM={this.setActiveChoosePM}
                             composeParameters={this.composeParameters}

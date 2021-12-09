@@ -1,0 +1,1033 @@
+1638954384183	geckodriver	INFO	Listening on 127.0.0.1:37275
+1638954384187	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50125" "-no-remote" "-profile" "/tmp/rust_mozprofileusnrIC"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:50125/devtools/browser/b0b4969b-ca5c-4d6d-a371-526c00a32a10
+1638954386069	Marionette	INFO	Listening on port 46135
+1638954386109	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://trendoceans.com/cdn-cgi/challenge-platform/h/g/scripts/invisible.js, line 1: unreachable code after return statement
+JavaScript warning: https://trendoceans.com/cdn-cgi/challenge-platform/h/g/scripts/invisible.js, line 1: unreachable code after return statement
+Failed to establish dbus connection1638954399010	Marionette	INFO	Stopped listening on port 46135
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 1030: Error: Sqlite.jsm has been shutdown. Cannot open connection to: /tmp/rust_mozprofileusnrIC/protections.sqlite
+1638954399351	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638955840768	geckodriver	INFO	Listening on 127.0.0.1:36843
+1638955840773	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "34319" "-no-remote" "-profile" "/tmp/rust_mozprofilejN6ui1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:34319/devtools/browser/90d43ee0-1bdd-418f-a7fd-b5ace681998e
+1638955842448	Marionette	INFO	Listening on port 35549
+1638955842494	Marionette	WARN	TLS certificate errors will be ignored for this session
+Failed to establish dbus connection!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1638955853526	Marionette	INFO	Stopped listening on port 35549
+1638955853667	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638955856948	geckodriver::marionette	ERROR	Failed to close browser connection: Socket not connected (os error 107)
+1638956334120	geckodriver	INFO	Listening on 127.0.0.1:45677
+1638956334124	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "60019" "-no-remote" "-profile" "/tmp/rust_mozprofileWMZar6"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:60019/devtools/browser/bd613de1-461d-4301-a110-8c177ccb9fac
+1638956335919	Marionette	INFO	Listening on port 42817
+1638956335943	Marionette	WARN	TLS certificate errors will be ignored for this session
+!!! error running onStopped callback: TypeError: callback is not a function
+1638956377303	Marionette	INFO	Stopped listening on port 42817
+1638956377505	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638956488997	geckodriver	INFO	Listening on 127.0.0.1:60625
+1638956489001	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "44537" "-no-remote" "-profile" "/tmp/rust_mozprofile3Cz7TU"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:44537/devtools/browser/8688e26a-5117-4c93-82eb-d17feb7711b9
+1638956490801	Marionette	INFO	Listening on port 41727
+1638956490832	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+1638956598276	geckodriver	INFO	Listening on 127.0.0.1:37335
+1638956598280	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "51363" "-no-remote" "-profile" "/tmp/rust_mozprofilexle0XR"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:51363/devtools/browser/1be7af16-af63-4255-942b-6a9f502aeaed
+1638956600137	Marionette	INFO	Listening on port 41067
+1638956600199	Marionette	WARN	TLS certificate errors will be ignored for this session
+!!! error running onStopped callback: TypeError: callback is not a function
+1638956612746	Marionette	INFO	Stopped listening on port 41067
+1638956612932	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638956659203	geckodriver	INFO	Listening on 127.0.0.1:57345
+1638956659206	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "32851" "-no-remote" "-profile" "/tmp/rust_mozprofileT1JKjD"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:32851/devtools/browser/8c72c366-d984-4975-94c4-0bdfdf973467
+1638956661016	Marionette	INFO	Listening on port 39953
+1638956661124	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638956768665	Marionette	INFO	Stopped listening on port 39953
+1638956768893	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638956775156	Marionette	INFO	Stopped listening on port 41727
+1638956775168	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638957003182	geckodriver	INFO	Listening on 127.0.0.1:44075
+1638957003186	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "41425" "-no-remote" "-profile" "/tmp/rust_mozprofileb3U8F7"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:41425/devtools/browser/dc655448-6e51-44e5-8c93-1c5872d93692
+1638957005081	Marionette	INFO	Listening on port 32823
+1638957005105	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638957212954	Marionette	INFO	Stopped listening on port 32823
+1638957212965	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638957365374	geckodriver	INFO	Listening on 127.0.0.1:56899
+1638957365378	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "42251" "-no-remote" "-profile" "/tmp/rust_mozprofileBPddK8"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:42251/devtools/browser/f565450d-f535-4b6c-8854-ff2915b9a057
+1638957367098	Marionette	INFO	Listening on port 42853
+1638957367196	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638957373025	Marionette	INFO	Stopped listening on port 42853
+!!! error running onStopped callback: TypeError: callback is not a function
+1638957373365	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638958908304	geckodriver	INFO	Listening on 127.0.0.1:55481
+1638958908307	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "54681" "-no-remote" "-profile" "/tmp/rust_mozprofilegrBTIe"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:54681/devtools/browser/65a4562c-25f0-4814-85ce-c0070a19b24d
+1638958910019	Marionette	INFO	Listening on port 36845
+1638958910126	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638958991345	Marionette	INFO	Stopped listening on port 36845
+1638958991586	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638959423679	geckodriver	INFO	Listening on 127.0.0.1:41429
+1638959423683	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "43373" "-no-remote" "-profile" "/tmp/rust_mozprofilenUnn2X"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:43373/devtools/browser/227968db-398a-4624-bc3b-782f3c78c938
+1638959425416	Marionette	INFO	Listening on port 33343
+1638959425503	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638959523233	geckodriver	INFO	Listening on 127.0.0.1:55217
+1638959523236	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "47021" "-no-remote" "-profile" "/tmp/rust_mozprofile0NMTzK"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:47021/devtools/browser/b94d6bc0-2c6d-431a-886e-0de1f78a307b
+1638959524934	Marionette	INFO	Listening on port 42167
+1638959524961	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+1638959551624	geckodriver	INFO	Listening on 127.0.0.1:34311
+1638959551627	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "41767" "-no-remote" "-profile" "/tmp/rust_mozprofile4qPo5l"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:41767/devtools/browser/3030185b-70ce-46f4-9f90-1182355b5e88
+1638959553339	Marionette	INFO	Listening on port 43597
+1638959553446	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959574072	Marionette	INFO	Stopped listening on port 43597
+1638959574229	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959580482	Marionette	INFO	Stopped listening on port 42167
+JavaScript error: resource://gre/modules/CrashManager.jsm, line 831: NotAllowedError: Shutting down and refusing additional I/O tasks
+1638959580649	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959582270	Marionette	INFO	Stopped listening on port 33343
+1638959582284	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638959607925	geckodriver	INFO	Listening on 127.0.0.1:37019
+1638959607929	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59607" "-no-remote" "-profile" "/tmp/rust_mozprofileyH4wy1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:59607/devtools/browser/042af3d5-b5df-42a6-8a87-577d1da95505
+1638959609719	Marionette	INFO	Listening on port 32839
+1638959609751	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959715661	Marionette	INFO	Stopped listening on port 32839
+1638959715902	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638959843178	geckodriver	INFO	Listening on 127.0.0.1:39767
+1638959843181	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "39531" "-no-remote" "-profile" "/tmp/rust_mozprofileqirANa"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:39531/devtools/browser/eab0c065-45df-4dab-b850-b31f13c7dd3b
+1638959844854	Marionette	INFO	Listening on port 38731
+1638959844912	Marionette	WARN	TLS certificate errors will be ignored for this session
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959852835	Marionette	INFO	Stopped listening on port 38731
+1638959853016	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638959857287	geckodriver	INFO	Listening on 127.0.0.1:44557
+1638959857291	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "47767" "-no-remote" "-profile" "/tmp/rust_mozprofileLkilOT"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:47767/devtools/browser/d4532bb1-0ebd-4925-8296-5edd142bba23
+1638959859109	Marionette	INFO	Listening on port 38155
+1638959859211	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+!!! error running onStopped callback: TypeError: callback is not a function
+1638959866866	Marionette	INFO	Stopped listening on port 38155
+1638959867049	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960000219	geckodriver	INFO	Listening on 127.0.0.1:52169
+1638960000222	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "34139" "-no-remote" "-profile" "/tmp/rust_mozprofileiNwtK1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:34139/devtools/browser/a571dcc0-2a74-4a0a-9141-f8205f7d3704
+1638960001942	Marionette	INFO	Listening on port 41657
+1638960002041	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960015352	Marionette	INFO	Stopped listening on port 41657
+1638960015519	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960109584	geckodriver	INFO	Listening on 127.0.0.1:57083
+1638960109588	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "40781" "-no-remote" "-profile" "/tmp/rust_mozprofileGWmVs9"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:40781/devtools/browser/a33da248-35c9-4980-8e6f-a7251732a807
+1638960111338	Marionette	INFO	Listening on port 44487
+1638960111408	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638960115789	Marionette	INFO	Stopped listening on port 44487
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960116141	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960226436	geckodriver	INFO	Listening on 127.0.0.1:42551
+1638960226441	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59693" "-no-remote" "-profile" "/tmp/rust_mozprofileePDrye"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:59693/devtools/browser/5a68497b-ed3e-43ef-a173-ca69efd67ec3
+1638960228047	Marionette	INFO	Listening on port 46679
+1638960228162	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638960250641	geckodriver	INFO	Listening on 127.0.0.1:39021
+1638960250644	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59249" "-no-remote" "-profile" "/tmp/rust_mozprofileGHDo3L"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:59249/devtools/browser/cb7f6a11-21ec-49d4-8544-50f1fe5eeb15
+1638960252545	Marionette	INFO	Listening on port 42199
+1638960252565	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960258322	Marionette	INFO	Stopped listening on port 42199
+1638960258488	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960292811	geckodriver	INFO	Listening on 127.0.0.1:54501
+1638960292814	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "46369" "-no-remote" "-profile" "/tmp/rust_mozprofiled5ol0J"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:46369/devtools/browser/c4b2c7e2-3964-44e6-a175-7b776280a4d2
+1638960294541	Marionette	INFO	Listening on port 35307
+1638960294643	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960323462	Marionette	INFO	Stopped listening on port 46679
+1638960323688	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960325739	Marionette	INFO	Stopped listening on port 35307
+1638960325923	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960398511	geckodriver	INFO	Listening on 127.0.0.1:38501
+1638960398515	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "35415" "-no-remote" "-profile" "/tmp/rust_mozprofilehvZcfO"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:35415/devtools/browser/5791aadd-1999-499e-a9a6-bea58bd11dc3
+1638960400303	Marionette	INFO	Listening on port 45765
+1638960400334	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960414018	Marionette	INFO	Stopped listening on port 45765
+1638960414199	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960428253	geckodriver	INFO	Listening on 127.0.0.1:57481
+1638960428257	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "37659" "-no-remote" "-profile" "/tmp/rust_mozprofileZbqZsx"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:37659/devtools/browser/0fb38e68-592e-4b6f-a273-2bf4d8e3cbb4
+1638960429979	Marionette	INFO	Listening on port 35009
+1638960430075	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638960453313	geckodriver	INFO	Listening on 127.0.0.1:47725
+1638960453317	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "58635" "-no-remote" "-profile" "/tmp/rust_mozprofilec8b0Lx"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:58635/devtools/browser/03480882-1c8d-45ed-b2aa-fcbcd58f0a3e
+1638960455115	Marionette	INFO	Listening on port 38545
+1638960455139	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 34ms)
+1638960496261	geckodriver	INFO	Listening on 127.0.0.1:53631
+1638960496264	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "51923" "-no-remote" "-profile" "/tmp/rust_mozprofile0XdasG"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:51923/devtools/browser/9b7cdd3a-2a1e-4b95-9e9b-8b342986d1bf
+1638960498036	Marionette	INFO	Listening on port 41225
+1638960498085	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+1638960538373	geckodriver	INFO	Listening on 127.0.0.1:51377
+1638960538378	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "44915" "-no-remote" "-profile" "/tmp/rust_mozprofileWP92NQ"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:44915/devtools/browser/4f4e393f-4de2-4997-8743-b15639991ed6
+1638960540137	Marionette	INFO	Listening on port 46279
+1638960540196	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960548559	Marionette	INFO	Stopped listening on port 46279
+1638960548739	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960560885	geckodriver	INFO	Listening on 127.0.0.1:44455
+1638960560889	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "60331" "-no-remote" "-profile" "/tmp/rust_mozprofilei6I5l1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:60331/devtools/browser/c62766b5-b7fb-4880-a8b7-c47ab8a9542f
+1638960562696	Marionette	INFO	Listening on port 42865
+1638960562808	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: asm.js type error: Disabled by lack of compiler support
+!!! error running onStopped callback: TypeError: callback is not a function
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+1638960708321	Marionette	INFO	Stopped listening on port 42865
+1638960708620	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960711481	Marionette	INFO	Stopped listening on port 41225
+1638960711496	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960714781	Marionette	INFO	Stopped listening on port 38545
+1638960714797	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+1638960715565	Marionette	INFO	Stopped listening on port 35009
+1638960715578	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638960795604	geckodriver	INFO	Listening on 127.0.0.1:44759
+1638960795608	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59441" "-no-remote" "-profile" "/tmp/rust_mozprofilewlUiA4"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:59441/devtools/browser/ebb503f1-8a53-48a9-9af2-9d558cad2db7
+1638960797437	Marionette	INFO	Listening on port 36789
+1638960797527	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638960917687	geckodriver	INFO	Listening on 127.0.0.1:44123
+1638960917691	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "53015" "-no-remote" "-profile" "/tmp/rust_mozprofileIHyiUn"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:53015/devtools/browser/75310bc1-0a99-4703-a621-29337eca7354
+1638960919341	Marionette	INFO	Listening on port 44299
+1638960919412	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960937125	Marionette	INFO	Stopped listening on port 44299
+1638960937286	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+!!! error running onStopped callback: TypeError: callback is not a function
+1638960939974	Marionette	INFO	Stopped listening on port 36789
+1638960939989	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638961027067	geckodriver	INFO	Listening on 127.0.0.1:52141
+1638961027071	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "33179" "-no-remote" "-profile" "/tmp/rust_mozprofileFiVyO1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:33179/devtools/browser/4703e26c-9fbf-4d0a-856c-ee1e8337f58f
+1638961028790	Marionette	INFO	Listening on port 33475
+1638961028890	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+1638961056071	geckodriver	INFO	Listening on 127.0.0.1:42201
+1638961056075	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "52967" "-no-remote" "-profile" "/tmp/rust_mozprofilejRm0bw"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:52967/devtools/browser/8440486d-0ab4-4768-a0f1-d949b5fcb950
+1638961057830	Marionette	INFO	Listening on port 46833
+1638961057894	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638961082304	geckodriver	INFO	Listening on 127.0.0.1:33949
+1638961082308	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "41017" "-no-remote" "-profile" "/tmp/rust_mozprofileq7vDZh"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:41017/devtools/browser/2e739049-42b8-46f1-8210-04013ffae2d8
+1638961084096	Marionette	INFO	Listening on port 43153
+1638961084127	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638961292492	geckodriver	INFO	Listening on 127.0.0.1:45609
+1638961292496	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "53779" "-no-remote" "-profile" "/tmp/rust_mozprofilebiWNs8"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:53779/devtools/browser/44c94611-4142-4d6a-8b8e-7fb2c1dab09f
+1638961294245	Marionette	INFO	Listening on port 33715
+1638961294314	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+1638961310186	Marionette	INFO	Stopped listening on port 33715
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961310911	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638961327106	geckodriver	INFO	Listening on 127.0.0.1:47943
+1638961327110	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "53245" "-no-remote" "-profile" "/tmp/rust_mozprofilequPzNT"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:53245/devtools/browser/e8607da7-ce87-49f1-99da-d1e141c59b01
+1638961328876	Marionette	INFO	Listening on port 44659
+1638961328929	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+1638961343656	Marionette	INFO	Stopped listening on port 44659
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961343990	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1638961476745	geckodriver	INFO	Listening on 127.0.0.1:45849
+1638961476748	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "57757" "-no-remote" "-profile" "/tmp/rust_mozprofileUAzo2n"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:57757/devtools/browser/51c81646-c401-4081-b90e-8afe120b17e2
+1638961478476	Marionette	INFO	Listening on port 39185
+1638961478567	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638961493367	Marionette	INFO	Stopped listening on port 39185
+!!! error running onStopped callback: TypeError: callback is not a function
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+1638961493720	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961550916	Marionette	INFO	Stopped listening on port 43153
+1638961550929	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961551895	Marionette	INFO	Stopped listening on port 46833
+1638961551908	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961553971	Marionette	INFO	Stopped listening on port 33475
+1638961553983	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638961825061	geckodriver	INFO	Listening on 127.0.0.1:52155
+1638961825065	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "40819" "-no-remote" "-profile" "/tmp/rust_mozprofilerJhGUr"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:40819/devtools/browser/50a4450b-3e8c-4694-966d-4330e0ca2913
+1638961826701	Marionette	INFO	Listening on port 38003
+1638961826789	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+console.warn: LoginHelper(Content): "Couldn't parse origin for" "about:blank" ({})
+console.warn: LoginHelper(Content): "Couldn't parse origin for" "about:blank" ({})
+console.warn: LoginHelper(Content): "Couldn't parse origin for" "about:blank" ({})
+console.warn: LoginHelper(Content): "Couldn't parse origin for" "about:blank" ({})
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961869714	Marionette	INFO	Stopped listening on port 38003
+1638961869877	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638961872453	geckodriver	INFO	Listening on 127.0.0.1:37569
+1638961872457	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "36097" "-no-remote" "-profile" "/tmp/rust_mozprofilenbth0C"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:36097/devtools/browser/e12c204f-d26c-41a9-8b6b-1dbe453ba6fb
+1638961874332	Marionette	INFO	Listening on port 43697
+1638961874376	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638961880470	Marionette	INFO	Stopped listening on port 43697
+1638961880650	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638962988000	geckodriver	INFO	Listening on 127.0.0.1:58523
+1638962988004	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "39399" "-no-remote" "-profile" "/tmp/rust_mozprofileHDwg2k"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:39399/devtools/browser/d36e877c-7c05-4aa2-b5d2-f75f5f5cdcce
+1638962989754	Marionette	INFO	Listening on port 36313
+1638962989830	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638963024766	geckodriver	INFO	Listening on 127.0.0.1:53887
+1638963024770	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "44303" "-no-remote" "-profile" "/tmp/rust_mozprofileurWfK2"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:44303/devtools/browser/aede2452-a83f-4332-8da2-2b9604b8f7f9
+1638963026559	Marionette	INFO	Listening on port 41637
+1638963026591	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 39ms)
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963101628	Marionette	INFO	Stopped listening on port 41637
+1638963101869	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963113901	Marionette	INFO	Stopped listening on port 36313
+1638963114130	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963226846	geckodriver	INFO	Listening on 127.0.0.1:60189
+1638963226850	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50269" "-no-remote" "-profile" "/tmp/rust_mozprofileLFG4Yz"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:50269/devtools/browser/45d9b146-bd93-4367-8d6a-67be04d2c135
+1638963228593	Marionette	INFO	Listening on port 46517
+1638963228669	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963385770	geckodriver	INFO	Listening on 127.0.0.1:35831
+1638963385774	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "38767" "-no-remote" "-profile" "/tmp/rust_mozprofileltd3Jq"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:38767/devtools/browser/34f9f0f8-a9fe-4f13-a979-adf932188105
+1638963387473	Marionette	INFO	Listening on port 38751
+1638963387500	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 35ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963405641	Marionette	INFO	Stopped listening on port 38751
+1638963405795	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963418271	Marionette	INFO	Stopped listening on port 46517
+1638963418283	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963421161	geckodriver	INFO	Listening on 127.0.0.1:35419
+1638963421164	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "37905" "-no-remote" "-profile" "/tmp/rust_mozprofileVQ32it"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:37905/devtools/browser/18352805-1283-4fa9-ae0f-8500f338b649
+1638963422914	Marionette	INFO	Listening on port 41761
+1638963422982	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963435676	Marionette	INFO	Stopped listening on port 41761
+1638963435841	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963457141	geckodriver	INFO	Listening on 127.0.0.1:51057
+1638963457145	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "42677" "-no-remote" "-profile" "/tmp/rust_mozprofilew8NPln"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:42677/devtools/browser/f9de85a3-0880-48d1-8562-0874c47e56e2
+1638963458816	Marionette	INFO	Listening on port 38959
+1638963458868	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963503337	geckodriver	INFO	Listening on 127.0.0.1:32907
+1638963503341	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "54063" "-no-remote" "-profile" "/tmp/rust_mozprofile21qBhc"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:54063/devtools/browser/2393cd54-a8b4-486a-8f9c-925bcd4b9245
+1638963505045	Marionette	INFO	Listening on port 35843
+1638963505160	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963519732	Marionette	INFO	Stopped listening on port 35843
+1638963519897	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963538802	geckodriver	INFO	Listening on 127.0.0.1:53627
+1638963538806	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "35629" "-no-remote" "-profile" "/tmp/rust_mozprofileyN4SOF"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:35629/devtools/browser/534375d1-a39b-48bc-8bdc-a8ec31a50d00
+1638963540520	Marionette	INFO	Listening on port 34081
+1638963540624	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963550939	Marionette	INFO	Stopped listening on port 34081
+1638963551102	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963675992	geckodriver	INFO	Listening on 127.0.0.1:55793
+1638963675996	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "33693" "-no-remote" "-profile" "/tmp/rust_mozprofilelcja22"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:33693/devtools/browser/850fb048-3238-46cb-a56a-0092fa7e7dca
+1638963677772	Marionette	INFO	Listening on port 38371
+1638963677818	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963727357	geckodriver	INFO	Listening on 127.0.0.1:58291
+1638963727360	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "54549" "-no-remote" "-profile" "/tmp/rust_mozprofileuEqSzs"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:54549/devtools/browser/39553aa9-b959-4212-900b-b32ed70997d6
+1638963729114	Marionette	INFO	Listening on port 45241
+1638963729179	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963805515	geckodriver	INFO	Listening on 127.0.0.1:51667
+1638963805519	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "33837" "-no-remote" "-profile" "/tmp/rust_mozprofilej2LyKi"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:33837/devtools/browser/5f9bf1d2-95c7-4256-892a-85fe98188b87
+1638963807359	Marionette	INFO	Listening on port 42895
+1638963807437	Marionette	WARN	TLS certificate errors will be ignored for this session
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963835119	Marionette	INFO	Stopped listening on port 42895
+1638963837354	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638963843920	geckodriver	INFO	Listening on 127.0.0.1:38981
+1638963843924	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "46359" "-no-remote" "-profile" "/tmp/rust_mozprofileNQjpmo"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:46359/devtools/browser/9742d4ed-341f-4cd4-9cb1-7a19e1f976ec
+1638963845788	Marionette	INFO	Listening on port 38311
+1638963845844	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 45ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963884314	geckodriver	INFO	Listening on 127.0.0.1:42625
+1638963884317	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50019" "-no-remote" "-profile" "/tmp/rust_mozprofileJw9HNo"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:50019/devtools/browser/422ec1f3-1b4a-49a1-be4c-4cc8d06605f7
+1638963886152	Marionette	INFO	Listening on port 42505
+1638963886236	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 43ms)
+1638963955662	geckodriver	INFO	Listening on 127.0.0.1:49663
+1638963955666	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "50825" "-no-remote" "-profile" "/tmp/rust_mozprofileoGJjOU"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:50825/devtools/browser/29f2754b-6f21-44db-8389-4630c638d40d
+1638963957640	Marionette	INFO	Listening on port 42995
+1638963957687	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638963975191	Marionette	INFO	Stopped listening on port 42995
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963975555	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963993044	Marionette	INFO	Stopped listening on port 38311
+1638963993057	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963993913	Marionette	INFO	Stopped listening on port 45241
+1638963993925	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963995041	Marionette	INFO	Stopped listening on port 42505
+1638963995268	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963996077	Marionette	INFO	Stopped listening on port 38371
+1638963996088	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638963996771	Marionette	INFO	Stopped listening on port 38959
+1638963996783	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638964991992	geckodriver	INFO	Listening on 127.0.0.1:52239
+1638964991996	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "60287" "-no-remote" "-profile" "/tmp/rust_mozprofileUZ8GUy"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:60287/devtools/browser/00ef196c-6ea0-40f8-9236-b60be11f5248
+1638964993824	Marionette	INFO	Listening on port 38477
+1638964993915	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965055759	geckodriver	INFO	Listening on 127.0.0.1:49325
+1638965055764	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "38877" "-no-remote" "-profile" "/tmp/rust_mozprofilezgquvA"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:38877/devtools/browser/774baf74-ed6e-4dea-973c-89aab47c1d3c
+1638965057556	Marionette	INFO	Listening on port 44197
+1638965057583	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965078956	Marionette	INFO	Stopped listening on port 44197
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965079303	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638965129847	geckodriver	INFO	Listening on 127.0.0.1:52907
+1638965129851	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "54037" "-no-remote" "-profile" "/tmp/rust_mozprofilelUh0Yo"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:54037/devtools/browser/181c72bf-9621-4e9b-bbf8-6c03948281d3
+1638965131776	Marionette	INFO	Listening on port 42637
+1638965131872	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965155755	Marionette	INFO	Stopped listening on port 42637
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965156089	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638965169147	geckodriver	INFO	Listening on 127.0.0.1:46349
+1638965169151	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "52309" "-no-remote" "-profile" "/tmp/rust_mozprofile0zEnk8"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:52309/devtools/browser/2e9c2683-fc33-41ff-97c3-f2f653099a32
+1638965171002	Marionette	INFO	Listening on port 33431
+1638965171070	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965193916	Marionette	INFO	Stopped listening on port 33431
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965194300	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638965210290	geckodriver	INFO	Listening on 127.0.0.1:35437
+1638965210294	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "54019" "-no-remote" "-profile" "/tmp/rust_mozprofile7kOjSu"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:54019/devtools/browser/de947eaa-9d2b-4036-b77a-d005c59db9d2
+1638965212025	Marionette	INFO	Listening on port 44197
+1638965212113	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1638965426277	geckodriver	INFO	Listening on 127.0.0.1:44837
+1638965426281	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59937" "-no-remote" "-profile" "/tmp/rust_mozprofilebpKxQQ"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:59937/devtools/browser/e50144b5-375d-4a36-b7fd-b787dccc804f
+1638965427969	Marionette	INFO	Listening on port 36003
+1638965428016	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965474712	geckodriver	INFO	Listening on 127.0.0.1:54649
+1638965474716	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "35017" "-no-remote" "-profile" "/tmp/rust_mozprofile2qylnU"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:35017/devtools/browser/87f95211-948a-4941-ac80-8ecfea976ddb
+1638965476410	Marionette	INFO	Listening on port 46739
+1638965476442	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638965500155	Marionette	INFO	Stopped listening on port 46739
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965500524	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638965515248	geckodriver	INFO	Listening on 127.0.0.1:41271
+1638965515252	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "37681" "-no-remote" "-profile" "/tmp/rust_mozprofileI08hmZ"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:37681/devtools/browser/baf04869-f622-4dbc-abda-0cac8a26add9
+1638965517089	Marionette	INFO	Listening on port 35523
+1638965517171	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+1638965541510	Marionette	INFO	Stopped listening on port 35523
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965541859	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965673630	Marionette	INFO	Stopped listening on port 44197
+1638965673644	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965675965	Marionette	INFO	Stopped listening on port 38477
+1638965675987	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638965680354	Marionette	INFO	Stopped listening on port 36003
+1638965680367	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638969235038	geckodriver	INFO	Listening on 127.0.0.1:52533
+1638969235042	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "49785" "-no-remote" "-profile" "/tmp/rust_mozprofileC4mwpw"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:49785/devtools/browser/6db88bdf-5e68-45e7-af15-d7ede6c674af
+1638969236764	Marionette	INFO	Listening on port 43231
+1638969236869	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638969253264	Marionette	INFO	Stopped listening on port 43231
+!!! error running onStopped callback: TypeError: callback is not a function
+1638969253589	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638969443872	geckodriver	INFO	Listening on 127.0.0.1:43025
+1638969443876	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "38213" "-no-remote" "-profile" "/tmp/rust_mozprofileXWaC6V"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:38213/devtools/browser/625f6598-a613-4b4a-80f0-9e96e9f5ecc2
+1638969445688	Marionette	INFO	Listening on port 32857
+1638969445795	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 38ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638969550174	geckodriver	INFO	Listening on 127.0.0.1:52425
+1638969550177	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "55699" "-no-remote" "-profile" "/tmp/rust_mozprofile7mI0nL"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:55699/devtools/browser/af039088-0aba-484d-929e-85d4cda78a6f
+1638969551625	Marionette	INFO	Listening on port 38301
+1638969551725	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 36ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638969576328	Marionette	INFO	Stopped listening on port 38301
+!!! error running onStopped callback: TypeError: callback is not a function
+1638969576683	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+!!! error running onStopped callback: TypeError: callback is not a function
+1638969596665	Marionette	INFO	Stopped listening on port 32857
+1638969596678	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638985779833	geckodriver	INFO	Listening on 127.0.0.1:52127
+1638985779837	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "45577" "-no-remote" "-profile" "/tmp/rust_mozprofileFP1Gln"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:45577/devtools/browser/02f2e755-a688-49d6-a2fc-1bcae93c4bbc
+1638985781445	Marionette	INFO	Listening on port 41813
+1638985781562	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 34ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1638985803544	Marionette	INFO	Stopped listening on port 41813
+!!! error running onStopped callback: TypeError: callback is not a function
+1638985803884	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
+1638986032163	geckodriver	INFO	Listening on 127.0.0.1:37959
+1638986032167	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "47721" "-no-remote" "-profile" "/tmp/rust_mozprofile2cHEHc"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+DevTools listening on ws://localhost:47721/devtools/browser/56264ab1-128e-4260-a37d-7f3ad1bf220b
+1638986033978	Marionette	INFO	Listening on port 42559
+1638986034085	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript warning: http://localhost:3000/static/js/vendors~main.chunk.js, line 0: Successfully compiled asm.js code (total compilation time 37ms)
+1638986045021	Marionette	INFO	Stopped listening on port 42559
+!!! error running onStopped callback: TypeError: callback is not a function
+1638986045357	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/observers/TargetObserver.jsm :: stop :: line 59"  data: no] Stack trace: stop()@TargetObserver.jsm:59
+unwatchForTabs()@TargetList.jsm:71
+unwatchForTargets()@TargetList.jsm:38
+destructor()@TargetList.jsm:110
+close()@RemoteAgent.jsm:123
