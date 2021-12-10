@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Typography, IconButton, Button, DialogActions } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -86,7 +86,6 @@ class ComposeOrder extends Component {
         this.componentDidMount = this.componentDidMount.bind(this);
         this.composeParameters = this.composeParameters.bind(this);
         this.composeOrder = this.composeOrder.bind(this);
-        //this.composeBody = this.composeBody.bind(this);
         this.setActiveChoosePM = this.setActiveChoosePM.bind(this);
         this.setOrder = this.setOrder.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -171,29 +170,6 @@ class ComposeOrder extends Component {
         return body
     }
 
-    /* composeBody() {
-        let body = {
-            tickets: this.state.tickets[this.state.order.class].slice(
-                0, this.state.order.quantity
-            ).map((x => {
-                return {
-                    flight_id: this.state.flight.id,
-                    seat: x.seat,
-                }
-            }).bind(this)),
-            type: 'offline',
-        }
-        if (this.state.order.comment === '') { }
-        else {
-            body = {
-                ...body,
-                comment: this.state.order.comment
-            }
-        }
-        console.log('body: ', body)
-
-        return body
-    } */
 
 
 

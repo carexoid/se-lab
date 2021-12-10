@@ -41,7 +41,7 @@ function PaymentError() {
                 </Typography>
 
                 <Typography className={classes.text}>
-                    Your tickets are temporarily booked. You can try to pay again now or pay later from your History page.
+                    An error occured during transaction. Your tickets are temporarily booked, you can try to pay again now or pay later from your History page.
                     Note, that after a certain period of time booking will disappear, and tickets will be available for purchase to other users.
                 </Typography>
             </Box>

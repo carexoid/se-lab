@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react';
 import track1 from '../assets/track1.mp3';
 import track2 from '../assets/track2.mp3';
 import track3 from '../assets/track3.mp3';
-import ShuffleIcon from '@material-ui/icons/Shuffle';
+import track4 from '../assets/track4.mp3';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +52,7 @@ function getRandomInt(max) {
 
 function FunButton() {
     const classes = useStyles();
-    const tracks = [track1,track2,track3]
+    const tracks = [track1,track2,track3, track4]
     let [playing, toggle] = useAudio(tracks[getRandomInt(tracks.length)])
 
     return (
