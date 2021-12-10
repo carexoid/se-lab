@@ -62,7 +62,7 @@ spec:
               name: gotrue
               key: JWT_SECRET
         - name: GOTRUE_SMTP_HOST
-          value: 100.83.87.81
+          value: smtp
         - name: GOTRUE_SMTP_PORT
           value: '1587'
         - name: GOTRUE_SMTP_ADMIN_EMAIL
