@@ -54,6 +54,7 @@ function OrderDetails(props) {
     }
     
     const [cost, setCost] = useState(calculateCost());
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         props.setOrder('quantity', 1)
@@ -72,9 +73,27 @@ function OrderDetails(props) {
             props.setOrder('quantity', props.flight.business_remaining)
     }, [props.order.class])
 
+    const validateQuantity= () =>{
+        if (props.order.quantity < 1)
+            setError(true)
+        else
+            if (props.order.class == 'econom' && props.order.quantity > props.flight.econom_remaining)
+                setError(true)
+            else
+                if (props.order.class == 'business' && props.order.quantity > props.flight.business_remaining)
+                    setError(true)
+                else
+                    setError(false)
+    }
+
+    useEffect(() => {
+        validateQuantity()
+    }, [props.order.quantity])
+
     useEffect(() => {
         setCost(calculateCost())
         props.composeOrder()
+        console.log(props.order)
     }, [props.order])
 
     return (
@@ -119,7 +138,7 @@ function OrderDetails(props) {
             </Grid>
             <Grid item xs={12} md={10}>
                 <TextField
-                    //required
+                    error={error}
                     InputProps={{
                         inputProps: {
                             min: 1,

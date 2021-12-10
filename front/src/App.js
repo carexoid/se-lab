@@ -18,6 +18,8 @@ import Success from './pages/PaymentSuccess';
 import PaymentError from './pages/PaymentError';
 import ProtectedWrapper from './pages/ProtectedWrapper';
 import FunButton from './components/FunButton';
+import ProcessingError from './pages/ProcessingError';
+import Error from './pages/Error';
 
 const theme = createTheme({
   palette: {
@@ -127,6 +129,8 @@ function App() {
                   <Route path='/help' element={<Help/>} />
                   <Route path='/payment/success*' element={<ProtectedWrapper><Success /></ProtectedWrapper>} /> {/* <ProtectedWrapper><Success /></ProtectedWrapper> */}
                   <Route path='/payment/error*' element={ <ProtectedWrapper><PaymentError /></ProtectedWrapper>} /> {/* <ProtectedWrapper><PaymentError /></ProtectedWrapper> */}
+                  <Route path='/processing/error*' element={<ProtectedWrapper><ProcessingError /></ProtectedWrapper>} />
+                  <Route path='/*' element={<Error/>} />
                 </Routes>
 
                 

@@ -91,6 +91,12 @@ function Help() {
                     After cancelling the order our Communication team will in contact about a refund.
                 </Typography>
 
+                <Typography variant='h5'>Payment Error occured</Typography>
+                <Typography className={classes.spacingSmall}>
+                    When an error occured during transaction, your tickets are temporarily booked, you can try to pay again now or pay later from your History page.
+                    Note, that after a certain period of time booking will disappear, and tickets will be available for purchase to other users.
+                </Typography>
+
             </Paper>
 
             <Paper className={classes.paper}>

@@ -51,7 +51,11 @@ const useStyles = makeStyles((theme) => ({
     button: {
         width: 200,
         margin: theme.spacing(1),
-    }
+    },
+    note: {
+        color: theme.palette.fadedtext.main,
+        fontSize: 10,
+    },
 }));
 
 const emptyError = {
@@ -86,19 +90,6 @@ function ProfileInfo() {
 
     useEffect(() => {
         console.log('user on mount',user)
-        /* $.ajax({
-            type: 'GET',
-            url: '/.netlify/identity/user',
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + user.token.access_token
-            },
-            success: response => {
-                console.log('response',response)
-                setUser(response)
-            }
-        }) */
-        //console.log(user)
     }, [])
 
     const setInfoField = (name, value) => {
@@ -126,12 +117,10 @@ function ProfileInfo() {
         password: () => {
             setErrors({
                 ...errors,
-                password: (/^.{6,}$/).test(newPassword) || newPassword === '' ? "" : "Password is invalid",
+                password: (/^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/).test(newPassword) || newPassword === '' ? "" : "Password should have at least eight characters, one letter and one special character",
             })
         },
     }
-
-//
 
     useEffect(() => {
         validators.email()
@@ -204,23 +193,22 @@ function ProfileInfo() {
     }
 
     const handleDelete = () => {
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/chief/account'
-        })
-        /* $.ajax({
-            type: 'DELETE',
-            url: '/api/chief/account'
-        }) */
-       
         setAuth(false)
         netlifyAuth.signout(() => { console.log('deleting account') })
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/chief/account',
+            headers: {
+                'Authorization': 'Bearer ' + user.token.access_token
+            },
+        })      
     }
 
     return (
         <div>
             <Form onSubmit={handleSubmit}>
                 <Typography variant='h2'>Profile Information</Typography>
+                <Typography className={classes.note}>All required fields are marked with *</Typography>
 
                 <Box className={classes.spacing}>
 
@@ -242,6 +230,7 @@ function ProfileInfo() {
                                     size="small"
                                     type='email'
                                     className={`${classes.horizontalSpacing} ${classes.inputLong}`}
+                                    placeholder='name@example.com'
                                 />
                             }
                         </Grid>
@@ -262,6 +251,7 @@ function ProfileInfo() {
                                     variant='outlined'
                                     size="small"
                                     className={`${classes.horizontalSpacing} ${classes.inputLong}`}
+                                    placeholder='+380123456789'
                                 />
                             }
                         </Grid>
@@ -296,7 +286,7 @@ function ProfileInfo() {
 
                         {!edit ? null :
                             <Grid item xs={12} lg={1}>
-                                <Typography className={classes.bold}>New Password:</Typography>
+                                <Typography className={classes.bold}>Set new Password:</Typography>
                             </Grid>
                         }
                         {!edit ? null :
@@ -313,8 +303,7 @@ function ProfileInfo() {
                                     className={`${classes.horizontalSpacing} ${classes.inputLong}`}
                                     InputProps={{
                                         inputProps: {
-                                            minLength: 6,
-                                            maxLength: 32,
+                                            minLength: 8,
                                         }
                                     }}
                                 />
@@ -347,7 +336,7 @@ function ProfileInfo() {
                         </Button>
                     }
 
-                    {/* <Button
+                    <Button
                         className={classes.button}
                         color="secondary"
                         size='large'
@@ -355,7 +344,7 @@ function ProfileInfo() {
                         onClick={handleDeleteClick}
                     >
                         Delete
-                    </Button> */}
+                    </Button>
 
                     <Dialog open={sure}>
                         <DialogContent>

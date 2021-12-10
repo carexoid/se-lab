@@ -41,8 +41,7 @@ function PMDialog(props) {
                     <Grid container spacing={2} alignItems="center">
                         <Grid item xs={12}>
                             <form
-                                action={`/api/chief/crutched_booking?body=${encodeURIComponent(JSON.stringify(props.requestBody))}&token=${user.token.access_token}`
-                                }
+                                action={`/api/chief/crutched_booking?body=${encodeURIComponent(JSON.stringify(props.requestBody))}&token=${user.token.access_token}`}
                                 method="POST"
                             >
                                 <Button
@@ -72,7 +71,7 @@ function PMDialog(props) {
                                 </Button>
                             </Grid>}
 
-                       {/*  <Grid item xs={12}>
+                        <Grid item xs={12}>
                             <Button
                                 id='order-dialog-p-offline'
                                 color="primary"
@@ -89,12 +88,14 @@ function PMDialog(props) {
                                         success: responseJSON => {
                                             window.location.href = `/payment/success?order_id=${responseJSON.order_id}`
                                         },
+                                        error: () => {
+                                            window.location.href = `/processing/error?flight_id=${props.flight.id}` }
                                     })
                                 }}
                             >
                                 Pay Offline
                             </Button>
-                        </Grid> */}
+                        </Grid>
 
                         <Grid item xs={12}>
                             <Button
