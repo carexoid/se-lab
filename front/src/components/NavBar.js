@@ -211,6 +211,7 @@ function NavBar({setAuth}) {
 
                         :
                         <Button
+                            id="nav-login"
                             size="large"
                             variant="text"
                             color='primary'
