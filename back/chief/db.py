@@ -1,3 +1,4 @@
+import flask
 from playhouse.flask_utils import FlaskDB
 from flask.cli import with_appcontext
 from playhouse.db_url import connect
@@ -115,3 +116,61 @@ def init():
     flask_db.database.create_tables(
         [User, BannedUser, Airport, Direction, Flight, Order, Ticket, Payment])
     click.echo('Initialized the database')
+
+
+@db.command('init')
+@with_appcontext
+def preset():
+    # All changes should be in single transaction
+    with flask_db.database.atomic():
+        # Add few destination points
+        chernivtsi = Airport.create(
+            name='Leonid  Kadeniunk Chernivtsi International Airport',
+            city='Chernivtsi',
+        )
+        london = Airport.create(
+            name='London Airport',
+            city='London',
+        )
+        lviv = Airport.create(
+            name='Danylo Galytskyi Lviv National Airport',
+            city='Lviv',
+            info='Really cool and modern airport, can get you almost anywhere'
+        )
+
+        # Create respective directions
+        to_chernivtsi = Direction.create(to=chernivtsi.id)
+        to_london = Direction.create(to=london.id)
+        to_lviv = Direction.create(to=lviv.id)
+
+        # Create multiple flights to every destination
+        hour_ahead = datetime.datetime.now() + datetime.time(1)
+        flights = [
+            (Flight.create(direction=to_chernivtsi.id, departure_at=hour_ahead, arrival_at=hour_ahead + datetime.time(2)), 40, 200),
+            (Flight.create(direction=to_london.id, departure_at=hour_ahead, arrival_at=hour_ahead + datetime.time(4)), 500, 700),
+            (Flight.create(direction=to_lviv.id, departure_at=hour_ahead , arrival_at=hour_ahead + datetime.time(1, 30)), 20, 80)
+        ]
+
+        # And create seats, assume flights are using the same airplane
+        econom = 50
+        business = 20
+        for flight, price in flights:
+            for i in range(0, econom):
+                Ticket.create(
+                    flight=flight.id,
+                    seat=i,
+                    order=None,
+                    type=Ticket.Type.econom,
+                    price=price[0]
+                )
+
+            for i in range(0, business):
+                Ticket.create(
+                    flight=flight.id,
+                    seat=i + econom,
+                    order=None,
+                    type=Ticket.Type.business,
+                    price=price[1]
+                )
+
+    click.echo('Database filled with predefined values')
