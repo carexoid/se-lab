@@ -70,7 +70,7 @@ const auth = new GoTrue({
     setCookie: false,
 });
 
-function ProfileInfo() {
+function ProfileInfo({setAuth}) {
     const [user, setUser] = useState(netlifyIdentity.currentUser());
 
     const classes = useStyles();
@@ -194,6 +194,7 @@ function ProfileInfo() {
 
     const handleDelete = () => {
         setAuth(false)
+        setSure(false)
         netlifyAuth.signout(() => { console.log('deleting account') })
         $.ajax({
             type: 'DELETE',
